@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,9 @@
     <meta name="description" content="Explore live production-ready website themes crafted by Forge Softwares. Select a design to begin your project.">
     <meta name="robots" content="noindex, nofollow">
     <meta property="og:title" content="Forge Softwares — Master Website Showroom">
-    <meta property="og:description" content="Minimalist digital showroom. Choose your website theme and start building.">
+    <meta property="og:description" content="Minimalist digital showroom with live LED halftone hero. Choose your website theme and start building.">
     <meta property="og:type" content="website">
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -45,25 +45,38 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* Smooth scrolling and custom scrollbars */
+        /* Smooth scrolling and enhanced scroll physics */
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
         }
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
         ::-webkit-scrollbar-track {
-            background: transparent;
+            background: rgba(0, 0, 0, 0.03);
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.03);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(120, 120, 120, 0.3);
+            background: rgba(120, 120, 120, 0.28);
             border-radius: 9999px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: background 0.3s ease;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(120, 120, 120, 0.5);
+            background: rgba(120, 120, 120, 0.55);
+            background-clip: padding-box;
         }
 
         .glass-nav {
@@ -72,43 +85,120 @@
         }
 
         .project-card {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.3s ease;
+            will-change: transform, box-shadow;
         }
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 44px -12px rgba(15, 23, 42, 0.12);
+        }
+        .dark .project-card:hover {
+            box-shadow: 0 28px 56px -12px rgba(0, 0, 0, 0.65);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Action button refined styles & transitions */
+        .btn-live-preview {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .animate-fade-in {
-            animation: fadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .btn-live-preview:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px -4px rgba(37, 99, 235, 0.25);
+        }
+        .btn-live-preview:active {
+            transform: translateY(0);
+        }
+
+        .btn-select-design {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-select-design:hover {
+            transform: translateY(-2px);
+        }
+        .btn-select-design:active {
+            transform: translateY(0);
         }
 
         /* Animated theme toggle ring */
         @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            50% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.15); }
+            50% { box-shadow: 0 0 0 8px rgba(0, 0, 0, 0); }
+        }
+        .dark .theme-btn-pulse {
+            animation: pulseGlowDark 2.5s infinite;
+        }
+        @keyframes pulseGlowDark {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.35); }
+            50% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
         }
         .theme-btn-pulse {
             animation: pulseGlow 2.5s infinite;
         }
 
-        /* Ambient background glow */
-        .ambient-glow {
-            background: radial-gradient(circle at 50% 0%, rgba(120, 120, 120, 0.08) 0%, transparent 60%);
+        /* Premium Gold Styling for Announcement Bar */
+        .gold-banner {
+            background: linear-gradient(90deg, #09090b 0%, #15130e 50%, #09090b 100%);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+            position: relative;
+        }
+        .gold-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(245, 208, 108, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .text-gold-shimmer {
+            background: linear-gradient(135deg, #fcedc5 0%, #d4af37 45%, #f3db83 70%, #aa8024 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-badge {
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
+        }
+
+        /* Kindred Rainbow underglow CTA */
+        .cta-glow {
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            bottom: -6px;
+            height: 16px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, #ffcf5a, #7dffa8, #5ad7ff, #9b7bff, #ff6fd8, #ffb36b);
+            filter: blur(9px);
+            opacity: 0.85;
+            z-index: 1;
+            pointer-events: none;
+            transition: opacity 0.3s ease, filter 0.3s ease, bottom 0.3s ease;
+        }
+        .cta-wrapper:hover .cta-glow {
+            opacity: 1;
+            filter: blur(13px);
+            bottom: -9px;
+        }
+
+        /* Subtle canvas blend */
+        #dots {
+            transition: opacity 0.4s ease;
         }
     </style>
 </head>
-<body class="bg-white dark:bg-[#09090b] text-black dark:text-zinc-100 font-sans antialiased transition-colors duration-500 selection:bg-zinc-800 selection:text-white pb-36 ambient-glow">
+<body class="bg-white dark:bg-[#09090b] text-black dark:text-zinc-100 font-sans antialiased transition-colors duration-500 selection:bg-zinc-800 selection:text-white pb-36">
 
-    <!-- Top Notification Banner -->
-    <aside aria-label="Showroom Announcement" class="bg-zinc-950 text-zinc-200 dark:bg-zinc-100 dark:text-zinc-900 text-xs py-3 px-6 text-center font-bold tracking-widest uppercase flex items-center justify-center gap-2 border-b border-zinc-800 dark:border-zinc-200 shadow-sm">
-        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span>Sales Team Showroom. Select a design below for your client.</span>
-        <a href="#showcase" class="underline hover:opacity-80 transition-opacity ml-1">Browse Themes &rarr;</a>
+    <!-- Top Notification Banner (Minimal Premium Gold) -->
+    <aside aria-label="Showroom Announcement" class="gold-banner relative z-50 text-xs py-2.5 px-6 text-center tracking-widest uppercase flex items-center justify-center gap-2.5 shadow-sm">
+        <span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-[#e6ca65] gold-badge">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#fcedc5] animate-ping"></span>
+        </span>
+        <span class="font-medium text-zinc-300 tracking-[0.14em]">
+            Welcome to Theme Showroom &mdash; <span class="font-bold text-gold-shimmer tracking-[0.18em]">Here You Choose & Select, We Make</span>
+        </span>
+        <a href="#showcase" class="inline-flex items-center gap-1 font-semibold text-[#ecd37b] hover:text-[#fff2c6] transition-colors ml-2 lowercase text-[11px] tracking-normal underline decoration-[#d4af37]/40 hover:decoration-[#d4af37]">
+            <span>browse catalog</span>
+            <span class="text-xs">&rarr;</span>
+        </a>
     </aside>
 
     <!-- Navigation -->
@@ -141,22 +231,40 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative pt-20 pb-16 sm:pt-32 sm:pb-24 overflow-hidden border-b border-zinc-200 dark:border-zinc-800">
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-xs font-bold uppercase tracking-wider mb-8 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+    <!-- Kindred Dot-Matrix Hands Hero Section -->
+    <section class="relative w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-between border-b border-zinc-200 dark:border-zinc-800 bg-[#f7f7f5] dark:bg-[#09090b] transition-colors duration-500">
+        <!-- Live Halftone Scanline Hands Canvas -->
+        <canvas id="dots" class="absolute inset-0 w-full h-full block z-[1] pointer-events-none"></canvas>
+
+        <!-- Dynamic Status Indicator -->
+        <div id="loadingIndicator" class="absolute top-5 right-6 text-[11px] font-mono tracking-wider text-zinc-400 dark:text-zinc-500 z-20 pointer-events-none transition-opacity duration-500">
+            Halftone matrix online
+        </div>
+
+        <!-- Center Copy Block with Quiet Zone protection -->
+        <div class="relative z-10 m-auto text-center px-6 max-w-4xl pt-10 sm:pt-6">
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md text-zinc-700 dark:text-zinc-300 text-xs font-bold uppercase tracking-wider mb-6 border border-zinc-200/80 dark:border-zinc-800 shadow-sm">
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                Sales Showroom &middot; Client Presentation Portal
+                <span>Creation &middot; Engineering &middot; Presentation</span>
             </div>
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.08] mb-8">
-                Choose your website design. We build it for you.
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-medium tracking-[-0.035em] leading-[1.06] mb-5">
+                <span class="block text-zinc-400 dark:text-zinc-500 font-light">Reconnecting</span>
+                <span class="block text-black dark:text-white font-semibold">Digital Craftsmanship.</span>
             </h1>
-            <p class="text-base sm:text-xl text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed mb-10 max-w-2xl mx-auto">
-                Explore our fully interactive live samples below. Pick the exact aesthetic that aligns with your client's vision and instantly share via WhatsApp.
+
+            <p class="max-w-[380px] sm:max-w-md mx-auto text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-8">
+                Choose your website design from our interactive master gallery. We build and tailor it directly for your brand.
             </p>
-            <div class="flex items-center justify-center">
-                <a href="#showcase" class="px-8.5 py-4 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-widest hover:opacity-95 transition-all shadow-2xl">
-                    View Theme Gallery &darr;
+
+            <!-- CTA with Kindred Spectrum Underglow -->
+            <div class="relative inline-block cta-wrapper group">
+                <div class="cta-glow" aria-hidden="true"></div>
+                <a href="#showcase" class="relative z-10 inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-black dark:bg-white text-white dark:text-black font-semibold text-xs uppercase tracking-widest transition-transform duration-300 group-hover:-translate-y-0.5 shadow-xl">
+                    <span>Explore Theme Showroom</span>
+                    <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                    </svg>
                 </a>
             </div>
         </div>
@@ -228,7 +336,7 @@
         </div>
     </div>
 
-    <!-- Centralized Project Database & Application Logic -->
+    <!-- Application Logic & Projects Database -->
     <script>
         // Centralized Project Database with permanent index numbers (#1, #2, #3...)
         const projectsData = [
@@ -270,8 +378,17 @@
         let currentCategory = 'All';
         let selectedDesign = null;
 
-        // Initialize Application on Load
+        // Initialize Application
         window.addEventListener('DOMContentLoaded', () => {
+            // Restore saved theme preference, defaulting strictly to 'light'
+            const savedTheme = localStorage.getItem('forge_theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+            }
             renderCategories();
             renderAllProjects();
         });
@@ -281,9 +398,11 @@
             const html = document.documentElement;
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
+                html.classList.add('light');
                 localStorage.setItem('forge_theme', 'light');
             } else {
                 html.classList.add('dark');
+                html.classList.remove('light');
                 localStorage.setItem('forge_theme', 'dark');
             }
         }
@@ -316,16 +435,15 @@
             renderAllProjects();
         }
 
-        // Render All Projects with Permanent Numbering & Guaranteed Loading
+        // Render Projects Grid
         function renderAllProjects() {
             const grid = document.getElementById('projectsGrid');
             const emptyState = document.getElementById('emptyState');
             const searchInput = document.getElementById('searchInput');
             if (!grid) return;
 
-            const query = searchInput ? searchInput.value.toLowerCase() : '';
+            const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
-            // Filter while keeping permanent numbers intact
             const filtered = projectsData.filter(p => {
                 const matchesCategory = currentCategory === 'All' || p.category === currentCategory;
                 const matchesSearch = p.title.toLowerCase().includes(query) || 
@@ -348,19 +466,19 @@
             renderAllProjects();
         }
 
-        // Project Card HTML Template with Permanent Numbering (#1, #2...) and Action Buttons
+        // Project Card HTML Template
         function createProjectCardHTML(project) {
             const isSelected = selectedDesign && selectedDesign.id === project.id;
 
             return `
-                <div class="project-card rounded-3xl border ${isSelected ? 'border-black dark:border-white ring-2 ring-black dark:ring-white shadow-2xl' : 'border-zinc-200 dark:border-zinc-800'} bg-white dark:bg-zinc-950 overflow-hidden flex flex-col group relative shadow-md">
+                <div class="project-card rounded-3xl border ${isSelected ? 'border-emerald-500 ring-2 ring-emerald-500/70 shadow-xl dark:shadow-emerald-950/40' : 'border-zinc-200/90 dark:border-zinc-800/90 hover:border-zinc-300 dark:hover:border-zinc-700'} bg-white dark:bg-zinc-950 overflow-hidden flex flex-col group relative shadow-sm">
                     <!-- Gradient Thumbnail Container with Permanent Number Badge -->
                     <div class="aspect-video relative overflow-hidden bg-gradient-to-br ${project.gradient}">
-                        <img src="${project.image}" alt="${project.title}" loading="lazy" class="w-full h-full object-cover opacity-85 mix-blend-luminosity group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" onerror="this.src='https://placehold.co/600x400/18181b/ffffff?text=Forge+Preview'">
+                        <img src="${project.image}" alt="${project.title}" loading="lazy" class="w-full h-full object-cover opacity-85 mix-blend-luminosity group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out" onerror="this.src='https://placehold.co/600x400/18181b/ffffff?text=Forge+Preview'">
                         
                         <!-- Permanent Design Number Badge -->
                         <div class="absolute top-4 left-4 z-10">
-                            <span class="px-3.5 py-2 rounded-xl bg-black/90 dark:bg-white/90 text-white dark:text-black font-mono text-xs font-bold tracking-widest shadow-xl backdrop-blur-md">
+                            <span class="px-3.5 py-2 rounded-xl bg-black/85 dark:bg-white/90 text-white dark:text-black font-mono text-xs font-bold tracking-widest shadow-xl backdrop-blur-md">
                                 #${project.number}
                             </span>
                         </div>
@@ -376,7 +494,7 @@
                     <!-- Content -->
                     <div class="p-7 sm:p-8 flex flex-col flex-grow">
                         <div class="flex items-center justify-between mb-3">
-                            <h3 class="text-xl sm:text-2xl font-bold tracking-tight">#${project.number} &mdash; ${project.title}</h3>
+                            <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">#${project.number} &mdash; ${project.title}</h3>
                         </div>
                         <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mb-8 line-clamp-2 leading-relaxed flex-grow font-normal">
                             ${project.description}
@@ -387,14 +505,17 @@
                             ${project.stack.map(tech => `<span class="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800">${tech}</span>`).join('')}
                         </div>
 
-                        <!-- Actions: Live Preview & Select Design -->
+                        <!-- Actions: Distinct & Ergonomic Button Styles -->
                         <div class="grid grid-cols-2 gap-3.5 pt-6 border-t border-zinc-100 dark:border-zinc-900">
-                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="py-4 rounded-2xl border border-zinc-300 dark:border-zinc-700 text-xs font-bold uppercase tracking-widest text-center hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-zinc-400">
-                                Live Preview
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            <!-- Live Preview: Distinct Crisp Indigo/Blue Accent -->
+                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-live-preview py-3.5 px-3 rounded-2xl bg-indigo-50/90 hover:bg-indigo-600 text-indigo-700 hover:text-white dark:bg-indigo-950/40 dark:hover:bg-indigo-600 dark:text-indigo-300 dark:hover:text-white border border-indigo-200/90 dark:border-indigo-800/80 text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-sm">
+                                <span>Live Preview</span>
+                                <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                             </a>
-                            <button onclick="selectDesign('${project.id}')" class="py-4 rounded-2xl ${isSelected ? 'bg-emerald-600 text-white' : 'bg-black dark:bg-white text-white dark:text-black'} text-xs font-bold uppercase tracking-widest text-center hover:opacity-90 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-zinc-400">
-                                ${isSelected ? '✓ Selected' : 'Select Design'}
+
+                            <!-- Select Design: High-contrast Dark/Emerald Action -->
+                            <button onclick="selectDesign('${project.id}')" class="btn-select-design py-3.5 px-3 rounded-2xl ${isSelected ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/30 ring-2 ring-emerald-400' : 'bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 shadow-md hover:shadow-lg'} text-xs font-bold uppercase tracking-wider text-center focus:outline-none focus:ring-2 focus:ring-emerald-400">
+                                ${isSelected ? '✓ Selected' : '+ Select Design'}
                             </button>
                         </div>
                     </div>
@@ -431,9 +552,357 @@
         // WhatsApp Integration
         function sendOnWhatsApp() {
             if (!selectedDesign) return;
-            const message = encodeURIComponent(`I choose design #${selectedDesign.number} - ${selectedDesign.title}`);
+            const message = encodeURIComponent(`Hello Forge Softwares, I choose design #${selectedDesign.number} - ${selectedDesign.title}`);
             window.open(`https://wa.me/?text=${message}`, '_blank');
         }
+    </script>
+
+    <!-- Dot-Matrix Halftone Canvas Engine (Exact Recreation) -->
+    <script>
+        (function() {
+            'use strict';
+
+            const SHEET_URL = "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261030_025250_100df7b8-31fd-4614-aa4a-c1b7d5b6b273.png&w=1600&q=85";
+
+            // Slices: [x, y, w, h] of source sheet
+            const RECTS = {
+                LA: [0.00, 0.06, 0.47, 0.40],
+                RA: [0.53, 0.06, 0.47, 0.40],
+                LB: [0.00, 0.55, 0.47, 0.40],
+                RB: [0.53, 0.55, 0.47, 0.40]
+            };
+
+            const LOOP = 20; // 20s master loop
+            const LEVELS = [0, 0.26, 0.52, 0.78, 1.0];
+
+            const canvas = document.getElementById('dots');
+            const ctx = canvas.getContext('2d', { alpha: false });
+            const loadingIndicator = document.getElementById('loadingIndicator');
+
+            let W = 0, H = 0, DPR = 1;
+            let step = 7;
+            let rowStep = 14;
+            let cols = 0, rows = 0;
+            let R = 3;
+
+            let seeds = null;
+
+            // Dual tiny offscreen canvases (cols × rows)
+            const fA = document.createElement('canvas');
+            const fB = document.createElement('canvas');
+            const ctxA = fA.getContext('2d', { willReadFrequently: true });
+            const ctxB = fB.getContext('2d', { willReadFrequently: true });
+
+            const tiles = { LA: null, RA: null, LB: null, RB: null };
+            let tilesReady = false;
+
+            function clamp(x, min, max) {
+                return Math.max(min, Math.min(max, x));
+            }
+
+            function hash(a, b) {
+                const sinVal = Math.sin(a * 127.1 + b * 311.7) * 43758.5453123;
+                return sinVal - Math.floor(sinVal);
+            }
+
+            function smooth(a, b, x) {
+                const t = clamp((x - a) / (b - a), 0, 1);
+                return t * t * (3 - 2 * t);
+            }
+
+            function mixAt(t, on, off, dur) {
+                return smooth(on, on + dur, t) * (1 - smooth(off, off + dur, t));
+            }
+
+            function prepareTiles(sourceImg) {
+                const sw = sourceImg.naturalWidth || 1600;
+                const sh = sourceImg.naturalHeight || 905;
+                const tileTargetWidth = 420;
+
+                for (const key of ['LA', 'RA', 'LB', 'RB']) {
+                    const [rx, ry, rw, rh] = RECTS[key];
+                    const sx = rx * sw;
+                    const sy = ry * sh;
+                    const sWidth = rw * sw;
+                    const sHeight = rh * sh;
+                    const aspect = sHeight / sWidth;
+
+                    const tileCanvas = document.createElement('canvas');
+                    tileCanvas.width = tileTargetWidth;
+                    tileCanvas.height = Math.round(tileTargetWidth * aspect);
+                    const tCtx = tileCanvas.getContext('2d');
+                    tCtx.imageSmoothingEnabled = true;
+                    tCtx.imageSmoothingQuality = 'high';
+
+                    tCtx.drawImage(
+                        sourceImg,
+                        sx, sy, sWidth, sHeight,
+                        0, 0, tileCanvas.width, tileCanvas.height
+                    );
+
+                    tiles[key] = tileCanvas;
+                }
+
+                tilesReady = true;
+                if (loadingIndicator) {
+                    loadingIndicator.textContent = "Halftone synchronized";
+                    setTimeout(() => {
+                        loadingIndicator.style.opacity = '0';
+                    }, 1200);
+                }
+            }
+
+            function handleResize() {
+                const rect = canvas.parentElement.getBoundingClientRect();
+                W = rect.width || window.innerWidth;
+                H = rect.height || 700;
+                DPR = Math.min(2, window.devicePixelRatio || 1);
+
+                canvas.width = Math.round(W * DPR);
+                canvas.height = Math.round(H * DPR);
+
+                step = Math.max(5, W / 205);
+                rowStep = step * 2.05;
+
+                cols = Math.ceil(W / step);
+                rows = Math.ceil(H / rowStep);
+                R = step * 0.46;
+
+                fA.width = cols;
+                fA.height = rows;
+                fB.width = cols;
+                fB.height = rows;
+
+                seeds = new Float32Array(cols * rows);
+                for (let j = 0; j < rows; j++) {
+                    const rowNoise = hash(j * 3.1, 7.7);
+                    const rowOffset = j * cols;
+                    for (let i = 0; i < cols; i++) {
+                        const cellNoise = hash(i, j);
+                        seeds[rowOffset + i] = 0.55 * cellNoise + 0.45 * rowNoise;
+                    }
+                }
+            }
+
+            window.addEventListener('resize', handleResize, { passive: true });
+
+            function createFallbackTiles() {
+                for (const key of ['LA', 'RA', 'LB', 'RB']) {
+                    const fallbackCanvas = document.createElement('canvas');
+                    fallbackCanvas.width = 420;
+                    fallbackCanvas.height = Math.round(420 * (0.40 * 1520) / (0.47 * 2688));
+                    const fctx = fallbackCanvas.getContext('2d');
+                    fctx.fillStyle = '#ffffff';
+                    fctx.fillRect(0, 0, fallbackCanvas.width, fallbackCanvas.height);
+
+                    const isLeft = key.startsWith('L');
+                    const isPoseB = key.endsWith('B');
+                    const grad = fctx.createRadialGradient(
+                        isLeft ? 100 : 320, fallbackCanvas.height * 0.5, 30,
+                        isLeft ? 200 : 220, fallbackCanvas.height * 0.5, 190
+                    );
+                    grad.addColorStop(0, '#101010');
+                    grad.addColorStop(0.65, '#555555');
+                    grad.addColorStop(1, '#ffffff');
+
+                    fctx.fillStyle = grad;
+                    fctx.beginPath();
+                    fctx.ellipse(
+                        isLeft ? 180 : 240,
+                        fallbackCanvas.height * (isPoseB ? 0.55 : 0.48),
+                        isLeft ? 160 : 160,
+                        isPoseB ? 55 : 42,
+                        isLeft ? -0.08 : 0.08,
+                        0, Math.PI * 2
+                    );
+                    fctx.fill();
+                    tiles[key] = fallbackCanvas;
+                }
+                tilesReady = true;
+                if (loadingIndicator) {
+                    loadingIndicator.textContent = "Halftone active";
+                    setTimeout(() => {
+                        loadingIndicator.style.opacity = '0';
+                    }, 1200);
+                }
+            }
+
+            const handImg = new Image();
+            handImg.crossOrigin = "anonymous";
+            handImg.src = SHEET_URL;
+            handImg.onload = () => {
+                try {
+                    prepareTiles(handImg);
+                } catch (e) {
+                    createFallbackTiles();
+                }
+            };
+            handImg.onerror = () => {
+                createFallbackTiles();
+            };
+
+            function drawHandToField(fieldCtx, tile, isLeft, t) {
+                if (!tile) return;
+
+                const isPortrait = H > W;
+                const ph = isLeft ? 0 : Math.PI;
+                const a = (2 * Math.PI * t) / LOOP;
+
+                const hw = isPortrait ? W * 0.66 : W * 0.53;
+                const sheetRatio = (0.40 * 1520) / (0.47 * 2688);
+                const hh = hw * sheetRatio;
+                const cy = isPortrait ? H * 0.66 : H * 0.54;
+
+                const reach = (0.035 * Math.sin(a + ph) + 0.012 * Math.sin(2 * a + 1.3 + ph)) * W;
+                const scale = 1 + 0.07 * Math.sin(a + 0.9 + ph);
+                const rot = (isLeft ? 1 : -1) * 0.045 * Math.sin(a + 2.1 + ph);
+
+                const x = isLeft ? (reach - W * 0.045) : (W - hw + W * 0.045 - reach);
+                const pivotX = isLeft ? 0 : W;
+                const pivotY = cy;
+
+                fieldCtx.save();
+                fieldCtx.scale(cols / W, rows / H);
+                fieldCtx.translate(pivotX, pivotY);
+                fieldCtx.rotate(rot);
+                fieldCtx.scale(scale, scale);
+                fieldCtx.translate(-pivotX, -pivotY);
+                fieldCtx.drawImage(tile, x, cy - hh / 2, hw, hh);
+                fieldCtx.restore();
+            }
+
+            function render(timeSec) {
+                if (!tilesReady || cols === 0 || rows === 0) {
+                    requestAnimationFrame((stamp) => render((stamp - t0) / 1000));
+                    return;
+                }
+
+                const t = ((timeSec % LOOP) + LOOP) % LOOP;
+
+                // 1. Populate Offscreen Field A & B
+                ctxA.fillStyle = '#ffffff';
+                ctxA.fillRect(0, 0, cols, rows);
+                drawHandToField(ctxA, tiles.LA, true, t);
+                drawHandToField(ctxA, tiles.RA, false, t);
+
+                ctxB.fillStyle = '#ffffff';
+                ctxB.fillRect(0, 0, cols, rows);
+                drawHandToField(ctxB, tiles.LB, true, t);
+                drawHandToField(ctxB, tiles.RB, false, t);
+
+                const imgDataA = ctxA.getImageData(0, 0, cols, rows).data;
+                const imgDataB = ctxB.getImageData(0, 0, cols, rows).data;
+
+                // 2. Clear canvas with respect to light/dark mode
+                const isDark = document.documentElement.classList.contains('dark');
+                const bgColor = isDark ? '#09090b' : '#f7f7f5';
+                const dotColor = isDark ? '#ffffff' : '#0d0d0d';
+
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.fillStyle = bgColor;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+                ctx.fillStyle = dotColor;
+
+                // 3. Glitch Dissolves (Adam & God hands)
+                const mL = mixAt(t, 6.2, 14.6, 1.6);
+                const mR = mixAt(t, 2.4, 10.4, 1.6);
+                const tick = Math.floor(t * 7);
+
+                const rowShifts = new Int32Array(rows);
+                for (let j = 0; j < rows; j++) {
+                    if (hash(j, tick) > 0.965) {
+                        rowShifts[j] = Math.round((hash(tick, j) - 0.5) * 8);
+                    } else {
+                        rowShifts[j] = 0;
+                    }
+                }
+
+                const isPortrait = H > W;
+                const quietWidth = isPortrait ? 0.44 : 0.20;
+                const quietYCenter = isPortrait ? 0.33 : 0.385;
+
+                ctx.beginPath();
+                const TWO_PI = Math.PI * 2;
+                const halfCols = cols * 0.5;
+
+                for (let j = 0; j < rows; j++) {
+                    const shift = rowShifts[j];
+                    const yCenter = (j + 0.5) * rowStep;
+                    const rowOffset = j * cols;
+
+                    for (let i = 0; i < cols; i++) {
+                        const seedIndex = rowOffset + i;
+                        const seed = seeds[seedIndex];
+
+                        const sampleCol = clamp(i - shift, 0, cols - 1);
+                        const pixelIdx = (rowOffset + sampleCol) * 4;
+
+                        const isLeft = i < halfCols;
+                        const m = isLeft ? mL : mR;
+                        const useB = seed < m;
+
+                        const lum = (useB ? imgDataB[pixelIdx] : imgDataA[pixelIdx]) / 255;
+                        let v = clamp((1.0 - lum - 0.16) / 0.42, 0, 1);
+                        if (v <= 0.001) continue;
+
+                        if (m > 0.001 && m < 0.999) {
+                            const distFront = Math.abs(seed - m);
+                            if (distFront < 0.12) {
+                                v *= (distFront / 0.12);
+                                if (hash(i + tick, j) <= 0.4) {
+                                    v *= 0.3;
+                                }
+                            }
+                        }
+
+                        // Shimmer effect
+                        v *= 0.86 + 0.14 * Math.sin(t * 3.2 + seed * 40);
+
+                        // Center fingertips fade
+                        const cx = Math.abs((i + 0.5) / cols - 0.5);
+                        v *= smooth(0.035, 0.11, cx);
+
+                        // Hero title text quiet zone protection
+                        const ex = cx / quietWidth;
+                        const ey = (yCenter / H - quietYCenter) / 0.085;
+                        v *= smooth(0.85, 1.25, Math.hypot(ex, ey));
+
+                        if (v <= 0.05) continue;
+
+                        // Quantise to 5 crisp LED levels
+                        let level = 0;
+                        if (v >= LEVELS[4] - 0.13) level = LEVELS[4];
+                        else if (v >= LEVELS[3] - 0.13) level = LEVELS[3];
+                        else if (v >= LEVELS[2] - 0.13) level = LEVELS[2];
+                        else if (v >= LEVELS[1] - 0.13) level = LEVELS[1];
+
+                        if (level === 0) continue;
+
+                        const radius = level === LEVELS[1] ? (R * 0.38) : (R * level);
+                        const xCenter = (i + 0.5) * step;
+
+                        ctx.moveTo(xCenter + radius, yCenter);
+                        ctx.arc(xCenter, yCenter, radius, 0, TWO_PI);
+                    }
+                }
+
+                ctx.fill();
+            }
+
+            const t0 = performance.now();
+            function animLoop() {
+                const elapsed = (performance.now() - t0) / 1000;
+                render(elapsed);
+                requestAnimationFrame(animLoop);
+            }
+
+            window.__render = render;
+
+            handleResize();
+            animLoop();
+        })();
     </script>
 </body>
 </html>
