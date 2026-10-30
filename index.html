@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forge Softwares — Digital Showroom & Master Showcase</title>
     <!-- SEO & Social Sharing -->
-    <meta name="description" content="Explore live verified production-ready website themes crafted by Forge Softwares. Select a design to begin your project.">
+    <meta name="description" content="Explore live production-ready website themes crafted by Forge Softwares. Select a design to begin your project.">
+    <meta name="robots" content="noindex, nofollow">
     <meta property="og:title" content="Forge Softwares — Master Website Showroom">
-    <meta property="og:description" content="Minimalist digital showroom. Choose your verified website theme and start building.">
+    <meta property="og:description" content="Minimalist digital showroom. Choose your website theme and start building.">
     <meta property="og:type" content="website">
     
     <!-- Tailwind CSS CDN -->
@@ -66,203 +67,213 @@
         }
 
         .glass-nav {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
         }
 
         .project-card {
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .project-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
+            from { opacity: 0; transform: translateY(16px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in {
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         /* Animated theme toggle ring */
         @keyframes pulseGlow {
             0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            50% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
         }
         .theme-btn-pulse {
             animation: pulseGlow 2.5s infinite;
         }
+
+        /* Ambient background glow */
+        .ambient-glow {
+            background: radial-gradient(circle at 50% 0%, rgba(120, 120, 120, 0.08) 0%, transparent 60%);
+        }
     </style>
 </head>
-<body class="bg-white dark:bg-[#09090b] text-black dark:text-zinc-100 font-sans antialiased transition-colors duration-300 selection:bg-zinc-800 selection:text-white">
+<body class="bg-white dark:bg-[#09090b] text-black dark:text-zinc-100 font-sans antialiased transition-colors duration-500 selection:bg-zinc-800 selection:text-white pb-36 ambient-glow">
 
     <!-- Top Notification Banner -->
-    <aside aria-label="Showroom Announcement" class="bg-zinc-950 text-zinc-200 dark:bg-zinc-100 dark:text-zinc-900 text-[11px] sm:text-xs py-2.5 px-4 text-center font-semibold tracking-wider uppercase flex items-center justify-center gap-2 border-b border-zinc-800 dark:border-zinc-200 shadow-sm">
-        <span>⚡ Pure Monochrome Showroom. Select a verified live theme below.</span>
-        <a href="#showcase" class="underline hover:opacity-80 transition-opacity font-bold">View Themes &rarr;</a>
+    <aside aria-label="Showroom Announcement" class="bg-zinc-950 text-zinc-200 dark:bg-zinc-100 dark:text-zinc-900 text-xs py-3 px-6 text-center font-bold tracking-widest uppercase flex items-center justify-center gap-2 border-b border-zinc-800 dark:border-zinc-200 shadow-sm">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>Sales Team Showroom. Select a design below for your client.</span>
+        <a href="#showcase" class="underline hover:opacity-80 transition-opacity ml-1">Browse Themes &rarr;</a>
     </aside>
 
     <!-- Navigation -->
-    <header class="sticky top-0 z-50 glass-nav bg-white/80 dark:bg-[#09090b]/80 border-b border-zinc-200 dark:border-zinc-800/80 transition-colors">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+    <header class="sticky top-0 z-50 glass-nav bg-white/70 dark:bg-[#09090b]/70 border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors">
+        <div class="max-w-7xl mx-auto px-6 sm:px-10 h-24 flex items-center justify-between">
             <!-- Brand -->
-            <a href="#" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded-xl p-1">
-                <div class="w-10 h-10 rounded-xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-extrabold text-lg tracking-tight group-hover:scale-105 transition-transform shadow-lg">
+            <a href="#" class="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded-2xl p-1.5">
+                <div class="w-11 h-11 rounded-2xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-extrabold text-lg tracking-tight group-hover:scale-105 transition-transform shadow-xl">
                     F
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-extrabold text-sm sm:text-lg tracking-tight leading-none">FORGE</span>
-                    <span class="text-[9px] sm:text-[10px] font-bold text-zinc-500 tracking-[0.25em] mt-0.5">SHOWROOM</span>
+                    <span class="font-extrabold text-base tracking-tight leading-none">FORGE</span>
+                    <span class="text-[10px] font-bold text-zinc-500 tracking-[0.3em] mt-1">SHOWROOM</span>
                 </div>
             </a>
 
             <!-- Animated Theme Toggle & CTA -->
-            <div class="flex items-center gap-3 sm:gap-4">
-                <button onclick="toggleTheme()" aria-label="Toggle Theme" class="p-2.5 rounded-full border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all theme-btn-pulse flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-zinc-400">
+            <div class="flex items-center gap-4">
+                <button onclick="toggleTheme()" aria-label="Toggle Theme" class="p-3 rounded-full border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all theme-btn-pulse flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-zinc-400">
                     <!-- Sun Icon -->
                     <svg id="sunIcon" class="w-4 h-4 hidden dark:block transition-transform duration-500 rotate-0 dark:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                     <!-- Moon Icon -->
                     <svg id="moonIcon" class="w-4 h-4 block dark:hidden transition-transform duration-500 rotate-180 dark:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
                 </button>
 
-                <a href="#showcase" class="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity shadow-sm">
-                    Select Theme
+                <a href="#showcase" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-md">
+                    Explore Themes
                 </a>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative pt-16 pb-12 sm:pt-24 sm:pb-20 overflow-hidden border-b border-zinc-200 dark:border-zinc-800 bg-gradient-to-b from-zinc-50 to-transparent dark:from-zinc-900/40">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-6 border border-zinc-200 dark:border-zinc-800 shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-black dark:bg-white animate-pulse"></span>
-                Verified Live Showroom &middot; Pick Your Theme
+    <section class="relative pt-20 pb-16 sm:pt-32 sm:pb-24 overflow-hidden border-b border-zinc-200 dark:border-zinc-800">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-xs font-bold uppercase tracking-wider mb-8 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                Sales Showroom &middot; Client Presentation Portal
             </div>
-            <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.08] mb-8">
                 Choose your website design. We build it for you.
             </h1>
-            <p class="text-sm sm:text-lg text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed mb-8 sm:mb-10 max-w-2xl mx-auto px-2">
-                Explore our fully interactive live verified samples below. Pick the aesthetic that fits your vision, and let our team bring it to life.
+            <p class="text-base sm:text-xl text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed mb-10 max-w-2xl mx-auto">
+                Explore our fully interactive live samples below. Pick the exact aesthetic that aligns with your client's vision and instantly share via WhatsApp.
             </p>
             <div class="flex items-center justify-center">
-                <a href="#showcase" class="px-7.5 py-3.5 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-widest hover:opacity-95 transition-all shadow-xl">
-                    Explore Theme Gallery &darr;
+                <a href="#showcase" class="px-8.5 py-4 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-widest hover:opacity-95 transition-all shadow-2xl">
+                    View Theme Gallery &darr;
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Master Showcase Gallery Section -->
-    <section id="showcase" class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
+    <section id="showcase" class="py-20 sm:py-28 max-w-7xl mx-auto px-6 sm:px-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-8">
             <div>
-                <span class="text-xs font-bold uppercase tracking-[0.25em] text-zinc-500 mb-2 block">Verified Theme Showroom</span>
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">Available Website Designs</h2>
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500 mb-3 block">Theme Collection</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">Available Website Designs</h2>
             </div>
             
             <!-- Search Input -->
-            <div class="relative w-full md:w-72">
-                <input type="text" id="searchInput" placeholder="Search themes or tech..." oninput="filterProjects()" class="w-full px-4 py-3 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-black dark:focus:border-white outline-none text-sm font-medium transition-colors shadow-sm">
-                <svg class="w-4 h-4 absolute right-4 top-3.5 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <div class="relative w-full md:w-80">
+                <input type="text" id="searchInput" placeholder="Search themes or tech stack..." oninput="filterProjects()" class="w-full px-5 py-4 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-black dark:focus:border-white outline-none text-sm font-medium transition-colors shadow-sm">
+                <svg class="w-4 h-4 absolute right-5 top-4 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
         </div>
 
         <!-- Category Filters -->
-        <div class="flex flex-wrap items-center gap-2.5 mb-10 sm:mb-12 pb-4 border-b border-zinc-200 dark:border-zinc-800 overflow-x-auto" id="categoryFilters">
+        <div class="flex flex-wrap items-center gap-3 mb-12 sm:mb-16 pb-4 border-b border-zinc-200 dark:border-zinc-800 overflow-x-auto" id="categoryFilters">
             <!-- Buttons generated dynamically -->
         </div>
 
         <!-- Projects Grid -->
-        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 max-w-7xl mx-auto">
             <!-- Dynamically rendered projects -->
         </div>
 
         <!-- Empty State -->
-        <div id="emptyState" class="hidden py-24 text-center">
+        <div id="emptyState" class="hidden py-32 text-center">
             <svg class="w-16 h-16 mx-auto text-zinc-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <h3 class="text-lg font-bold mb-2">No themes found</h3>
-            <p class="text-sm text-zinc-500">Try adjusting your search query or category filter.</p>
+            <h3 class="text-xl font-bold mb-2">No matching themes found</h3>
+            <p class="text-sm text-zinc-500 mb-6">Try clearing your search query or category filter.</p>
+            <button onclick="resetFilters()" class="px-6 py-3.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest">Show All Themes</button>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-10 sm:py-12 bg-white dark:bg-[#09090b]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-sm shadow-sm">F</div>
+    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-12 sm:py-16 bg-white dark:bg-[#09090b]">
+        <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div class="flex items-center gap-3.5">
+                <div class="w-9 h-9 rounded-xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-sm shadow-md">F</div>
                 <span class="font-extrabold tracking-tight text-sm">FORGE SHOWROOM</span>
             </div>
             <div class="text-xs text-zinc-500 font-medium tracking-wide">
-                &copy; 2026 Forge Softwares Inc. All verified client themes independently hosted and optimized.
+                &copy; 2026 Forge Softwares. All client themes independently hosted and optimized.
             </div>
         </div>
     </footer>
 
-    <!-- Project Details Modal -->
-    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md p-4">
-        <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl animate-fade-in max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal()" aria-label="Close modal" class="absolute top-6 right-6 p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:opacity-85 transition-opacity focus:outline-none focus:ring-2 focus:ring-zinc-400">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-            <div id="modalContent">
-                <!-- Dynamically populated modal content -->
+    <!-- Persistent Selection Bottom Bar -->
+    <div id="selectionBar" class="fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 text-white backdrop-blur-xl border-t border-zinc-800 py-5 px-6 sm:px-12 transform translate-y-full transition-transform duration-500 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5 text-center sm:text-left">
+                <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span id="selectedDesignText" class="text-sm font-bold tracking-wide">Selected: None</span>
+            </div>
+            <div class="flex items-center gap-3.5 w-full sm:w-auto">
+                <button onclick="sendOnWhatsApp()" class="flex-1 sm:flex-none px-7 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2.5 shadow-xl">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    Send on WhatsApp
+                </button>
+                <button onclick="clearSelection()" class="px-5 py-3.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-bold text-xs uppercase tracking-widest transition-colors">
+                    Clear
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Message Box Notification -->
-    <div id="msgBox" class="fixed bottom-6 right-6 bg-black dark:bg-white text-white dark:text-black px-6 py-3.5 rounded-xl shadow-2xl z-50 transform translate-y-24 opacity-0 transition-all duration-300 text-xs font-bold tracking-wider uppercase border border-zinc-700 dark:border-zinc-200">
-        Notification message
-    </div>
-
     <!-- Centralized Project Database & Application Logic -->
     <script>
-        // Centralized Project Database containing the 3 verified live sample themes
+        // Centralized Project Database with permanent index numbers (#1, #2, #3...)
         const projectsData = [
             {
                 id: "horror-halloween-theme",
+                number: 1,
                 title: "Horror Halloween Theme",
                 category: "Seasonal & Interactive",
                 description: "An immersive, atmospheric horror and holiday-themed web experience featuring rich dark visual styling, spooky animations, and custom UI components.",
-                image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-zinc-900 via-neutral-900 to-black",
                 liveUrl: "https://farmanshafi2007-hub.github.io/holloweeen-theme-/",
-                featured: true,
                 stack: ["HTML5", "CSS3", "JavaScript", "Interactive UI"]
             },
             {
                 id: "books-theme-ui",
+                number: 2,
                 title: "Books Theme UI Sample",
                 category: "E-Commerce & Literature",
                 description: "A refined literary and bookstore interface designed for immersive browsing, reader engagement, and elegant catalog presentation.",
-                image: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-neutral-800 via-zinc-900 to-neutral-950",
                 liveUrl: "https://farmanshafi2007-hub.github.io/books-theme-ui-sample/",
-                featured: true,
                 stack: ["HTML5", "Tailwind CSS", "UI/UX Design", "Vanilla JS"]
             },
             {
                 id: "inexterior-architecture-theme",
+                number: 3,
                 title: "Inexterior Architecture Theme",
                 category: "Interior & Architecture",
                 description: "A minimalist, high-end architectural and interior design portfolio showcase emphasizing structural elegance and visual space.",
-                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-stone-900 via-neutral-900 to-black",
                 liveUrl: "https://farmanshafi2007-hub.github.io/INEXTERIOR/",
-                featured: true,
                 stack: ["HTML5", "CSS Grid", "Responsive Design", "Architecture"]
             }
         ];
 
         let currentCategory = 'All';
+        let selectedDesign = null;
 
-        // Initialize Application on Load & Check showroom return parameter
+        // Initialize Application on Load
         window.addEventListener('DOMContentLoaded', () => {
             renderCategories();
             renderAllProjects();
-            checkShowroomReturnParam();
         });
 
         // Theme Toggle Function
@@ -277,20 +288,7 @@
             }
         }
 
-        // Notification Toast
-        function showMsg(text) {
-            const box = document.getElementById('msgBox');
-            if (!box) return;
-            box.textContent = text;
-            box.style.transform = 'translateY(0)';
-            box.style.opacity = '1';
-            setTimeout(() => {
-                box.style.transform = 'translateY(24px)';
-                box.style.opacity = '0';
-            }, 3500);
-        }
-
-        // Render Category Filter Buttons with balanced spacing
+        // Render Category Filter Buttons
         function renderCategories() {
             const categoriesContainer = document.getElementById('categoryFilters');
             if (!categoriesContainer) return;
@@ -298,7 +296,7 @@
             const categories = ['All', ...new Set(projectsData.map(p => p.category))];
 
             categoriesContainer.innerHTML = categories.map(cat => `
-                <button onclick="setCategory('${cat}')" class="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap border ${currentCategory === cat ? 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-md scale-105' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400'}">
+                <button onclick="setCategory('${cat}')" class="px-6 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap border ${currentCategory === cat ? 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-lg scale-105' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400'}">
                     ${cat}
                 </button>
             `).join('');
@@ -310,7 +308,15 @@
             renderAllProjects();
         }
 
-        // Render All Projects with Search, Category Filter, and Sequential Numbering
+        function resetFilters() {
+            currentCategory = 'All';
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) searchInput.value = '';
+            renderCategories();
+            renderAllProjects();
+        }
+
+        // Render All Projects with Permanent Numbering & Guaranteed Loading
         function renderAllProjects() {
             const grid = document.getElementById('projectsGrid');
             const emptyState = document.getElementById('emptyState');
@@ -319,9 +325,8 @@
 
             const query = searchInput ? searchInput.value.toLowerCase() : '';
 
-            const indexedProjects = projectsData.map((p, idx) => ({ ...p, originalIndex: idx + 1 }));
-
-            const filtered = indexedProjects.filter(p => {
+            // Filter while keeping permanent numbers intact
+            const filtered = projectsData.filter(p => {
                 const matchesCategory = currentCategory === 'All' || p.category === currentCategory;
                 const matchesSearch = p.title.toLowerCase().includes(query) || 
                                       p.description.toLowerCase().includes(query) || 
@@ -332,9 +337,9 @@
 
             if (filtered.length === 0) {
                 grid.innerHTML = '';
-                emptyState.classList.remove('hidden');
+                if (emptyState) emptyState.classList.remove('hidden');
             } else {
-                emptyState.classList.add('hidden');
+                if (emptyState) emptyState.classList.add('hidden');
                 grid.innerHTML = filtered.map(project => createProjectCardHTML(project)).join('');
             }
         }
@@ -343,51 +348,53 @@
             renderAllProjects();
         }
 
-        // Project Card HTML Template with well-calculated spacing
+        // Project Card HTML Template with Permanent Numbering (#1, #2...) and Action Buttons
         function createProjectCardHTML(project) {
-            const paddedNum = project.originalIndex < 10 ? `0${project.originalIndex}` : project.originalIndex;
+            const isSelected = selectedDesign && selectedDesign.id === project.id;
 
             return `
-                <div class="project-card rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 overflow-hidden flex flex-col group relative shadow-sm hover:shadow-2xl transition-all">
-                    <!-- Gradient Thumbnail Container with Number Badge -->
+                <div class="project-card rounded-3xl border ${isSelected ? 'border-black dark:border-white ring-2 ring-black dark:ring-white shadow-2xl' : 'border-zinc-200 dark:border-zinc-800'} bg-white dark:bg-zinc-950 overflow-hidden flex flex-col group relative shadow-md">
+                    <!-- Gradient Thumbnail Container with Permanent Number Badge -->
                     <div class="aspect-video relative overflow-hidden bg-gradient-to-br ${project.gradient}">
-                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover opacity-80 mix-blend-luminosity group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" onerror="this.src='https://placehold.co/600x400/18181b/ffffff?text=Forge+Preview'">
+                        <img src="${project.image}" alt="${project.title}" loading="lazy" class="w-full h-full object-cover opacity-85 mix-blend-luminosity group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" onerror="this.src='https://placehold.co/600x400/18181b/ffffff?text=Forge+Preview'">
                         
-                        <!-- Number Badge top-left -->
-                        <div class="absolute top-3.5 left-3.5 z-10">
-                            <span class="px-3 py-1.5 rounded-lg bg-black/90 dark:bg-white/90 text-white dark:text-black font-mono text-xs font-bold tracking-widest shadow-lg backdrop-blur-md">
-                                #${paddedNum}
+                        <!-- Permanent Design Number Badge -->
+                        <div class="absolute top-4 left-4 z-10">
+                            <span class="px-3.5 py-2 rounded-xl bg-black/90 dark:bg-white/90 text-white dark:text-black font-mono text-xs font-bold tracking-widest shadow-xl backdrop-blur-md">
+                                #${project.number}
                             </span>
                         </div>
 
-                        <!-- Category Badge top-right -->
-                        <div class="absolute top-3.5 right-3.5 z-10">
-                            <span class="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase">
+                        <!-- Category Badge -->
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="px-3.5 py-2 rounded-xl bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase">
                                 ${project.category}
                             </span>
                         </div>
                     </div>
 
                     <!-- Content -->
-                    <div class="p-6 sm:p-7 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold mb-2.5 tracking-tight">${project.title}</h3>
-                        <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-6 line-clamp-2 leading-relaxed flex-grow font-normal">
+                    <div class="p-7 sm:p-8 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl sm:text-2xl font-bold tracking-tight">#${project.number} &mdash; ${project.title}</h3>
+                        </div>
+                        <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mb-8 line-clamp-2 leading-relaxed flex-grow font-normal">
                             ${project.description}
                         </p>
 
                         <!-- Tech Stack Tags -->
-                        <div class="flex flex-wrap gap-2 mb-7">
-                            ${project.stack.map(tech => `<span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800">${tech}</span>`).join('')}
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            ${project.stack.map(tech => `<span class="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800">${tech}</span>`).join('')}
                         </div>
 
-                        <!-- Actions with perfectly calculated spacing -->
-                        <div class="flex items-center gap-3.5 pt-5 border-t border-zinc-100 dark:border-zinc-900">
-                            <a href="${project.liveUrl}" target="_blank" onclick="injectReturnBar('${project.liveUrl}')" class="flex-1 py-3.5 rounded-xl bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest text-center hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-400">
-                                View Live Theme
+                        <!-- Actions: Live Preview & Select Design -->
+                        <div class="grid grid-cols-2 gap-3.5 pt-6 border-t border-zinc-100 dark:border-zinc-900">
+                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="py-4 rounded-2xl border border-zinc-300 dark:border-zinc-700 text-xs font-bold uppercase tracking-widest text-center hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-zinc-400">
+                                Live Preview
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                             </a>
-                            <button onclick="openModal('${project.id}')" class="px-5 py-3.5 rounded-xl border border-zinc-300 dark:border-zinc-700 text-xs font-semibold uppercase tracking-wider hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400">
-                                Details
+                            <button onclick="selectDesign('${project.id}')" class="py-4 rounded-2xl ${isSelected ? 'bg-emerald-600 text-white' : 'bg-black dark:bg-white text-white dark:text-black'} text-xs font-bold uppercase tracking-widest text-center hover:opacity-90 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-zinc-400">
+                                ${isSelected ? '✓ Selected' : 'Select Design'}
                             </button>
                         </div>
                     </div>
@@ -395,68 +402,37 @@
             `;
         }
 
-        function injectReturnBar(url) {
-            showMsg("Opening live theme in a new tab. Close tab to return here anytime.");
-        }
-
-        function checkShowroomReturnParam() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('showroom') === 'true') {
-                showMsg("Welcome back to Forge Showroom.");
-            }
-        }
-
-        // Modal Handlers
-        function openModal(projectId) {
+        // Selection Management
+        function selectDesign(projectId) {
             const project = projectsData.find(p => p.id === projectId);
             if (!project) return;
+            selectedDesign = project;
 
-            const modalContent = document.getElementById('modalContent');
-            modalContent.innerHTML = `
-                <div class="aspect-video rounded-2xl overflow-hidden mb-6 bg-gradient-to-br ${project.gradient} shadow-inner relative">
-                    <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover opacity-90 mix-blend-luminosity">
-                </div>
-                <div class="inline-block px-3.5 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-xs font-bold uppercase tracking-widest mb-4 border border-zinc-200 dark:border-zinc-800">
-                    ${project.category}
-                </div>
-                <h2 class="text-2xl md:text-3xl font-extrabold mb-3 tracking-tight">${project.title}</h2>
-                <p class="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed mb-6 font-normal">
-                    ${project.description}
-                </p>
-                <div class="mb-7">
-                    <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2.5 font-mono">Technology Stack</h4>
-                    <div class="flex flex-wrap gap-2">
-                        ${project.stack.map(t => `<span class="px-3 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800">${t}</span>`).join('')}
-                    </div>
-                </div>
-                <div class="flex items-center gap-4 pt-5 border-t border-zinc-200 dark:border-zinc-800">
-                    <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3.5 rounded-xl bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-widest text-center hover:opacity-90 transition-opacity shadow-md">
-                        Open Live Website &rarr;
-                    </a>
-                    <button onclick="closeModal()" class="px-6 py-3.5 rounded-xl border border-zinc-300 dark:border-zinc-700 font-bold text-xs uppercase tracking-widest hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
-                        Close
-                    </button>
-                </div>
-            `;
-
-            const modal = document.getElementById('projectModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('projectModal');
-            modal.classList.remove('flex');
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('projectModal');
-            if (event.target === modal) {
-                closeModal();
+            // Show bottom bar
+            const bar = document.getElementById('selectionBar');
+            const text = document.getElementById('selectedDesignText');
+            if (bar && text) {
+                text.textContent = `Selected: #${project.number} - ${project.title}`;
+                bar.classList.remove('translate-y-full');
             }
+
+            renderAllProjects();
+        }
+
+        function clearSelection() {
+            selectedDesign = null;
+            const bar = document.getElementById('selectionBar');
+            if (bar) {
+                bar.classList.add('translate-y-full');
+            }
+            renderAllProjects();
+        }
+
+        // WhatsApp Integration
+        function sendOnWhatsApp() {
+            if (!selectedDesign) return;
+            const message = encodeURIComponent(`I choose design #${selectedDesign.number} - ${selectedDesign.title}`);
+            window.open(`https://wa.me/?text=${message}`, '_blank');
         }
     </script>
 </body>
