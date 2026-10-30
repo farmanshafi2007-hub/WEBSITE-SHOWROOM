@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forge Softwares — Digital Showroom & Master Showcase</title>
+    <!-- SEO & Social Sharing -->
+    <meta name="description" content="Explore live verified production-ready website themes crafted by Forge Softwares. Select a design to begin your project.">
+    <meta property="og:title" content="Forge Softwares — Master Website Showroom">
+    <meta property="og:description" content="Minimalist digital showroom. Choose your verified website theme and start building.">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        forge: {
+                            50: '#fcfcfc',
+                            100: '#f4f4f5',
+                            200: '#e4e4e7',
+                            300: '#d4d4d8',
+                            400: '#a1a1aa',
+                            500: '#71717a',
+                            600: '#52525b',
+                            700: '#3f3f46',
+                            800: '#27272a',
+                            900: '#18181b',
+                            950: '#09090b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Smooth scrolling and custom scrollbars */
+        html {
+            scroll-behavior: smooth;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(120, 120, 120, 0.3);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(120, 120, 120, 0.5);
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .project-card {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Animated theme toggle ring */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
+        }
+        .theme-btn-pulse {
+            animation: pulseGlow 2.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-[#09090b] text-black dark:text-zinc-100 font-sans antialiased transition-colors duration-300 selection:bg-zinc-800 selection:text-white">
+
+    <!-- Top Notification Banner -->
+    <aside aria-label="Showroom Announcement" class="bg-zinc-950 text-zinc-200 dark:bg-zinc-100 dark:text-zinc-900 text-[11px] sm:text-xs py-2.5 px-4 text-center font-semibold tracking-wider uppercase flex items-center justify-center gap-2 border-b border-zinc-800 dark:border-zinc-200 shadow-sm">
+        <span>⚡ Pure Monochrome Showroom. Select a verified live theme below.</span>
+        <a href="#showcase" class="underline hover:opacity-80 transition-opacity font-bold">View Themes &rarr;</a>
+    </aside>
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 glass-nav bg-white/80 dark:bg-[#09090b]/80 border-b border-zinc-200 dark:border-zinc-800/80 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+            <!-- Brand -->
+            <a href="#" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded-xl p-1">
+                <div class="w-10 h-10 rounded-xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-extrabold text-lg tracking-tight group-hover:scale-105 transition-transform shadow-lg">
+                    F
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-sm sm:text-lg tracking-tight leading-none">FORGE</span>
+                    <span class="text-[9px] sm:text-[10px] font-bold text-zinc-500 tracking-[0.25em] mt-0.5">SHOWROOM</span>
+                </div>
+            </a>
+
+            <!-- Animated Theme Toggle & CTA -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <button onclick="toggleTheme()" aria-label="Toggle Theme" class="p-2.5 rounded-full border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all theme-btn-pulse flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-zinc-400">
+                    <!-- Sun Icon -->
+                    <svg id="sunIcon" class="w-4 h-4 hidden dark:block transition-transform duration-500 rotate-0 dark:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <!-- Moon Icon -->
+                    <svg id="moonIcon" class="w-4 h-4 block dark:hidden transition-transform duration-500 rotate-180 dark:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                </button>
+
+                <a href="#showcase" class="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity shadow-sm">
+                    Select Theme
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-16 pb-12 sm:pt-24 sm:pb-20 overflow-hidden border-b border-zinc-200 dark:border-zinc-800 bg-gradient-to-b from-zinc-50 to-transparent dark:from-zinc-900/40">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-xs font-semibold uppercase tracking-wider mb-6 border border-zinc-200 dark:border-zinc-800 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-black dark:bg-white animate-pulse"></span>
+                Verified Live Showroom &middot; Pick Your Theme
+            </div>
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
+                Choose your website design. We build it for you.
+            </h1>
+            <p class="text-sm sm:text-lg text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed mb-8 sm:mb-10 max-w-2xl mx-auto px-2">
+                Explore our fully interactive live verified samples below. Pick the aesthetic that fits your vision, and let our team bring it to life.
+            </p>
+            <div class="flex items-center justify-center">
+                <a href="#showcase" class="px-7.5 py-3.5 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-widest hover:opacity-95 transition-all shadow-xl">
+                    Explore Theme Gallery &darr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Master Showcase Gallery Section -->
+    <section id="showcase" class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-zinc-500 mb-2 block">Verified Theme Showroom</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">Available Website Designs</h2>
+            </div>
+            
+            <!-- Search Input -->
+            <div class="relative w-full md:w-72">
+                <input type="text" id="searchInput" placeholder="Search themes or tech..." oninput="filterProjects()" class="w-full px-4 py-3 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-black dark:focus:border-white outline-none text-sm font-medium transition-colors shadow-sm">
+                <svg class="w-4 h-4 absolute right-4 top-3.5 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap items-center gap-2.5 mb-10 sm:mb-12 pb-4 border-b border-zinc-200 dark:border-zinc-800 overflow-x-auto" id="categoryFilters">
+            <!-- Buttons generated dynamically -->
+        </div>
+
+        <!-- Projects Grid -->
+        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+            <!-- Dynamically rendered projects -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden py-24 text-center">
+            <svg class="w-16 h-16 mx-auto text-zinc-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <h3 class="text-lg font-bold mb-2">No themes found</h3>
+            <p class="text-sm text-zinc-500">Try adjusting your search query or category filter.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-10 sm:py-12 bg-white dark:bg-[#09090b]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-sm shadow-sm">F</div>
+                <span class="font-extrabold tracking-tight text-sm">FORGE SHOWROOM</span>
+            </div>
+            <div class="text-xs text-zinc-500 font-medium tracking-wide">
+                &copy; 2026 Forge Softwares Inc. All verified client themes independently hosted and optimized.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md p-4">
+        <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl animate-fade-in max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" aria-label="Close modal" class="absolute top-6 right-6 p-2 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:opacity-85 transition-opacity focus:outline-none focus:ring-2 focus:ring-zinc-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="modalContent">
+                <!-- Dynamically populated modal content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Box Notification -->
+    <div id="msgBox" class="fixed bottom-6 right-6 bg-black dark:bg-white text-white dark:text-black px-6 py-3.5 rounded-xl shadow-2xl z-50 transform translate-y-24 opacity-0 transition-all duration-300 text-xs font-bold tracking-wider uppercase border border-zinc-700 dark:border-zinc-200">
+        Notification message
+    </div>
+
+    <!-- Centralized Project Database & Application Logic -->
+    <script>
+        // Centralized Project Database containing the 3 verified live sample themes
+        const projectsData = [
+            {
+                id: "horror-halloween-theme",
+                title: "Horror Halloween Theme",
+                category: "Seasonal & Interactive",
+                description: "An immersive, atmospheric horror and holiday-themed web experience featuring rich dark visual styling, spooky animations, and custom UI components.",
+                image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80",
+                gradient: "from-zinc-900 via-neutral-900 to-black",
+                liveUrl: "https://farmanshafi2007-hub.github.io/holloweeen-theme-/",
+                featured: true,
+                stack: ["HTML5", "CSS3", "JavaScript", "Interactive UI"]
+            },
+            {
+                id: "books-theme-ui",
+                title: "Books Theme UI Sample",
+                category: "E-Commerce & Literature",
+                description: "A refined literary and bookstore interface designed for immersive browsing, reader engagement, and elegant catalog presentation.",
+                image: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=800&q=80",
+                gradient: "from-neutral-800 via-zinc-900 to-neutral-950",
+                liveUrl: "https://farmanshafi2007-hub.github.io/books-theme-ui-sample/",
+                featured: true,
+                stack: ["HTML5", "Tailwind CSS", "UI/UX Design", "Vanilla JS"]
+            },
+            {
+                id: "inexterior-architecture-theme",
+                title: "Inexterior Architecture Theme",
+                category: "Interior & Architecture",
+                description: "A minimalist, high-end architectural and interior design portfolio showcase emphasizing structural elegance and visual space.",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+                gradient: "from-stone-900 via-neutral-900 to-black",
+                liveUrl: "https://farmanshafi2007-hub.github.io/INEXTERIOR/",
+                featured: true,
+                stack: ["HTML5", "CSS Grid", "Responsive Design", "Architecture"]
+            }
+        ];
+
+        let currentCategory = 'All';
+
+        // Initialize Application on Load & Check showroom return parameter
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderAllProjects();
+            checkShowroomReturnParam();
+        });
+
+        // Theme Toggle Function
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('forge_theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('forge_theme', 'dark');
+            }
+        }
+
+        // Notification Toast
+        function showMsg(text) {
+            const box = document.getElementById('msgBox');
+            if (!box) return;
+            box.textContent = text;
+            box.style.transform = 'translateY(0)';
+            box.style.opacity = '1';
+            setTimeout(() => {
+                box.style.transform = 'translateY(24px)';
+                box.style.opacity = '0';
+            }, 3500);
+        }
+
+        // Render Category Filter Buttons with balanced spacing
+        function renderCategories() {
+            const categoriesContainer = document.getElementById('categoryFilters');
+            if (!categoriesContainer) return;
+
+            const categories = ['All', ...new Set(projectsData.map(p => p.category))];
+
+            categoriesContainer.innerHTML = categories.map(cat => `
+                <button onclick="setCategory('${cat}')" class="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap border ${currentCategory === cat ? 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-md scale-105' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            renderCategories();
+            renderAllProjects();
+        }
+
+        // Render All Projects with Search, Category Filter, and Sequential Numbering
+        function renderAllProjects() {
+            const grid = document.getElementById('projectsGrid');
+            const emptyState = document.getElementById('emptyState');
+            const searchInput = document.getElementById('searchInput');
+            if (!grid) return;
+
+            const query = searchInput ? searchInput.value.toLowerCase() : '';
+
+            const indexedProjects = projectsData.map((p, idx) => ({ ...p, originalIndex: idx + 1 }));
+
+            const filtered = indexedProjects.filter(p => {
+                const matchesCategory = currentCategory === 'All' || p.category === currentCategory;
+                const matchesSearch = p.title.toLowerCase().includes(query) || 
+                                      p.description.toLowerCase().includes(query) || 
+                                      p.category.toLowerCase().includes(query) ||
+                                      p.stack.some(s => s.toLowerCase().includes(query));
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                grid.innerHTML = filtered.map(project => createProjectCardHTML(project)).join('');
+            }
+        }
+
+        function filterProjects() {
+            renderAllProjects();
+        }
+
+        // Project Card HTML Template with well-calculated spacing
+        function createProjectCardHTML(project) {
+            const paddedNum = project.originalIndex < 10 ? `0${project.originalIndex}` : project.originalIndex;
+
+            return `
+                <div class="project-card rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 overflow-hidden flex flex-col group relative shadow-sm hover:shadow-2xl transition-all">
+                    <!-- Gradient Thumbnail Container with Number Badge -->
+                    <div class="aspect-video relative overflow-hidden bg-gradient-to-br ${project.gradient}">
+                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover opacity-80 mix-blend-luminosity group-hover:scale-105 group-hover:opacity-100 transition-all duration-500" onerror="this.src='https://placehold.co/600x400/18181b/ffffff?text=Forge+Preview'">
+                        
+                        <!-- Number Badge top-left -->
+                        <div class="absolute top-3.5 left-3.5 z-10">
+                            <span class="px-3 py-1.5 rounded-lg bg-black/90 dark:bg-white/90 text-white dark:text-black font-mono text-xs font-bold tracking-widest shadow-lg backdrop-blur-md">
+                                #${paddedNum}
+                            </span>
+                        </div>
+
+                        <!-- Category Badge top-right -->
+                        <div class="absolute top-3.5 right-3.5 z-10">
+                            <span class="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase">
+                                ${project.category}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-6 sm:p-7 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2.5 tracking-tight">${project.title}</h3>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-6 line-clamp-2 leading-relaxed flex-grow font-normal">
+                            ${project.description}
+                        </p>
+
+                        <!-- Tech Stack Tags -->
+                        <div class="flex flex-wrap gap-2 mb-7">
+                            ${project.stack.map(tech => `<span class="px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800">${tech}</span>`).join('')}
+                        </div>
+
+                        <!-- Actions with perfectly calculated spacing -->
+                        <div class="flex items-center gap-3.5 pt-5 border-t border-zinc-100 dark:border-zinc-900">
+                            <a href="${project.liveUrl}" target="_blank" onclick="injectReturnBar('${project.liveUrl}')" class="flex-1 py-3.5 rounded-xl bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest text-center hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-400">
+                                View Live Theme
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                            <button onclick="openModal('${project.id}')" class="px-5 py-3.5 rounded-xl border border-zinc-300 dark:border-zinc-700 text-xs font-semibold uppercase tracking-wider hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-400">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function injectReturnBar(url) {
+            showMsg("Opening live theme in a new tab. Close tab to return here anytime.");
+        }
+
+        function checkShowroomReturnParam() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('showroom') === 'true') {
+                showMsg("Welcome back to Forge Showroom.");
+            }
+        }
+
+        // Modal Handlers
+        function openModal(projectId) {
+            const project = projectsData.find(p => p.id === projectId);
+            if (!project) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="aspect-video rounded-2xl overflow-hidden mb-6 bg-gradient-to-br ${project.gradient} shadow-inner relative">
+                    <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover opacity-90 mix-blend-luminosity">
+                </div>
+                <div class="inline-block px-3.5 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-xs font-bold uppercase tracking-widest mb-4 border border-zinc-200 dark:border-zinc-800">
+                    ${project.category}
+                </div>
+                <h2 class="text-2xl md:text-3xl font-extrabold mb-3 tracking-tight">${project.title}</h2>
+                <p class="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed mb-6 font-normal">
+                    ${project.description}
+                </p>
+                <div class="mb-7">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2.5 font-mono">Technology Stack</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${project.stack.map(t => `<span class="px-3 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800">${t}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 pt-5 border-t border-zinc-200 dark:border-zinc-800">
+                    <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3.5 rounded-xl bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-widest text-center hover:opacity-90 transition-opacity shadow-md">
+                        Open Live Website &rarr;
+                    </a>
+                    <button onclick="closeModal()" class="px-6 py-3.5 rounded-xl border border-zinc-300 dark:border-zinc-700 font-bold text-xs uppercase tracking-widest hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors">
+                        Close
+                    </button>
+                </div>
+            `;
+
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
