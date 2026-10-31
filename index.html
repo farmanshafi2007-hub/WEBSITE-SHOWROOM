@@ -51,7 +51,8 @@
         /* Smooth scrolling and enhanced scroll physics */
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 100px;
+            scroll-padding-top: 80px;
+            -webkit-text-size-adjust: 100%;
         }
         @media (prefers-reduced-motion: no-preference) {
             html {
@@ -59,7 +60,7 @@
             }
         }
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.03);
@@ -85,39 +86,36 @@
         }
 
         .project-card {
-            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
-                        box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
-                        border-color 0.3s ease;
+            border-width: 3px !important;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.25s ease;
             will-change: transform, box-shadow;
+            touch-action: manipulation;
         }
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 24px 44px -12px rgba(15, 23, 42, 0.12);
-        }
-        .dark .project-card:hover {
-            box-shadow: 0 28px 56px -12px rgba(0, 0, 0, 0.65);
+        @media (min-width: 768px) {
+            .project-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 24px 44px -12px rgba(15, 23, 42, 0.16);
+            }
+            .dark .project-card:hover {
+                box-shadow: 0 28px 56px -12px rgba(0, 0, 0, 0.65);
+            }
         }
 
         /* Action button refined styles & transitions */
         .btn-live-preview {
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .btn-live-preview:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px -4px rgba(37, 99, 235, 0.25);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .btn-live-preview:active {
-            transform: translateY(0);
+            transform: scale(0.97);
         }
 
         .btn-select-design {
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .btn-select-design:hover {
-            transform: translateY(-2px);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .btn-select-design:active {
-            transform: translateY(0);
+            transform: scale(0.97);
         }
 
         /* Animated theme toggle ring */
@@ -158,6 +156,16 @@
             box-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
         }
 
+        /* Pinned card badge subtle glow */
+        .badge-pinned {
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+        }
+
+        /* Most Viewed badge glow */
+        .badge-most-viewed {
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
+        }
+
         /* Kindred Rainbow underglow CTA */
         .cta-glow {
             position: absolute;
@@ -179,88 +187,89 @@
             bottom: -9px;
         }
 
-        /* Subtle canvas blend */
-        #dots {
-            transition: opacity 0.4s ease;
+        /* Hide horizontal scroll on small devices */
+        body {
+            overflow-x: hidden;
+            width: 100%;
         }
     </style>
 </head>
-<body class="bg-white dark:bg-[#09090b] text-black dark:text-zinc-100 font-sans antialiased transition-colors duration-500 selection:bg-zinc-800 selection:text-white pb-36">
+<body class="bg-white dark:bg-[#09090b] text-black dark:text-zinc-100 font-sans antialiased transition-colors duration-500 selection:bg-zinc-800 selection:text-white pb-32 sm:pb-36">
 
-    <!-- Top Notification Banner (Minimal Premium Gold) -->
-    <aside aria-label="Showroom Announcement" class="gold-banner relative z-50 text-xs py-2.5 px-6 text-center tracking-widest uppercase flex items-center justify-center gap-2.5 shadow-sm">
-        <span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-[#e6ca65] gold-badge">
+    <!-- Top Notification Banner (Minimal Premium Gold - Fully Responsive) -->
+    <aside aria-label="Showroom Announcement" class="gold-banner relative z-50 text-[11px] sm:text-xs py-2 sm:py-2.5 px-4 sm:px-6 text-center tracking-wider sm:tracking-widest uppercase flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 shadow-sm">
+        <span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-[#e6ca65] gold-badge shrink-0">
             <span class="w-1.5 h-1.5 rounded-full bg-[#fcedc5] animate-ping"></span>
         </span>
-        <span class="font-medium text-zinc-300 tracking-[0.14em]">
-            Welcome to Theme Showroom &mdash; <span class="font-bold text-gold-shimmer tracking-[0.18em]">Here You Choose & Select, We Make</span>
+        <span class="font-medium text-zinc-300 tracking-[0.08em] sm:tracking-[0.14em]">
+            Theme Showroom &mdash; <span class="font-bold text-gold-shimmer tracking-[0.1em] sm:tracking-[0.18em]">Here You Choose & Select, We Make</span>
         </span>
-        <a href="#showcase" class="inline-flex items-center gap-1 font-semibold text-[#ecd37b] hover:text-[#fff2c6] transition-colors ml-2 lowercase text-[11px] tracking-normal underline decoration-[#d4af37]/40 hover:decoration-[#d4af37]">
-            <span>browse catalog</span>
+        <a href="#showcase" class="inline-flex items-center gap-1 font-semibold text-[#ecd37b] hover:text-[#fff2c6] transition-colors ml-1 sm:ml-2 lowercase text-[11px] tracking-normal underline decoration-[#d4af37]/40 hover:decoration-[#d4af37] shrink-0">
+            <span>browse</span>
             <span class="text-xs">&rarr;</span>
         </a>
     </aside>
 
-    <!-- Navigation -->
-    <header class="sticky top-0 z-50 glass-nav bg-white/70 dark:bg-[#09090b]/70 border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors">
-        <div class="max-w-7xl mx-auto px-6 sm:px-10 h-24 flex items-center justify-between">
+    <!-- Navigation (Responsive Heights & Spacing) -->
+    <header class="sticky top-0 z-50 glass-nav bg-white/75 dark:bg-[#09090b]/75 border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 h-16 sm:h-20 lg:h-24 flex items-center justify-between">
             <!-- Brand -->
-            <a href="#" class="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded-2xl p-1.5">
-                <div class="w-11 h-11 rounded-2xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-extrabold text-lg tracking-tight group-hover:scale-105 transition-transform shadow-xl">
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3.5 group focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded-2xl p-1">
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-extrabold text-base sm:text-lg tracking-tight group-hover:scale-105 transition-transform shadow-md">
                     F
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-extrabold text-base tracking-tight leading-none">FORGE</span>
-                    <span class="text-[10px] font-bold text-zinc-500 tracking-[0.3em] mt-1">SHOWROOM</span>
+                    <span class="font-extrabold text-sm sm:text-base tracking-tight leading-none">FORGE</span>
+                    <span class="text-[9px] sm:text-[10px] font-bold text-zinc-500 tracking-[0.25em] sm:tracking-[0.3em] mt-0.5 sm:mt-1">SHOWROOM</span>
                 </div>
             </a>
 
             <!-- Animated Theme Toggle & CTA -->
-            <div class="flex items-center gap-4">
-                <button onclick="toggleTheme()" aria-label="Toggle Theme" class="p-3 rounded-full border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all theme-btn-pulse flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-zinc-400">
+            <div class="flex items-center gap-2.5 sm:gap-4">
+                <button onclick="toggleTheme()" aria-label="Toggle Theme" class="p-2.5 sm:p-3 rounded-full border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all theme-btn-pulse flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-zinc-400 touch-manipulation">
                     <!-- Sun Icon -->
                     <svg id="sunIcon" class="w-4 h-4 hidden dark:block transition-transform duration-500 rotate-0 dark:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                     <!-- Moon Icon -->
                     <svg id="moonIcon" class="w-4 h-4 block dark:hidden transition-transform duration-500 rotate-180 dark:rotate-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
                 </button>
 
-                <a href="#showcase" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all shadow-md">
-                    Explore Themes
+                <a href="#showcase" class="inline-flex items-center justify-center px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest hover:opacity-90 transition-all shadow-md active:scale-95">
+                    Explore
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Kindred Dot-Matrix Hands Hero Section -->
-    <section class="relative w-full h-screen min-h-[700px] overflow-hidden flex flex-col justify-between border-b border-zinc-200 dark:border-zinc-800 bg-[#f7f7f5] dark:bg-[#09090b] transition-colors duration-500">
+    <!-- Kindred Dot-Matrix Hands Hero Section (Responsive Viewport) -->
+    <section class="relative w-full min-h-[580px] sm:min-h-[660px] h-[calc(100vh-64px)] sm:h-[calc(100vh-80px)] overflow-hidden flex flex-col justify-center items-center border-b border-zinc-200 dark:border-zinc-800 bg-[#f7f7f5] dark:bg-[#09090b] transition-colors duration-500 px-4">
         <!-- Live Halftone Scanline Hands Canvas -->
         <canvas id="dots" class="absolute inset-0 w-full h-full block z-[1] pointer-events-none"></canvas>
 
         <!-- Dynamic Status Indicator -->
-        <div id="loadingIndicator" class="absolute top-5 right-6 text-[11px] font-mono tracking-wider text-zinc-400 dark:text-zinc-500 z-20 pointer-events-none transition-opacity duration-500">
+        <div id="loadingIndicator" class="absolute top-3 right-4 sm:top-5 sm:right-6 text-[10px] sm:text-[11px] font-mono tracking-wider text-zinc-400 dark:text-zinc-500 z-20 pointer-events-none transition-opacity duration-500">
             Halftone matrix online
         </div>
 
         <!-- Center Copy Block with Quiet Zone protection -->
-        <div class="relative z-10 m-auto text-center px-6 max-w-4xl pt-10 sm:pt-6">
-            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md text-zinc-700 dark:text-zinc-300 text-xs font-bold uppercase tracking-wider mb-6 border border-zinc-200/80 dark:border-zinc-800 shadow-sm">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <div class="relative z-10 text-center max-w-3xl mx-auto py-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md text-zinc-700 dark:text-zinc-300 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-4 sm:mb-6 border border-zinc-200/80 dark:border-zinc-800 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>Creation &middot; Engineering &middot; Presentation</span>
             </div>
 
-            <h1 class="text-4xl sm:text-6xl md:text-7xl font-medium tracking-[-0.035em] leading-[1.06] mb-5">
+            <h1 class="text-3xl sm:text-5xl md:text-7xl font-medium tracking-[-0.035em] leading-[1.08] sm:leading-[1.05] mb-4 sm:mb-5">
                 <span class="block text-zinc-400 dark:text-zinc-500 font-light">Reconnecting</span>
                 <span class="block text-black dark:text-white font-semibold">Digital Craftsmanship.</span>
             </h1>
 
-            <p class="max-w-[380px] sm:max-w-md mx-auto text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-8">
+            <p class="max-w-[320px] sm:max-w-md mx-auto text-xs sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal mb-6 sm:mb-8">
                 Choose your website design from our interactive master gallery. We build and tailor it directly for your brand.
             </p>
 
             <!-- CTA with Kindred Spectrum Underglow -->
             <div class="relative inline-block cta-wrapper group">
                 <div class="cta-glow" aria-hidden="true"></div>
-                <a href="#showcase" class="relative z-10 inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-black dark:bg-white text-white dark:text-black font-semibold text-xs uppercase tracking-widest transition-transform duration-300 group-hover:-translate-y-0.5 shadow-xl">
+                <a href="#showcase" class="relative z-10 inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-black dark:bg-white text-white dark:text-black font-semibold text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest transition-transform duration-300 group-hover:-translate-y-0.5 active:translate-y-0 shadow-xl touch-manipulation">
                     <span>Explore Theme Showroom</span>
                     <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
@@ -271,65 +280,65 @@
     </section>
 
     <!-- Master Showcase Gallery Section -->
-    <section id="showcase" class="py-20 sm:py-28 max-w-7xl mx-auto px-6 sm:px-10">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-8">
+    <section id="showcase" class="py-14 sm:py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-8 lg:px-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
             <div>
-                <span class="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500 mb-3 block">Theme Collection</span>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">Available Website Designs</h2>
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-zinc-500 mb-2 sm:mb-3 block">Theme Collection</span>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">Available Website Designs</h2>
             </div>
             
             <!-- Search Input -->
             <div class="relative w-full md:w-80">
-                <input type="text" id="searchInput" placeholder="Search themes or tech stack..." oninput="filterProjects()" class="w-full px-5 py-4 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-black dark:focus:border-white outline-none text-sm font-medium transition-colors shadow-sm">
-                <svg class="w-4 h-4 absolute right-5 top-4 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" id="searchInput" placeholder="Search themes or tech stack..." oninput="filterProjects()" class="w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-black dark:focus:border-white outline-none text-xs sm:text-sm font-medium transition-colors shadow-sm">
+                <svg class="w-4 h-4 absolute right-4 sm:right-5 top-3.5 sm:top-4 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
         </div>
 
-        <!-- Category Filters -->
-        <div class="flex flex-wrap items-center gap-3 mb-12 sm:mb-16 pb-4 border-b border-zinc-200 dark:border-zinc-800 overflow-x-auto" id="categoryFilters">
+        <!-- Category Filters (Horizontal Fluid Scrollable on Mobile) -->
+        <div class="flex items-center gap-2 sm:gap-3 mb-8 sm:mb-14 pb-3 border-b border-zinc-200 dark:border-zinc-800 overflow-x-auto no-scrollbar scroll-smooth" id="categoryFilters">
             <!-- Buttons generated dynamically -->
         </div>
 
-        <!-- Projects Grid -->
-        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 max-w-7xl mx-auto">
+        <!-- Projects Grid (Optimized mobile column layout) -->
+        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-7xl mx-auto">
             <!-- Dynamically rendered projects -->
         </div>
 
         <!-- Empty State -->
-        <div id="emptyState" class="hidden py-32 text-center">
-            <svg class="w-16 h-16 mx-auto text-zinc-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <h3 class="text-xl font-bold mb-2">No matching themes found</h3>
-            <p class="text-sm text-zinc-500 mb-6">Try clearing your search query or category filter.</p>
-            <button onclick="resetFilters()" class="px-6 py-3.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest">Show All Themes</button>
+        <div id="emptyState" class="hidden py-24 sm:py-32 text-center px-4">
+            <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-zinc-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <h3 class="text-lg sm:text-xl font-bold mb-2">No matching themes found</h3>
+            <p class="text-xs sm:text-sm text-zinc-500 mb-6">Try clearing your search query or category filter.</p>
+            <button onclick="resetFilters()" class="px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest active:scale-95 transition-transform">Show All Themes</button>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-12 sm:py-16 bg-white dark:bg-[#09090b]">
-        <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
-            <div class="flex items-center gap-3.5">
-                <div class="w-9 h-9 rounded-xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-sm shadow-md">F</div>
-                <span class="font-extrabold tracking-tight text-sm">FORGE SHOWROOM</span>
+    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-10 sm:py-16 bg-white dark:bg-[#09090b]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 text-center sm:text-left">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs sm:text-sm shadow-md">F</div>
+                <span class="font-extrabold tracking-tight text-xs sm:text-sm">FORGE SHOWROOM</span>
             </div>
-            <div class="text-xs text-zinc-500 font-medium tracking-wide">
+            <div class="text-[11px] sm:text-xs text-zinc-500 font-medium tracking-wide">
                 &copy; 2026 Forge Softwares. All client themes independently hosted and optimized.
             </div>
         </div>
     </footer>
 
-    <!-- Persistent Selection Bottom Bar -->
-    <div id="selectionBar" class="fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 text-white backdrop-blur-xl border-t border-zinc-800 py-5 px-6 sm:px-12 transform translate-y-full transition-transform duration-500 shadow-2xl">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3.5 text-center sm:text-left">
-                <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span id="selectedDesignText" class="text-sm font-bold tracking-wide">Selected: None</span>
+    <!-- Persistent Selection Bottom Bar (Mobile thumb-friendly layout) -->
+    <div id="selectionBar" class="fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 text-white backdrop-blur-xl border-t border-zinc-800 py-3.5 sm:py-5 px-4 sm:px-8 lg:px-12 transform translate-y-full transition-transform duration-500 shadow-2xl safe-area-inset">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+            <div class="flex items-center gap-2.5 text-center sm:text-left">
+                <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                <span id="selectedDesignText" class="text-xs sm:text-sm font-bold tracking-wide truncate max-w-[280px] sm:max-w-none">Selected: None</span>
             </div>
-            <div class="flex items-center gap-3.5 w-full sm:w-auto">
-                <button onclick="sendOnWhatsApp()" class="flex-1 sm:flex-none px-7 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2.5 shadow-xl">
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                    Send on WhatsApp
+            <div class="flex items-center gap-2.5 sm:gap-3.5 w-full sm:w-auto">
+                <button onclick="sendOnWhatsApp()" class="flex-1 sm:flex-none px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs uppercase tracking-wider sm:tracking-widest transition-transform flex items-center justify-center gap-2 shadow-xl touch-manipulation">
+                    <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    <span>WhatsApp</span>
                 </button>
-                <button onclick="clearSelection()" class="px-5 py-3.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-bold text-xs uppercase tracking-widest transition-colors">
+                <button onclick="clearSelection()" class="px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 active:scale-95 text-zinc-300 font-bold text-xs uppercase tracking-wider sm:tracking-widest transition-transform touch-manipulation">
                     Clear
                 </button>
             </div>
@@ -341,48 +350,78 @@
         // Centralized Project Database with permanent index numbers (#1, #2, #3...)
         const projectsData = [
             {
-                id: "horror-halloween-theme",
+                id: "mars-theme-design",
                 number: 1,
+                title: "Mars Theme Design",
+                category: "Sci-Fi & Exploration",
+                description: "An awe-inspiring interplanetary Martian voyage interface with crimson atmospheric lighting, deep-space telemetry modules, and futuristic typography.",
+                image: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=70",
+                gradient: "from-amber-950 via-red-950 to-neutral-950",
+                liveUrl: "https://farmanshafi2007-hub.github.io/mars-theme-design-/",
+                stack: ["HTML5", "Sci-Fi UI", "Atmospheric CSS", "WebGL Vibes"],
+                pinned: true,
+                badge: "pinned"
+            },
+            {
+                id: "books-2-theme-ui",
+                number: 2,
+                title: "Books 2 Theme UI Sample",
+                category: "E-Commerce & Literature",
+                description: "An enhanced, high-conversion modern editorial & literary showcase interface with refined typographic hierarchy, elegant book galleries, and smooth browsing.",
+                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=70",
+                gradient: "from-amber-900 via-stone-900 to-black",
+                liveUrl: "https://farmanshafi2007-hub.github.io/books-2-theme-ui-sample/",
+                stack: ["HTML5", "Tailwind CSS", "Editorial UI", "Vanilla JS"],
+                pinned: false,
+                badge: "most-viewed"
+            },
+            {
+                id: "horror-halloween-theme",
+                number: 3,
                 title: "Horror Halloween Theme",
                 category: "Seasonal & Interactive",
                 description: "An immersive, atmospheric horror and holiday-themed web experience featuring rich dark visual styling, spooky animations, and custom UI components.",
                 image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-zinc-900 via-neutral-900 to-black",
                 liveUrl: "https://farmanshafi2007-hub.github.io/holloweeen-theme-/",
-                stack: ["HTML5", "CSS3", "JavaScript", "Interactive UI"]
+                stack: ["HTML5", "CSS3", "JavaScript", "Interactive UI"],
+                pinned: false
             },
             {
                 id: "books-theme-ui",
-                number: 2,
+                number: 4,
                 title: "Books Theme UI Sample",
                 category: "E-Commerce & Literature",
                 description: "A refined literary and bookstore interface designed for immersive browsing, reader engagement, and elegant catalog presentation.",
                 image: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-neutral-800 via-zinc-900 to-neutral-950",
                 liveUrl: "https://farmanshafi2007-hub.github.io/books-theme-ui-sample/",
-                stack: ["HTML5", "Tailwind CSS", "UI/UX Design", "Vanilla JS"]
+                stack: ["HTML5", "Tailwind CSS", "UI/UX Design", "Vanilla JS"],
+                pinned: false
             },
             {
                 id: "inexterior-architecture-theme",
-                number: 3,
+                number: 5,
                 title: "Inexterior Architecture Theme",
                 category: "Interior & Architecture",
                 description: "A minimalist, high-end architectural and interior design portfolio showcase emphasizing structural elegance and visual space.",
                 image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-stone-900 via-neutral-900 to-black",
                 liveUrl: "https://farmanshafi2007-hub.github.io/INEXTERIOR/",
-                stack: ["HTML5", "CSS Grid", "Responsive Design", "Architecture"]
+                stack: ["HTML5", "CSS Grid", "Responsive Design", "Architecture"],
+                pinned: false
             },
             {
                 id: "liquid-glass-theme",
-                number: 4,
+                number: 6,
                 title: "Liquid Glass Theme Design",
                 category: "Glassmorphism & Modern UI",
                 description: "A futuristic liquid glass and refractive glassmorphic interface with multi-layered backdrops, specular reflections, and translucent UI surfaces.",
                 image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-slate-900 via-cyan-950 to-neutral-950",
                 liveUrl: "https://farmanshafi2007-hub.github.io/liquid-glass-theme-deign-/",
-                stack: ["HTML5", "Liquid Glass", "CSS Backdrop", "Modern UI"]
+                stack: ["HTML5", "Liquid Glass", "CSS Backdrop", "Modern UI"],
+                pinned: false
             }
         ];
 
@@ -391,7 +430,6 @@
 
         // Initialize Application
         window.addEventListener('DOMContentLoaded', () => {
-            // Restore saved theme preference, defaulting strictly to 'light'
             const savedTheme = localStorage.getItem('forge_theme');
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark');
@@ -426,7 +464,7 @@
             const categories = ['All', ...new Set(projectsData.map(p => p.category))];
 
             categoriesContainer.innerHTML = categories.map(cat => `
-                <button onclick="setCategory('${cat}')" class="px-6 py-3 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap border ${currentCategory === cat ? 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-lg scale-105' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400'}">
+                <button onclick="setCategory('${cat}')" class="px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap border shrink-0 touch-manipulation ${currentCategory === cat ? 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-md scale-[1.02]' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400'}">
                     ${cat}
                 </button>
             `).join('');
@@ -477,56 +515,72 @@
             renderAllProjects();
         }
 
-        // Project Card HTML Template
+        // Project Card HTML Template with Responsive Curves and Touch Sizing
         function createProjectCardHTML(project) {
             const isSelected = selectedDesign && selectedDesign.id === project.id;
+            const isPinned = project.badge === 'pinned' || Boolean(project.pinned);
+            const isMostViewed = project.badge === 'most-viewed';
 
             return `
-                <div class="project-card rounded-3xl border ${isSelected ? 'border-emerald-500 ring-2 ring-emerald-500/70 shadow-xl dark:shadow-emerald-950/40' : 'border-zinc-200/90 dark:border-zinc-800/90 hover:border-zinc-300 dark:hover:border-zinc-700'} bg-white dark:bg-zinc-950 overflow-hidden flex flex-col group relative shadow-sm">
-                    <!-- Gradient Thumbnail Container with Permanent Number Badge -->
+                <div class="project-card rounded-3xl sm:rounded-[2.5rem] border-[3px] ${isSelected ? 'border-emerald-600 ring-4 ring-emerald-500/40 shadow-2xl dark:shadow-emerald-950/40' : (isPinned ? 'border-black dark:border-white shadow-xl ring-2 ring-amber-400/40' : (isMostViewed ? 'border-black dark:border-white shadow-xl ring-2 ring-rose-400/40' : 'border-black dark:border-zinc-100'))} bg-white dark:bg-zinc-950 overflow-hidden flex flex-col group relative shadow-md">
+                    <!-- Gradient Thumbnail Container with Number Badge -->
                     <div class="aspect-video relative overflow-hidden bg-gradient-to-br ${project.gradient}">
                         <img src="${project.image}" alt="${project.title}" loading="lazy" class="w-full h-full object-cover opacity-85 mix-blend-luminosity group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out" onerror="this.src='https://placehold.co/600x400/18181b/ffffff?text=Forge+Preview'">
                         
-                        <!-- Permanent Design Number Badge -->
-                        <div class="absolute top-4 left-4 z-10">
-                            <span class="px-3.5 py-2 rounded-xl bg-black/85 dark:bg-white/90 text-white dark:text-black font-mono text-xs font-bold tracking-widest shadow-xl backdrop-blur-md">
+                        <!-- Permanent Design Number Badge & Custom Badges -->
+                        <div class="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 flex flex-wrap items-center gap-1.5 sm:gap-2">
+                            <span class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-black/85 dark:bg-white/90 text-white dark:text-black font-mono text-[11px] sm:text-xs font-bold tracking-widest shadow-xl backdrop-blur-md">
                                 #${project.number}
                             </span>
+                            ${isPinned ? `
+                                <span class="badge-pinned px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-amber-500 text-black font-bold text-[9px] sm:text-[10px] uppercase tracking-wider shadow-lg flex items-center gap-1">
+                                    <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-current shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                    <span>Pinned</span>
+                                </span>
+                            ` : ''}
+                            ${isMostViewed ? `
+                                <span class="badge-most-viewed px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-rose-500 text-white font-bold text-[9px] sm:text-[10px] uppercase tracking-wider shadow-lg flex items-center gap-1">
+                                    <svg class="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-none stroke-current shrink-0" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                    <span>Most Viewed</span>
+                                </span>
+                            ` : ''}
                         </div>
 
                         <!-- Category Badge -->
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="px-3.5 py-2 rounded-xl bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase">
+                        <div class="absolute top-3 sm:top-4 right-3 sm:right-4 z-10">
+                            <span class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-black/60 backdrop-blur-md text-white text-[9px] sm:text-[10px] font-bold tracking-wider sm:tracking-widest uppercase">
                                 ${project.category}
                             </span>
                         </div>
                     </div>
 
                     <!-- Content -->
-                    <div class="p-7 sm:p-8 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">#${project.number} &mdash; ${project.title}</h3>
+                    <div class="p-5 sm:p-7 lg:p-8 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2 sm:mb-3">
+                            <h3 class="text-lg sm:text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+                                #${project.number} &mdash; ${project.title}
+                            </h3>
                         </div>
-                        <p class="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mb-8 line-clamp-2 leading-relaxed flex-grow font-normal">
+                        <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mb-5 sm:mb-7 line-clamp-2 leading-relaxed flex-grow font-normal">
                             ${project.description}
                         </p>
 
                         <!-- Tech Stack Tags -->
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            ${project.stack.map(tech => `<span class="px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800">${tech}</span>`).join('')}
+                        <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6 sm:mb-8">
+                            ${project.stack.map(tech => `<span class="px-2.5 py-1 rounded-md sm:rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 text-[10px] sm:text-xs font-mono font-medium border border-zinc-200 dark:border-zinc-800">${tech}</span>`).join('')}
                         </div>
 
-                        <!-- Actions: Distinct & Ergonomic Button Styles -->
-                        <div class="grid grid-cols-2 gap-3.5 pt-6 border-t border-zinc-100 dark:border-zinc-900">
-                            <!-- Live Preview: Distinct Crisp Indigo/Blue Accent -->
-                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-live-preview py-3.5 px-3 rounded-2xl bg-indigo-50/90 hover:bg-indigo-600 text-indigo-700 hover:text-white dark:bg-indigo-950/40 dark:hover:bg-indigo-600 dark:text-indigo-300 dark:hover:text-white border border-indigo-200/90 dark:border-indigo-800/80 text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-sm">
-                                <span>Live Preview</span>
-                                <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        <!-- Actions: Touch-friendly layout -->
+                        <div class="grid grid-cols-2 gap-2.5 sm:gap-3.5 pt-4 sm:pt-6 border-t border-zinc-100 dark:border-zinc-900">
+                            <!-- Live Preview Button -->
+                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-live-preview py-3 sm:py-3.5 px-2 rounded-xl sm:rounded-2xl bg-indigo-50/90 hover:bg-indigo-600 text-indigo-700 hover:text-white dark:bg-indigo-950/40 dark:hover:bg-indigo-600 dark:text-indigo-300 dark:hover:text-white border border-indigo-200/90 dark:border-indigo-800/80 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-sm touch-manipulation">
+                                <span>Preview</span>
+                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                             </a>
 
-                            <!-- Select Design: High-contrast Dark/Emerald Action -->
-                            <button onclick="selectDesign('${project.id}')" class="btn-select-design py-3.5 px-3 rounded-2xl ${isSelected ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/30 ring-2 ring-emerald-400' : 'bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 shadow-md hover:shadow-lg'} text-xs font-bold uppercase tracking-wider text-center focus:outline-none focus:ring-2 focus:ring-emerald-400">
-                                ${isSelected ? '✓ Selected' : '+ Select Design'}
+                            <!-- Select Design Button (Direct Order Flow & Selection) -->
+                            <button onclick="selectDesign('${project.id}'); sendOnWhatsApp();" class="btn-select-design py-3 sm:py-3.5 px-2 rounded-xl sm:rounded-2xl ${isSelected ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/30 ring-2 ring-emerald-400' : 'bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 shadow-md'} text-[11px] sm:text-xs font-bold uppercase tracking-wider text-center focus:outline-none focus:ring-2 focus:ring-emerald-400 touch-manipulation flex items-center justify-center gap-1.5">
+                                <span>${isSelected ? '✓ Ordered' : 'Select & Order'}</span>
                             </button>
                         </div>
                     </div>
@@ -568,7 +622,7 @@
         }
     </script>
 
-    <!-- Dot-Matrix Halftone Canvas Engine (Exact Recreation) -->
+    <!-- Dot-Matrix Halftone Canvas Engine (High-Performance & Mobile-Optimized) -->
     <script>
         (function() {
             'use strict';
@@ -585,6 +639,7 @@
 
             const LOOP = 20; // 20s master loop
             const LEVELS = [0, 0.26, 0.52, 0.78, 1.0];
+            const TWO_PI = Math.PI * 2;
 
             const canvas = document.getElementById('dots');
             const ctx = canvas.getContext('2d', { alpha: false });
@@ -628,7 +683,7 @@
             function prepareTiles(sourceImg) {
                 const sw = sourceImg.naturalWidth || 1600;
                 const sh = sourceImg.naturalHeight || 905;
-                const tileTargetWidth = 420;
+                const tileTargetWidth = 360; // Optimized tile resolution for mobile and desktop
 
                 for (const key of ['LA', 'RA', 'LB', 'RB']) {
                     const [rx, ry, rw, rh] = RECTS[key];
@@ -643,7 +698,7 @@
                     tileCanvas.height = Math.round(tileTargetWidth * aspect);
                     const tCtx = tileCanvas.getContext('2d');
                     tCtx.imageSmoothingEnabled = true;
-                    tCtx.imageSmoothingQuality = 'high';
+                    tCtx.imageSmoothingQuality = 'medium';
 
                     tCtx.drawImage(
                         sourceImg,
@@ -663,16 +718,20 @@
                 }
             }
 
+            // High-Speed Adaptive Resizing for Mobile & Desktop
             function handleResize() {
                 const rect = canvas.parentElement.getBoundingClientRect();
                 W = rect.width || window.innerWidth;
-                H = rect.height || 700;
-                DPR = Math.min(2, window.devicePixelRatio || 1);
+                H = rect.height || 600;
+
+                // Restrict DPR to 1.5 max on mobile screens to save GPU & battery
+                DPR = Math.min(window.innerWidth < 768 ? 1.25 : 2, window.devicePixelRatio || 1);
 
                 canvas.width = Math.round(W * DPR);
                 canvas.height = Math.round(H * DPR);
 
-                step = Math.max(5, W / 205);
+                // Dynamically adjust pitch based on screen width for peak frame rates
+                step = W < 640 ? Math.max(6, W / 100) : Math.max(5, W / 205);
                 rowStep = step * 2.05;
 
                 cols = Math.ceil(W / step);
@@ -695,13 +754,17 @@
                 }
             }
 
-            window.addEventListener('resize', handleResize, { passive: true });
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(handleResize, 150);
+            }, { passive: true });
 
             function createFallbackTiles() {
                 for (const key of ['LA', 'RA', 'LB', 'RB']) {
                     const fallbackCanvas = document.createElement('canvas');
-                    fallbackCanvas.width = 420;
-                    fallbackCanvas.height = Math.round(420 * (0.40 * 1520) / (0.47 * 2688));
+                    fallbackCanvas.width = 360;
+                    fallbackCanvas.height = Math.round(360 * (0.40 * 1520) / (0.47 * 2688));
                     const fctx = fallbackCanvas.getContext('2d');
                     fctx.fillStyle = '#ffffff';
                     fctx.fillRect(0, 0, fallbackCanvas.width, fallbackCanvas.height);
@@ -709,8 +772,8 @@
                     const isLeft = key.startsWith('L');
                     const isPoseB = key.endsWith('B');
                     const grad = fctx.createRadialGradient(
-                        isLeft ? 100 : 320, fallbackCanvas.height * 0.5, 30,
-                        isLeft ? 200 : 220, fallbackCanvas.height * 0.5, 190
+                        isLeft ? 80 : 280, fallbackCanvas.height * 0.5, 20,
+                        isLeft ? 180 : 180, fallbackCanvas.height * 0.5, 160
                     );
                     grad.addColorStop(0, '#101010');
                     grad.addColorStop(0.65, '#555555');
@@ -719,10 +782,10 @@
                     fctx.fillStyle = grad;
                     fctx.beginPath();
                     fctx.ellipse(
-                        isLeft ? 180 : 240,
+                        isLeft ? 160 : 200,
                         fallbackCanvas.height * (isPoseB ? 0.55 : 0.48),
-                        isLeft ? 160 : 160,
-                        isPoseB ? 55 : 42,
+                        isLeft ? 140 : 140,
+                        isPoseB ? 50 : 38,
                         isLeft ? -0.08 : 0.08,
                         0, Math.PI * 2
                     );
@@ -759,16 +822,16 @@
                 const ph = isLeft ? 0 : Math.PI;
                 const a = (2 * Math.PI * t) / LOOP;
 
-                const hw = isPortrait ? W * 0.66 : W * 0.53;
+                const hw = isPortrait ? W * 0.72 : W * 0.53;
                 const sheetRatio = (0.40 * 1520) / (0.47 * 2688);
                 const hh = hw * sheetRatio;
-                const cy = isPortrait ? H * 0.66 : H * 0.54;
+                const cy = isPortrait ? H * 0.68 : H * 0.54;
 
                 const reach = (0.035 * Math.sin(a + ph) + 0.012 * Math.sin(2 * a + 1.3 + ph)) * W;
                 const scale = 1 + 0.07 * Math.sin(a + 0.9 + ph);
                 const rot = (isLeft ? 1 : -1) * 0.045 * Math.sin(a + 2.1 + ph);
 
-                const x = isLeft ? (reach - W * 0.045) : (W - hw + W * 0.045 - reach);
+                const x = isLeft ? (reach - W * 0.05) : (W - hw + W * 0.05 - reach);
                 const pivotX = isLeft ? 0 : W;
                 const pivotY = cy;
 
@@ -831,11 +894,10 @@
                 }
 
                 const isPortrait = H > W;
-                const quietWidth = isPortrait ? 0.44 : 0.20;
-                const quietYCenter = isPortrait ? 0.33 : 0.385;
+                const quietWidth = isPortrait ? 0.48 : 0.20;
+                const quietYCenter = isPortrait ? 0.32 : 0.385;
 
                 ctx.beginPath();
-                const TWO_PI = Math.PI * 2;
                 const halfCols = cols * 0.5;
 
                 for (let j = 0; j < rows; j++) {
