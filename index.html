@@ -2,14 +2,10 @@
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Forge Softwares — Digital Showroom & Master Showcase</title>
-    <!-- SEO & Social Sharing -->
     <meta name="description" content="Explore live production-ready website themes crafted by Forge Softwares. Select your design and connect instantly via WhatsApp.">
     <meta name="robots" content="noindex, nofollow">
-    <meta property="og:title" content="Forge Softwares — Master Website Showroom">
-    <meta property="og:description" content="Minimalist digital showroom with live animated interactive hero. Select your website design and start building.">
-    <meta property="og:type" content="website">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,25 +14,16 @@
             darkMode: 'class',
             theme: {
                 extend: {
+                    spacing: {
+                        '18': '4.5rem'
+                    },
+                    transitionDuration: {
+                        '400': '400ms'
+                    },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                        serif: ['Cormorant Garamond', 'Playfair Display', 'Georgia', 'serif']
-                    },
-                    colors: {
-                        forge: {
-                            50: '#fcfcfc',
-                            100: '#f4f4f5',
-                            200: '#e4e4e7',
-                            300: '#d4d4d8',
-                            400: '#a1a1aa',
-                            500: '#71717a',
-                            600: '#52525b',
-                            700: '#3f3f46',
-                            800: '#27272a',
-                            900: '#18181b',
-                            950: '#09090b'
-                        }
+                        mono: ['IBM Plex Mono', 'JetBrains Mono', 'monospace'],
+                        serif: ['Newsreader', 'Cormorant Garamond', 'Georgia', 'serif']
                     },
                     animation: {
                         'spin-slow': 'spin 20s linear infinite',
@@ -50,17 +37,62 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- GSAP for Animated Crowd Canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* Smooth scrolling and custom scrollbars */
+        :root {
+            --distill-sans: "Inter", system-ui, -apple-system, sans-serif;
+            --distill-serif: "Newsreader", Georgia, serif;
+            --distill-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+            --distill-bg: #EEF0F4;
+            --distill-ink: #0F1115;
+            --distill-body: #373C46;
+            --distill-muted: #6E7480;
+            --distill-code: #5E6470;
+            --distill-comment: #9399A5;
+            --hot: #FF5A1F;
+            --hot-soft: #FFE1D3;
+
+            --cw: min(44vw, 560px);
+            --ch: clamp(230px, 38vh, 360px);
+            --gap: clamp(20px, 3.8vw, 56px);
+            --card-top: 62px;
+        }
+
+        html.dark {
+            --distill-bg: #070709;
+            --distill-ink: #F5F5F7;
+            --distill-body: #A1A1AA;
+            --distill-muted: #71717A;
+            --distill-code: #A1A1AA;
+            --distill-comment: #52525B;
+        }
+
+        @media (max-width: 1024px) {
+            :root {
+                --cw: min(62vw, 460px);
+                --ch: clamp(210px, 34vh, 300px);
+                --gap: clamp(18px, 4.5vw, 36px);
+                --card-top: 58px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --cw: 84vw;
+                --ch: clamp(185px, 48vw, 235px);
+                --gap: 5.5vw;
+                --card-top: 54px;
+            }
+        }
+
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 84px;
+            scroll-padding-top: 80px;
+            -webkit-tap-highlight-color: transparent;
         }
+
         ::-webkit-scrollbar {
             width: 7px;
             height: 7px;
@@ -77,278 +109,811 @@
         }
 
         .glass-nav {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-        /* Enhanced Card elevation & Mathematically Concentric Apple Curves (28px outer = 20px inner + 8px padding) */
-        .project-card {
-            border-radius: 28px;
-            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
-                        box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
-                        border-color 0.3s ease,
-                        background-color 0.3s ease;
-            will-change: transform, box-shadow, opacity;
-        }
-        .project-card:hover {
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 22px 44px -12px rgba(0, 0, 0, 0.22);
-        }
-        .dark .project-card:hover {
-            box-shadow: 0 22px 46px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
         }
 
-        /* Staggered entrance animation for cards */
+        /* Mathematically Concentric Compact Squircle Cards (18px outer = 12px inner + 6px padding) */
+        .project-card {
+            border-radius: 18px;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                        border-color 0.25s ease,
+                        background-color 0.25s ease;
+            will-change: transform, box-shadow;
+        }
+        @media (hover: hover) {
+            .project-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 18px 36px -10px rgba(0, 0, 0, 0.16);
+            }
+            .dark .project-card:hover {
+                box-shadow: 0 18px 36px -10px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.14);
+            }
+        }
+
         @keyframes fadeUpIn {
-            0% { opacity: 0; transform: translateY(30px); }
+            0% { opacity: 0; transform: translateY(18px); }
             100% { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-up {
-            animation: fadeUpIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0; /* starts hidden */
+            animation: fadeUpIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
         }
 
-        /* Hero Calligraphy Explore Button Wrapper */
-        .hero-action-center {
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .safe-area-bottom { padding-bottom: max(0.875rem, env(safe-area-inset-bottom)); }
+
+        /* Distill Hero Stage - Flex Column Architecture prevents any overlap on any viewport */
+        .distill-stage {
+            position: relative;
+            width: 100%;
+            background-color: var(--distill-bg);
+            color: var(--distill-ink);
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: background-color 0.35s ease, color 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 28px;
+        }
+
+        /* Subtle Architectural Grid Overlay */
+        .distill-grid-bg {
             position: absolute;
-            top: clamp(2.5rem, 7vh, 5.5rem);
+            inset: 0;
+            background-image: radial-gradient(rgba(128, 128, 128, 0.16) 1px, transparent 1px);
+            background-size: 24px 24px;
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .distill-hero {
+            width: 100%;
+            max-width: 90rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: clamp(20px, 4vw, 56px);
+            padding: clamp(24px, 4vw, 48px) clamp(16px, 5vw, 64px) clamp(16px, 2.5vw, 28px);
+            position: relative;
+            z-index: 20;
+            align-items: end;
+        }
+
+        .distill-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--distill-mono);
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--hot);
+            background: rgba(255, 90, 31, 0.1);
+            border: 1px solid rgba(255, 90, 31, 0.25);
+            padding: 4px 11px;
+            border-radius: 999px;
+        }
+
+        .distill-headline {
+            margin-top: 14px;
+            font-family: var(--distill-serif);
+            font-weight: 400;
+            font-size: clamp(32px, 4.2vw, 60px);
+            line-height: 1.04;
+            letter-spacing: -0.025em;
+            color: var(--distill-ink);
+        }
+
+        .distill-headline em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--hot);
+        }
+
+        .distill-hero-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+
+        .distill-actions {
+            margin-top: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .btn-distill-primary {
+            height: 40px;
+            padding: 0 20px;
+            border-radius: 9999px;
+            background: var(--hot);
+            color: #FFFFFF;
+            font-family: var(--distill-sans);
+            font-weight: 600;
+            font-size: 12.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.2s ease;
+            white-space: nowrap;
+        }
+        .btn-distill-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px -6px rgba(255, 90, 31, 0.55);
+            background: #ff4805;
+        }
+        .btn-distill-primary:active {
+            transform: scale(0.97);
+        }
+
+        .btn-distill-secondary {
+            height: 40px;
+            padding: 0 16px;
+            border-radius: 9999px;
+            background: rgba(128, 128, 128, 0.1);
+            color: var(--distill-ink);
+            border: 1px solid rgba(128, 128, 128, 0.24);
+            font-family: var(--distill-sans);
+            font-weight: 500;
+            font-size: 12.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+            white-space: nowrap;
+        }
+        .btn-distill-secondary:hover {
+            background: rgba(128, 128, 128, 0.18);
+            border-color: rgba(128, 128, 128, 0.4);
+        }
+        .btn-distill-secondary:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 860px) {
+            .distill-hero {
+                grid-template-columns: 1fr;
+                gap: 14px;
+                align-items: start;
+            }
+            .distill-hero-right {
+                align-items: flex-start;
+            }
+            .distill-actions {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .distill-actions {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 8px;
+            }
+            .btn-distill-primary {
+                width: 100%;
+            }
+        }
+
+        /* Dedicated Scanner Viewport Stage (Never overlaps Hero Text) */
+        .scanner-viewport {
+            position: relative;
+            width: 100%;
+            height: calc(var(--ch) + var(--card-top) + 32px);
+            margin-top: 6px;
+            z-index: 10;
+        }
+
+        /* Belt & Scanner */
+        .belt {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+            touch-action: pan-y;
+            z-index: 10;
+        }
+        .belt.is-dragging { cursor: grabbing; }
+
+        .codes, .cards {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .codes {
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 85%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 85%, transparent 100%);
+        }
+
+        canvas.fx {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .scan {
+            position: absolute;
             left: 50%;
+            top: calc(var(--card-top) - 10px);
+            height: calc(var(--ch) + 20px);
+            width: 0;
+            pointer-events: none;
+            z-index: 25;
+        }
+
+        .scan i {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -2px;
+            width: 3.5px;
+            border-radius: 4px;
+            background: linear-gradient(180deg, #ff9866 0%, #FF5A1F 15%, #FF5A1F 85%, #ff9866 100%);
+            box-shadow: 0 0 12px 2px rgba(255, 90, 31, 0.9), 0 0 32px 8px rgba(255, 90, 31, 0.4);
+        }
+
+        .scan b {
+            position: absolute;
+            left: 0;
+            top: 3%;
+            height: 94%;
+            width: 44px;
+            background: linear-gradient(90deg, rgba(255, 110, 50, 0.5), transparent);
+            filter: blur(6px);
+        }
+
+        /* Scanner Caps */
+        .scan::before,
+        .scan::after {
+            content: '';
+            position: absolute;
+            left: -5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: #FF5A1F;
+            box-shadow: 0 0 12px 3px rgba(255, 90, 31, 0.9);
+        }
+        .scan::before { top: -4px; }
+        .scan::after { bottom: -4px; }
+
+        .badge {
+            position: absolute;
+            left: 50%;
+            top: 0px;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 30;
-            pointer-events: auto;
-            width: 100%;
-            padding: 0 1rem;
+            gap: 5px;
+            pointer-events: none;
+            z-index: 26;
         }
 
-        /* Pure Curved Calligraphy Explore Button with Animated Glow & Float */
-        @keyframes subtleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-        @keyframes pulseRing {
-            0%, 100% { box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(0, 0, 0, 0.2); }
-            50% { box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.45), 0 0 0 7px rgba(0, 0, 0, 0.05); }
-        }
-
-        .calligraphy-explore-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: clamp(10px, 1.6vw, 14px) clamp(26px, 3.8vw, 38px);
-            border-radius: 9999px;
-            background: #000000;
-            color: #ffffff;
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-style: italic;
-            font-size: clamp(20px, 2.6vw, 26px);
-            font-weight: 600;
+        .badge-label {
+            font-family: var(--distill-sans);
+            font-weight: 500;
+            font-size: 10.5px;
             letter-spacing: 0.02em;
+            color: var(--distill-muted);
             line-height: 1;
-            animation: subtleFloat 3.8s ease-in-out infinite, pulseRing 3.2s ease-in-out infinite;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            cursor: pointer;
-            text-decoration: none;
-            touch-action: manipulation;
-            border: 1px solid rgba(255, 255, 255, 0.22);
             white-space: nowrap;
         }
-        .calligraphy-explore-btn:hover {
-            transform: translateY(-3px) scale(1.03);
-            background: #0d0d0d;
-            box-shadow: 0 20px 42px -4px rgba(0, 0, 0, 0.48), 0 0 24px rgba(0, 0, 0, 0.25);
-            color: #f7eedb;
-            border-color: rgba(255, 255, 255, 0.38);
-        }
-        .calligraphy-explore-btn:active {
-            transform: scale(0.97);
-        }
-        .calligraphy-explore-btn .arrow-symbol {
-            display: inline-block;
-            font-family: 'Inter', sans-serif;
-            font-style: normal;
-            font-size: 15px;
-            transition: transform 0.3s ease;
-        }
-        .calligraphy-explore-btn:hover .arrow-symbol {
-            transform: translateY(3px);
+
+        .badge-pill {
+            height: 24px;
+            border-radius: 9999px;
+            overflow: hidden;
+            display: flex;
+            align-items: stretch;
+            box-shadow: 0 4px 18px rgba(255, 90, 31, 0.35);
+            font-family: var(--distill-mono);
+            font-weight: 600;
+            border: 1px solid rgba(255, 90, 31, 0.3);
         }
 
-        /* Subtle ambient glow base */
-        .ambient-glow {
-            background: radial-gradient(circle at 50% 0%, rgba(120, 120, 120, 0.05) 0%, transparent 60%);
+        .badge-num {
+            background: var(--hot);
+            color: #FFFFFF;
+            font-size: 11.5px;
+            padding: 0 10px 0 12px;
+            min-width: 7.5ch;
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-variant-numeric: tabular-nums;
         }
 
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .badge-pct {
+            background: var(--hot-soft);
+            color: #C83706;
+            font-size: 10.5px;
+            padding: 0 11px 0 9px;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
         }
 
-        /* iOS Safe Area Padding */
-        .safe-area-bottom {
-            padding-bottom: max(0.875rem, env(safe-area-inset-bottom));
+        .code {
+            position: absolute;
+            top: var(--card-top);
+            left: 0;
+            width: var(--cw);
+            height: var(--ch);
+            white-space: pre;
+            overflow: hidden;
+            container-type: inline-size;
+            will-change: transform, clip-path;
+            z-index: 1;
+            border-radius: clamp(14px, 1.6vw, 24px);
+            background: rgba(128, 128, 128, 0.04);
+            border: 1px dashed rgba(128, 128, 128, 0.22);
         }
+
+        .code-html, .code-meta {
+            position: absolute;
+            top: clamp(10px, 2.8cqw, 18px);
+            font-family: var(--distill-mono);
+            font-weight: 400;
+            font-size: clamp(9px, 1.55cqw, 13.5px);
+            line-height: 1.45;
+            margin: 0;
+        }
+
+        .code-html { left: clamp(10px, 3cqw, 20px); color: var(--distill-code); }
+        .code-meta { left: 50%; color: var(--distill-comment); }
+
+        @media (max-width: 480px) {
+            .code-meta {
+                top: auto;
+                bottom: 10px;
+                left: 10px;
+                font-size: 8.5px;
+            }
+        }
+
+        .d-card {
+            position: absolute;
+            top: var(--card-top);
+            left: 0;
+            width: var(--cw);
+            height: var(--ch);
+            border-radius: clamp(14px, 1.6vw, 24px);
+            overflow: hidden;
+            color: #FFFFFF;
+            font-family: var(--distill-sans);
+            container-type: inline-size;
+            will-change: transform, clip-path;
+            z-index: 2;
+            box-shadow: 0 20px 44px -15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .k-nav {
+            position: absolute;
+            top: clamp(10px, 3.8cqw, 22px);
+            left: clamp(12px, 4.4cqw, 26px);
+            right: clamp(12px, 4.4cqw, 26px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 5;
+        }
+        .k-brand {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            font-size: clamp(11px, 3.6cqw, 20px);
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+        .k-brand svg { width: clamp(14px, 4.2cqw, 24px); height: auto; display: block; }
+        .k-menu {
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 2.6cqw, 16px);
+            font-weight: 600;
+            font-size: clamp(8px, 1.3cqw, 11px);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+        .k-pill {
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 999px;
+            padding: 2px 8px;
+        }
+
+        /* Belt Cards Art & Responsive Clamp Layout */
+        .card-home { background: radial-gradient(circle at 75% 25%, #7c2d12 0%, #271108 55%, #0c0705 100%); }
+        .home-stats { position: absolute; bottom: clamp(12px, 4.4cqw, 24px); left: clamp(12px, 4.4cqw, 26px); display: flex; align-items: flex-end; gap: clamp(12px, 3.8cqw, 24px); z-index: 3; }
+        .home-stat-divider { width: 1px; height: clamp(28px, 9cqw, 54px); background: rgba(255, 255, 255, 0.3); }
+        .home-stat-num { font-weight: 300; font-size: clamp(24px, 8cqw, 48px); line-height: 0.9; letter-spacing: -0.04em; }
+        .home-stat-label { margin-top: 4px; font-weight: 400; font-size: clamp(9px, 1.8cqw, 12px); opacity: 0.85; }
+        .home-tagline { position: absolute; bottom: clamp(12px, 4.4cqw, 24px); right: clamp(12px, 4.4cqw, 26px); width: 32%; font-weight: 400; font-size: clamp(9.5px, 2cqw, 13px); line-height: 1.35; z-index: 3; text-align: right; }
+
+        .card-price { background: radial-gradient(120% 90% at 20% 110%, #FF6A1F 0%, #FF9A4A 35%, #F7C79A 62%, #EFD9C4 100%); color: #2A1406; }
+        .card-price .k-pill { border-color: rgba(42, 20, 6, 0.55); }
+        .price-big { position: absolute; top: 34%; left: clamp(12px, 4.4cqw, 26px); font-weight: 300; font-size: clamp(32px, 11cqw, 64px); line-height: 0.9; letter-spacing: -0.05em; }
+        .price-sub { position: absolute; top: 60%; left: clamp(12px, 4.4cqw, 26px); font-family: var(--distill-mono); font-size: clamp(8px, 1.5cqw, 11px); letter-spacing: 0.05em; opacity: 0.8; }
+        .price-cta { position: absolute; bottom: clamp(12px, 4.4cqw, 24px); left: clamp(12px, 4.4cqw, 26px); background: #2A1406; color: #F7E6D6; font-size: clamp(9px, 1.65cqw, 11.5px); font-weight: 600; padding: 5px 12px; border-radius: 999px; }
+        .price-plans { position: absolute; top: 32%; right: clamp(12px, 4.4cqw, 26px); width: 38%; display: flex; flex-direction: column; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; padding: clamp(4px, 1.6cqw, 10px) 0; border-top: 1px solid rgba(42, 20, 6, 0.22); font-size: clamp(9px, 1.85cqw, 12px); }
+        .price-row span:last-child { font-family: var(--distill-mono); font-size: clamp(8.5px, 1.65cqw, 11px); opacity: 0.85; }
+
+        .card-case { background: linear-gradient(135deg, #27150c 0%, #140b07 55%, #090605 100%); }
+        .case-kicker { position: absolute; top: 22%; left: clamp(12px, 4.4cqw, 26px); font-family: var(--distill-mono); font-size: clamp(8px, 1.35cqw, 10.5px); letter-spacing: 0.08em; opacity: 0.8; z-index: 3; color: #fdba74; }
+        .case-title { position: absolute; top: 31%; left: clamp(12px, 4.4cqw, 26px); right: clamp(12px, 18cqw, 90px); font-family: var(--distill-serif); font-weight: 400; font-size: clamp(14px, 4.1cqw, 25px); line-height: 1.12; letter-spacing: -0.02em; z-index: 3; }
+        .case-stats { position: absolute; bottom: clamp(12px, 4.4cqw, 24px); left: clamp(12px, 4.4cqw, 26px); right: clamp(12px, 4.4cqw, 26px); display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 2.8cqw, 18px); z-index: 3; }
+        .case-stat { border-top: 1px solid rgba(255, 255, 255, 0.28); padding-top: clamp(4px, 1.4cqw, 8px); }
+        .case-stat-num { font-weight: 300; font-size: clamp(15px, 4.8cqw, 28px); line-height: 0.95; letter-spacing: -0.03em; }
+        .case-stat-label { margin-top: 3px; font-size: clamp(8.5px, 1.5cqw, 11px); opacity: 0.8; }
+
+        .card-alloy { background: radial-gradient(circle at 80% 30%, #431407 0%, #1c0a04 60%, #090504 100%); }
+        .alloy-title { position: absolute; bottom: clamp(12px, 4.4cqw, 24px); left: clamp(12px, 4.4cqw, 26px); font-family: var(--distill-serif); font-weight: 400; font-size: clamp(20px, 6.4cqw, 38px); line-height: 0.98; letter-spacing: -0.025em; z-index: 3; }
+        .alloy-title em { font-style: italic; display: block; color: #fdba74; }
+        .alloy-specs { position: absolute; bottom: clamp(12px, 4.4cqw, 24px); right: clamp(12px, 4.4cqw, 26px); width: 36%; display: flex; flex-direction: column; z-index: 3; }
+        .alloy-row { display: flex; justify-content: space-between; padding: clamp(3px, 1.2cqw, 8px) 0; border-top: 1px solid rgba(255, 255, 255, 0.25); font-size: clamp(8.5px, 1.55cqw, 11px); }
     </style>
 </head>
-<body class="bg-[#fafafa] dark:bg-[#000000] text-zinc-950 dark:text-[#f5f5f7] font-sans antialiased transition-colors duration-300 selection:bg-zinc-800 selection:text-white pb-36 ambient-glow relative">
-
-    <!-- Premium Animated Background Orbs (New UI/UX Enhancement) -->
-    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden opacity-30 dark:opacity-20 mix-blend-multiply dark:mix-blend-screen transition-opacity duration-700">
-        <div class="absolute top-[-10%] left-[10%] w-[500px] h-[500px] bg-purple-400/20 rounded-full blur-[100px] animate-spin-slow"></div>
-        <div class="absolute bottom-[-10%] right-[5%] w-[600px] h-[600px] bg-emerald-400/10 rounded-full blur-[120px] animate-spin-slow-reverse"></div>
-        <div class="absolute top-[40%] left-[-20%] w-[400px] h-[400px] bg-amber-400/10 rounded-full blur-[80px] animate-pulse"></div>
-    </div>
+<body class="bg-[#fafafa] dark:bg-[#000000] text-zinc-950 dark:text-[#f5f5f7] font-sans antialiased transition-colors duration-300 selection:bg-orange-500 selection:text-white pb-32 relative overflow-x-hidden">
 
     <!-- Top Luxury Gold Announcement Banner -->
-    <aside aria-label="Showroom Announcement" class="relative z-50 bg-gradient-to-r from-zinc-950 via-[#14120c] to-zinc-950 text-zinc-200 text-xs py-2.5 sm:py-3 px-4 sm:px-6 text-center tracking-wide flex items-center justify-center border-b border-[#d4af37]/25 shadow-sm">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2 text-center">
-            <span class="inline-block w-2 h-2 rounded-full bg-[#f3e5ab] shadow-[0_0_8px_#f3e5ab] animate-pulse"></span>
-            <span class="font-normal text-zinc-300 tracking-wider">Welcome to Theme Showroom &mdash;</span>
+    <aside aria-label="Showroom Announcement" class="relative z-50 bg-gradient-to-r from-zinc-950 via-[#17140d] to-zinc-950 text-zinc-200 text-[11px] sm:text-xs py-2.5 px-3 sm:px-6 text-center tracking-wide border-b border-[#d4af37]/25 shadow-sm">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center">
+            <span class="inline-flex items-center gap-1.5">
+                <span class="inline-block w-2 h-2 rounded-full bg-[#f3e5ab] shadow-[0_0_8px_#f3e5ab] animate-pulse"></span>
+                <span class="font-normal text-zinc-300 tracking-wider">Welcome to Theme Showroom &mdash;</span>
+            </span>
             <span class="font-bold tracking-widest uppercase bg-gradient-to-r from-[#ffe89e] via-[#dfb76c] to-[#f9e29f] bg-clip-text text-transparent">
                 Here You Choose &amp; Select, We Make
             </span>
             <a href="#showcase" class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#f5eedc] hover:text-white transition-colors underline underline-offset-4 ml-1">
-                <span>Browse Catalog</span>
-                <span>&rarr;</span>
+                <span>Browse All 9 Themes</span>
+                <span aria-hidden="true">&rarr;</span>
             </a>
         </div>
     </aside>
 
     <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 glass-nav bg-white/80 dark:bg-[#09090b]/80 border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors">
-        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
-            <!-- Brand -->
-            <a href="#" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-zinc-400 rounded-xl p-1">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-extrabold text-base tracking-tight group-hover:scale-105 transition-transform shadow-md">
+    <header class="sticky top-0 z-40 glass-nav bg-white/80 dark:bg-[#09090b]/85 border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-10 h-16 sm:h-18 flex items-center justify-between gap-3">
+            <a href="#" class="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-xl p-1">
+                <div class="w-9 h-9 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 flex items-center justify-center font-extrabold text-base tracking-tight group-hover:scale-105 transition-transform shadow-md">
                     F
                 </div>
                 <div class="flex flex-col">
                     <span class="font-extrabold text-sm sm:text-base tracking-tight leading-none">FORGE</span>
-                    <span class="text-[9px] font-bold text-zinc-500 tracking-[0.25em] mt-0.5">SHOWROOM</span>
+                    <span class="text-[9px] font-bold text-zinc-500 dark:text-zinc-400 tracking-[0.25em] mt-0.5">SHOWROOM</span>
                 </div>
             </a>
 
-            <!-- Theme Toggle & CTA -->
-            <div class="flex items-center gap-2.5 sm:gap-3">
-                <button onclick="toggleTheme()" aria-label="Toggle Theme" class="p-2 sm:p-2.5 rounded-full border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-zinc-400 text-zinc-800 dark:text-zinc-200">
-                    <svg id="sunIcon" class="w-4 h-4 hidden dark:block transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                    <svg id="moonIcon" class="w-4 h-4 block dark:hidden transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-100/90 dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800 text-[11px] font-medium text-zinc-600 dark:text-zinc-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span>9 Production Themes Ready</span>
+                </div>
+
+                <button type="button" onclick="toggleTheme()" aria-label="Toggle Light or Dark Theme" class="p-2.5 rounded-full border border-zinc-300/80 dark:border-zinc-700/80 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-orange-500 text-zinc-800 dark:text-zinc-200 active:scale-95">
+                    <svg id="sunIcon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg id="moonIcon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
                 </button>
 
-                <a href="#showcase" class="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-black dark:bg-white text-white dark:text-black text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest hover:opacity-90 active:scale-95 transition-all shadow-md">
+                <a href="#showcase" class="inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-[11px] sm:text-xs font-bold uppercase tracking-wider hover:opacity-90 active:scale-95 transition-all shadow-sm">
                     Explore Themes
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section: Open Peeps Crowd Canvas Hero with Floating Calligraphic Explore Button -->
-    <section class="relative h-[80vh] sm:h-[88vh] min-h-[500px] sm:min-h-[600px] w-full bg-white text-black overflow-hidden border-b border-zinc-200 dark:border-zinc-800">
-        <!-- Centered Animated Calligraphy Explore Themes Button -->
-        <div class="hero-action-center">
-            <a href="#showcase" class="calligraphy-explore-btn" aria-label="Explore Themes">
-                <span>Explore Themes</span>
-                <span class="arrow-symbol animate-bounce">&darr;</span>
-            </a>
-        </div>
+    <!-- Hero Section: Distill Scanner & Interactive Conveyor Belt -->
+    <section class="distill-stage border-b border-zinc-200 dark:border-zinc-800" aria-label="Interactive Design Scanner">
+        <div class="distill-grid-bg" aria-hidden="true"></div>
 
-        <!-- Full Viewport Walking Crowd Canvas -->
-    <canvas id="crowdCanvas" class="absolute bottom-0 h-full max-h-[86vh] w-full pointer-events-none"></canvas>
-</section>
-
-<!-- Master Showcase Gallery Section -->
-<section id="showcase" class="relative py-14 sm:py-20 lg:py-26 z-10 w-full">
-    <!-- Smooth Neural Video Background -->
-    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <!-- Mask to blend smoothly with top and bottom sections -->
-        <div class="absolute inset-0 bg-gradient-to-b from-[#fafafa] via-transparent to-[#fafafa] dark:from-[#000000] dark:via-transparent dark:to-[#000000] z-20"></div>
-        
-        <!-- The Neural Veil for perfect contrast & cinematic glow -->
-        <div class="absolute inset-0 z-10 mix-blend-multiply dark:mix-blend-normal opacity-60 dark:opacity-100" style="background: radial-gradient(140% 60% at 50% 40%, rgba(6,10,18,.30) 0%, rgba(6,10,18,.15) 50%, rgba(6,10,18,0) 100%), linear-gradient(180deg, rgba(6,10,18,0) 45%, rgba(6,10,18,.40) 100%);"></div>
-        
-        <video class="showcase-bg absolute inset-0 w-full h-full object-cover opacity-25 dark:opacity-70 mix-blend-luminosity dark:mix-blend-screen" autoplay muted loop playsinline preload="auto" aria-hidden="true" poster="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/130837c4-0244-4f37-9c61-8d801d93fd29.jpg" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260912_104303_0c6d60b2-9353-408e-9449-585108a22fb5.mp4"></video>
-    </div>
-
-    <!-- Interactive Inner Content container -->
-    <div class="relative max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-10 z-30">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
+        <div class="distill-hero">
             <div>
-                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-zinc-600 dark:text-zinc-400 mb-2 block">Theme Collection</span>
-                <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 drop-shadow-sm">Available Website Designs</h2>
+                <div class="distill-eyebrow">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#FF5A1F] animate-ping"></span>
+                    <span>FORGE ARCHITECTURE &middot; LIVE ENGINE</span>
+                </div>
+                <h1 class="distill-headline">
+                    Built for people.<br />
+                    <em>Read by machines.</em>
+                </h1>
             </div>
-            
-            <!-- Search Input with Clear Button -->
-            <div class="relative w-full md:w-80 group">
-                <div class="absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-2xl opacity-0 group-focus-within:opacity-20 transition-opacity duration-300 blur"></div>
-                <input type="text" id="searchInput" placeholder="Search designs or tech stack..." oninput="filterProjects()" class="relative w-full pl-4 pr-10 py-3 sm:py-3.5 rounded-2xl bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-zinc-200 dark:border-zinc-700 focus:border-emerald-500 dark:focus:border-emerald-400 outline-none text-xs sm:text-sm font-medium transition-all shadow-sm group-focus-within:shadow-md">
-                <button id="clearSearchBtn" onclick="clearSearch()" aria-label="Clear Search" class="hidden absolute right-3.5 top-3.5 sm:top-4 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors z-10">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <div class="distill-hero-right">
+                <div class="distill-actions">
+                    <a href="#showcase" class="btn-distill-primary">
+                        <span>Explore All 9 Themes</span>
+                        <span aria-hidden="true">&darr;</span>
+                    </a>
+                    <div class="inline-flex items-center gap-1.5">
+                        <button type="button" class="btn-distill-secondary" id="prevBeltBtn" aria-label="Scan Previous Card" title="Previous Card">&larr;</button>
+                        <button type="button" class="btn-distill-secondary" id="nudgeBeltBtn">
+                            <span>Scan Next</span>
+                            <span aria-hidden="true">&rarr;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dedicated Non-Overlapping Scanner Stage -->
+        <div class="scanner-viewport">
+            <!-- Token Reduction Counter Badge -->
+            <div class="badge" aria-live="polite">
+                <span class="badge-label">Code footprint reduction</span>
+                <div class="badge-pill">
+                    <span class="badge-num" id="badgeNum">&minus;48,193</span>
+                    <span class="badge-pct" id="badgePct">91% cleaner</span>
+                </div>
+            </div>
+
+            <!-- Glowing Orange Vertical Scanner Line -->
+            <div class="scan" aria-hidden="true">
+                <b></b>
+                <i></i>
+            </div>
+
+            <!-- Interactive Conveyor Belt -->
+            <div class="belt" id="belt" role="region" aria-label="Interactive code-to-design scanner belt. Drag horizontally to inspect.">
+                <div class="codes" id="codesLayer"></div>
+                <div class="cards" id="cardsLayer"></div>
+                <canvas class="fx" id="fxCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Interactive Drag Hint -->
+        <div class="relative z-20 flex items-center justify-center px-4 mt-1">
+            <span class="inline-flex items-center gap-2 text-[11px] font-mono text-zinc-500 dark:text-zinc-400 bg-black/[0.04] dark:bg-white/[0.04] px-3 py-1 rounded-full border border-black/[0.06] dark:border-white/[0.07]">
+                <svg class="w-3.5 h-3.5 text-[#FF5A1F]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+                <span>Drag or swipe belt horizontally to inspect live DOM distillation</span>
+            </span>
+        </div>
+
+        <!-- Smooth Bottom Fade Transition into Themes Catalog -->
+        <div class="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-[#fafafa] dark:from-[#000000] to-transparent pointer-events-none z-10"></div>
+    </section>
+
+    <!-- Master Showcase Gallery Section (All 9 Themes) -->
+    <section id="showcase" class="relative py-12 sm:py-16 lg:py-20 z-10 w-full">
+        <!-- Smooth Neural Video Background -->
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#fafafa] via-transparent to-[#fafafa] dark:from-[#000000] dark:via-transparent dark:to-[#000000] z-20"></div>
+            <div class="absolute inset-0 z-10 mix-blend-multiply dark:mix-blend-normal opacity-50 dark:opacity-90" style="background: radial-gradient(120% 60% at 50% 40%, rgba(6,10,18,.22) 0%, rgba(6,10,18,.1) 50%, rgba(6,10,18,0) 100%);"></div>
+            <video class="showcase-bg absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-55 mix-blend-luminosity dark:mix-blend-screen" autoplay muted loop playsinline preload="metadata" aria-hidden="true" poster="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/130837c4-0244-4f37-9c61-8d801d93fd29.jpg" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260912_104303_0c6d60b2-9353-408e-9449-585108a22fb5.mp4"></video>
+        </div>
+
+        <!-- Inner Content Container -->
+        <div class="relative max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-10 z-30">
+            <!-- Section Header & Search Bar -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4 sm:gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.22em] text-orange-600 dark:text-orange-400 mb-2">
+                        <span>Master Collection</span>
+                        <span>&bull;</span>
+                        <span id="resultsCountLabel">9 Production Designs</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50">Available Website Designs</h2>
+                </div>
+                
+                <!-- Search Input -->
+                <div class="relative w-full md:w-80 lg:w-96 group">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-emerald-500 rounded-2xl opacity-0 group-focus-within:opacity-25 transition-opacity duration-300 blur"></div>
+                    <div class="relative flex items-center">
+                        <svg class="w-4 h-4 absolute left-4 text-zinc-400 pointer-events-none transition-colors group-focus-within:text-orange-500 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        <input type="text" id="searchInput" placeholder="Search themes, industries, or tags..." oninput="filterProjects()" class="w-full pl-10 pr-16 py-3 rounded-2xl bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-800 focus:border-orange-500 dark:focus:border-orange-400 outline-none text-xs sm:text-sm font-medium transition-all shadow-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400">
+                        <kbd id="searchShortcutHint" class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium text-zinc-400 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md absolute right-3.5 pointer-events-none">/</kbd>
+                        <button type="button" id="clearSearchBtn" onclick="clearSearch()" aria-label="Clear Search" class="hidden absolute right-3 p-1 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors z-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="relative mb-7 sm:mb-9">
+                <div class="flex items-center gap-2 pb-3 border-b border-zinc-200/80 dark:border-zinc-800/80 overflow-x-auto no-scrollbar scroll-smooth" id="categoryFilters" role="tablist" aria-label="Theme Categories"></div>
+            </div>
+
+            <!-- Projects Grid (Compact 2 -> 3 -> 4 -> 5 -> 6 columns for small, sleek theme cards) -->
+            <div id="projectsGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 sm:gap-3.5 max-w-[90rem] mx-auto"></div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden py-16 sm:py-24 text-center px-4 rounded-3xl border border-dashed border-zinc-300 dark:border-zinc-800 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-md">
+                <div class="w-12 h-12 mx-auto mb-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold mb-1.5 text-zinc-900 dark:text-zinc-100">No matching themes found</h3>
+                <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mb-6 max-w-md mx-auto">We couldn't find any themes matching your current search or category filter.</p>
+                <button type="button" onclick="resetFilters()" class="px-6 py-2.5 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-xs font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-transform shadow-md">
+                    Reset All Filters
                 </button>
-                <svg id="searchIcon" class="w-4 h-4 absolute right-4 top-3.5 sm:top-4 text-zinc-400 pointer-events-none transition-colors group-focus-within:text-emerald-500 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
         </div>
+    </section>
 
-        <!-- Category Filters -->
-        <div class="flex items-center gap-2 sm:gap-2.5 mb-8 sm:mb-12 pb-3 border-b border-zinc-300/50 dark:border-zinc-700/50 overflow-x-auto no-scrollbar scroll-smooth" id="categoryFilters">
-            <!-- Buttons generated dynamically -->
-        </div>
-
-        <!-- Projects Grid (Compact Apple-style minimal boxes) -->
-        <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 max-w-[90rem] mx-auto">
-            <!-- Dynamically rendered projects -->
-        </div>
-
-        <!-- Empty State -->
-        <div id="emptyState" class="hidden py-20 sm:py-28 text-center px-4">
-            <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-zinc-400 mb-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-zinc-100">No matching themes found</h3>
-            <p class="text-xs sm:text-sm text-zinc-500 mb-6">Try clearing your search query or choosing another category filter.</p>
-            <button onclick="resetFilters()" class="px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-transform shadow-md">Show All Themes</button>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-10 sm:py-14 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+    <!-- Footer -->
+    <footer class="border-t border-zinc-200/80 dark:border-zinc-800/80 py-10 sm:py-12 bg-white/60 dark:bg-zinc-950/60 backdrop-blur-lg">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs shadow-md">F</div>
-                <span class="font-extrabold tracking-tight text-xs sm:text-sm">FORGE SHOWROOM</span>
+                <div class="w-8 h-8 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 flex items-center justify-center font-extrabold text-xs shadow-sm">F</div>
+                <div>
+                    <span class="font-extrabold tracking-tight text-xs sm:text-sm block leading-none">FORGE SOFTWARES</span>
+                    <span class="text-[10px] text-zinc-500 dark:text-zinc-400 font-mono">Digital Theme Showroom</span>
+                </div>
             </div>
-            <div class="text-[11px] sm:text-xs text-zinc-500 font-medium tracking-wide">
-                &copy; 2026 Forge Softwares. All client themes independently hosted and optimized.
+            <div class="text-[11px] sm:text-xs text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">
+                &copy; 2026 Forge Softwares. All 9 client themes independently hosted and performance-optimized.
             </div>
         </div>
     </footer>
 
     <!-- Persistent Selection Bottom Bar -->
-    <div id="selectionBar" class="fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 text-white backdrop-blur-xl border-t border-zinc-800 py-3.5 sm:py-4 px-4 sm:px-8 lg:px-12 transform translate-y-full transition-transform duration-400 ease-out shadow-2xl safe-area-bottom">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-            <div class="flex items-center gap-2.5 text-center sm:text-left min-w-0">
-                <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_8px_#34d399]"></span>
-                <span id="selectedDesignText" class="text-xs sm:text-sm font-bold tracking-wide truncate max-w-[280px] sm:max-w-none text-zinc-100">Selected: None</span>
+    <div id="selectionBar" role="region" aria-label="Selected Theme Actions" class="fixed bottom-0 left-0 right-0 z-50 bg-zinc-950/95 text-white backdrop-blur-2xl border-t border-zinc-800 py-3 sm:py-3.5 px-4 sm:px-8 lg:px-10 transform translate-y-full transition-transform duration-400 ease-out shadow-[0_-16px_40px_rgba(0,0,0,0.5)] safe-area-bottom">
+        <div class="max-w-[90rem] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start min-w-0">
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_10px_#34d399]"></span>
+                    <div class="truncate">
+                        <span id="selectedDesignText" class="text-xs sm:text-sm font-bold tracking-wide text-zinc-100 block truncate">Selected: None</span>
+                        <span id="selectedOrderMeta" class="text-[10px] font-mono text-zinc-400 block truncate">Ready for instant WhatsApp onboarding</span>
+                    </div>
+                </div>
+                <a id="selectedPreviewLink" href="#" target="_blank" rel="noopener noreferrer" class="sm:hidden shrink-0 px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-200 text-[10px] font-semibold">
+                    Live Demo &nearr;
+                </a>
             </div>
-            <div class="flex items-center gap-2.5 sm:gap-3.5 w-full sm:w-auto">
-                <button onclick="sendOnWhatsApp()" class="flex-1 sm:flex-none px-5 sm:px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs uppercase tracking-wider sm:tracking-widest transition-all flex items-center justify-center gap-2 shadow-xl hover:shadow-emerald-500/30 touch-manipulation">
+            <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+                <a id="selectedPreviewLinkDesktop" href="#" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/80 text-zinc-200 text-xs font-semibold transition-colors">
+                    <span>Open Live Demo</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <button type="button" onclick="sendOnWhatsApp()" class="flex-1 sm:flex-none px-5 sm:px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 touch-manipulation">
                     <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                     <span>Send on WhatsApp</span>
                 </button>
-                <button onclick="clearSelection()" class="px-4 sm:px-5 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 active:scale-95 text-zinc-300 font-bold text-xs uppercase tracking-wider sm:tracking-widest transition-transform touch-manipulation">
+                <button type="button" onclick="clearSelection()" class="px-3.5 sm:px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 active:scale-95 text-zinc-300 font-bold text-xs uppercase tracking-wider transition-all touch-manipulation">
                     Clear
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Application Logic & Projects Database -->
+    <!-- Application Logic, Bespoke Vector Art & Projects Database -->
     <script>
-        // Centralized Project Database, expanded to 9 items with Black Man Design in 2nd position
+        // Bespoke Generative SVG Art for each of the 9 Themes
+        function getThemeArtwork(id) {
+            const artMap = {
+                "mars-theme-design": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="marsGrad" cx="65%" cy="40%" r="55%">
+                                <stop offset="0%" stop-color="#fb923c"/>
+                                <stop offset="50%" stop-color="#ea580c"/>
+                                <stop offset="100%" stop-color="#431407"/>
+                            </radialGradient>
+                        </defs>
+                        <rect width="320" height="180" fill="#0c0605"/>
+                        <circle cx="210" cy="72" r="46" fill="url(#marsGrad)"/>
+                        <ellipse cx="185" cy="88" rx="115" ry="26" transform="rotate(-16 185 88)" stroke="rgba(251,146,60,0.45)" stroke-width="1.2" stroke-dasharray="4 4"/>
+                        <ellipse cx="185" cy="88" rx="85" ry="18" transform="rotate(-16 185 88)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                        <circle cx="98" cy="112" r="4.5" fill="#fed7aa"/>
+                        <circle cx="62" cy="42" r="1.5" fill="#fff" opacity="0.7"/>
+                        <circle cx="275" cy="35" r="1.5" fill="#fff" opacity="0.6"/>
+                        <circle cx="120" cy="145" r="1" fill="#fff" opacity="0.5"/>
+                    </svg>`,
+                "black-man-design": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="320" height="180" fill="#09090b"/>
+                        <rect x="28" y="24" width="110" height="132" rx="14" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+                        <circle cx="83" cy="74" r="24" fill="#fafafa"/>
+                        <path d="M48 156C48 128 63 112 83 112C103 112 118 128 118 156" fill="#27272a"/>
+                        <line x1="164" y1="46" x2="286" y2="46" stroke="#fafafa" stroke-width="6" stroke-linecap="round"/>
+                        <line x1="164" y1="68" x2="254" y2="68" stroke="rgba(255,255,255,0.45)" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="164" y1="92" x2="274" y2="92" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+                        <line x1="164" y1="106" x2="240" y2="106" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+                        <rect x="164" y="128" width="64" height="22" rx="11" fill="#fafafa"/>
+                    </svg>`,
+                "books-2-theme-ui": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="320" height="180" fill="#17120e"/>
+                        <path d="M160 44C132 34 92 36 66 46V142C92 132 132 130 160 140C188 130 228 132 254 142V46C228 36 188 34 160 44Z" fill="#29211a" stroke="#f59e0b" stroke-width="1.5"/>
+                        <line x1="160" y1="44" x2="160" y2="140" stroke="#f59e0b" stroke-width="1.5"/>
+                        <line x1="84" y1="66" x2="142" y2="62" stroke="rgba(253,230,138,0.5)" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="84" y1="82" x2="136" y2="79" stroke="rgba(253,230,138,0.3)" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="178" y1="62" x2="236" y2="66" stroke="rgba(253,230,138,0.5)" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="178" y1="79" x2="230" y2="82" stroke="rgba(253,230,138,0.3)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>`,
+                "card-burn-design": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="burnGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#f97316"/>
+                                <stop offset="55%" stop-color="#ef4444"/>
+                                <stop offset="100%" stop-color="#fef08a"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="320" height="180" fill="#120806"/>
+                        <rect x="95" y="28" width="130" height="124" rx="18" fill="#1f110d" stroke="url(#burnGrad)" stroke-width="2"/>
+                        <path d="M95 110C125 98 155 124 185 95C202 78 214 60 225 48V134C225 144 217 152 207 152H113C103 152 95 144 95 134V110Z" fill="url(#burnGrad)" opacity="0.85"/>
+                        <circle cx="205" cy="42" r="3" fill="#fde047"/>
+                        <circle cx="228" cy="66" r="2" fill="#fb923c"/>
+                        <circle cx="182" cy="30" r="2.2" fill="#f97316"/>
+                    </svg>`,
+                "horror-halloween-theme": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="320" height="180" fill="#09090d"/>
+                        <circle cx="160" cy="86" r="46" fill="#f8fafc" opacity="0.92"/>
+                        <circle cx="174" cy="78" r="42" fill="#09090d"/>
+                        <path d="M0 148Q80 124 160 144T320 136V180H0Z" fill="#18181b"/>
+                        <circle cx="72" cy="48" r="1.5" fill="#e2e8f0"/>
+                        <circle cx="248" cy="54" r="1.8" fill="#e2e8f0"/>
+                        <circle cx="225" cy="112" r="1.2" fill="#e2e8f0"/>
+                    </svg>`,
+                "books-theme-ui": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="320" height="180" fill="#141416"/>
+                        <rect x="86" y="42" width="24" height="98" rx="4" fill="#d6d3d1"/>
+                        <rect x="116" y="34" width="28" height="106" rx="4" fill="#a8a29e"/>
+                        <rect x="150" y="48" width="22" height="92" rx="4" fill="#78716c"/>
+                        <rect x="178" y="38" width="26" height="102" rx="4" transform="rotate(-8 178 140)" fill="#e7e5e4"/>
+                        <line x1="64" y1="142" x2="256" y2="142" stroke="#57534e" stroke-width="3" stroke-linecap="round"/>
+                    </svg>`,
+                "inexterior-architecture-theme": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="320" height="180" fill="#121110"/>
+                        <rect x="68" y="46" width="136" height="44" rx="4" fill="#e7e5e4"/>
+                        <rect x="116" y="76" width="136" height="54" rx="4" fill="#44403c" stroke="#a8a29e" stroke-width="1"/>
+                        <rect x="134" y="90" width="46" height="28" rx="2" fill="#f59e0b" opacity="0.75"/>
+                        <line x1="48" y1="132" x2="272" y2="132" stroke="#78716c" stroke-width="2"/>
+                    </svg>`,
+                "liquid-glass-theme": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="320" height="180" fill="#07111a"/>
+                        <circle cx="122" cy="76" r="42" fill="#06b6d4" opacity="0.65"/>
+                        <circle cx="198" cy="104" r="46" fill="#3b82f6" opacity="0.55"/>
+                        <rect x="88" y="42" width="144" height="96" rx="22" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+                        <line x1="112" y1="74" x2="176" y2="74" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.85"/>
+                        <line x1="112" y1="94" x2="204" y2="94" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+                    </svg>`,
+                "restaurant-premium": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="320" height="180" fill="#140d09"/>
+                        <circle cx="160" cy="48" r="7" stroke="#fbbf24" stroke-width="2"/>
+                        <path d="M92 114C92 76.4446 122.445 46 160 46C197.555 46 228 76.4446 228 114H92Z" fill="#291d16" stroke="#fbbf24" stroke-width="2"/>
+                        <line x1="74" y1="122" x2="246" y2="122" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="96" y1="132" x2="224" y2="132" stroke="rgba(251,191,36,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>`
+            };
+            return artMap[id] || artMap["liquid-glass-theme"];
+        }
+
+        // Complete 9-Theme Catalog Database
         const projectsData = [
             {
                 id: "mars-theme-design",
@@ -356,7 +921,6 @@
                 title: "Cosmic & Brand Launch",
                 category: "Modern Business",
                 description: "An interplanetary voyage showcase with deep atmospheric lighting, sleek presentation modules, and bold futuristic branding.",
-                image: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-amber-950 via-red-950 to-neutral-950",
                 liveUrl: "https://farmanshafi2007-hub.github.io/mars-theme-design-/",
                 goodFor: ["Product Launches", "Creative Agencies", "Tech Brands"],
@@ -369,7 +933,6 @@
                 title: "Noir Editorial & Portrait",
                 category: "Creative Portfolios",
                 description: "A bold, high-contrast monochrome editorial showcase crafted for visual storytellers, creative directors, and personal brands.",
-                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-zinc-900 via-neutral-950 to-black",
                 liveUrl: "https://farmanshafi2007-hub.github.io/black-man-deign-website-/",
                 goodFor: ["Creative Directors", "Personal Brands", "Studios"],
@@ -382,7 +945,6 @@
                 title: "Bookstore & Publisher",
                 category: "Retail & Literature",
                 description: "An elegant, high-converting digital storefront designed for catalog browsing, featured bestsellers, and customer engagement.",
-                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-amber-900 via-stone-900 to-black",
                 liveUrl: "https://farmanshafi2007-hub.github.io/books-2-theme-ui-sample/",
                 goodFor: ["Bookstores", "Libraries", "Online Shops"],
@@ -395,7 +957,6 @@
                 title: "Card Burn Interaction",
                 category: "Interactive UI",
                 description: "A highly interactive, stylized card interface featuring stunning hover effects, fiery visual elements, and modern CSS physics.",
-                image: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-orange-900 via-red-950 to-black",
                 liveUrl: "https://farmanshafi2007-hub.github.io/card-burn-deign-website-/",
                 goodFor: ["Portfolios", "Creative Showcases", "Tech Demos"],
@@ -407,7 +968,6 @@
                 title: "Events & Entertainment",
                 category: "Entertainment",
                 description: "An immersive, atmospheric experience with theatrical visual styling, themed interactive animations, and ticket showcase sections.",
-                image: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-zinc-900 via-neutral-900 to-black",
                 liveUrl: "https://farmanshafi2007-hub.github.io/holloweeen-theme-/",
                 goodFor: ["Event Organizers", "Escape Rooms", "Gaming & Media"],
@@ -419,7 +979,6 @@
                 title: "Classic Library & Bookstore",
                 category: "Retail & Literature",
                 description: "A warm, refined literary catalog design with reader reviews, curated book shelves, and clean product collections.",
-                image: "https://images.unsplash.com/photo-1495640388908-05fa85288e61?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-neutral-800 via-zinc-900 to-neutral-950",
                 liveUrl: "https://farmanshafi2007-hub.github.io/books-theme-ui-sample/",
                 goodFor: ["Bookstores", "Writers & Authors", "Reading Clubs"],
@@ -431,7 +990,6 @@
                 title: "Architecture & Interior Studio",
                 category: "Real Estate & Architecture",
                 description: "A minimalist, luxury portfolio showcasing architectural projects, interior decor galleries, and design consultations.",
-                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-stone-900 via-neutral-900 to-black",
                 liveUrl: "https://farmanshafi2007-hub.github.io/INEXTERIOR/",
                 goodFor: ["Architects", "Interior Designers", "Luxury Real Estate"],
@@ -443,7 +1001,6 @@
                 title: "Modern Glassmorphism Agency",
                 category: "Creative Agencies",
                 description: "A clean, modern corporate presence featuring translucent glass styling, polished project case studies, and transparent service pricing.",
-                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-slate-900 via-cyan-950 to-neutral-950",
                 liveUrl: "https://farmanshafi2007-hub.github.io/liquid-glass-theme-deign-/",
                 goodFor: ["Digital Agencies", "Consulting Firms", "SaaS Companies"],
@@ -455,7 +1012,6 @@
                 title: "Premium Restaurant Experience",
                 category: "Hospitality & Food",
                 description: "A luxurious, appetizing digital storefront for fine dining. Includes reservation booking flows, elegant menu showcases, and atmospheric visuals.",
-                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=70",
                 gradient: "from-orange-950 via-stone-900 to-black",
                 liveUrl: "https://farmanshafi2007-hub.github.io/restusrant-deign-/",
                 goodFor: ["Fine Dining", "Cafes", "Culinary Brands"],
@@ -467,46 +1023,70 @@
         let currentCategory = 'All';
         let selectedDesign = null;
 
-        // Initialize Application (Defaults to Apple Dark Mode)
         window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('forge_theme');
-            if (savedTheme === 'light') {
-                document.documentElement.classList.remove('dark');
-                document.documentElement.classList.add('light');
-            } else {
-                document.documentElement.classList.add('dark');
-                document.documentElement.classList.remove('light');
-            }
+            try {
+                const savedTheme = localStorage.getItem('forge_theme');
+                if (savedTheme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                }
+            } catch (_) {}
+
             renderCategories();
             renderAllProjects();
+
+            // Keyboard "/" shortcut to focus search
+            window.addEventListener('keydown', (e) => {
+                if (e.key === '/' && document.activeElement !== document.getElementById('searchInput')) {
+                    const tag = document.activeElement ? document.activeElement.tagName : '';
+                    if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
+                        e.preventDefault();
+                        const input = document.getElementById('searchInput');
+                        if (input) {
+                            input.focus();
+                            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+                } else if (e.key === 'Escape' && document.activeElement === document.getElementById('searchInput')) {
+                    clearSearch();
+                    document.getElementById('searchInput').blur();
+                }
+            });
         });
 
-        // Theme Toggle Function
         function toggleTheme() {
             const html = document.documentElement;
-            if (html.classList.contains('dark')) {
+            const isDark = html.classList.contains('dark');
+            if (isDark) {
                 html.classList.remove('dark');
                 html.classList.add('light');
-                localStorage.setItem('forge_theme', 'light');
+                try { localStorage.setItem('forge_theme', 'light'); } catch (_) {}
             } else {
                 html.classList.add('dark');
                 html.classList.remove('light');
-                localStorage.setItem('forge_theme', 'dark');
+                try { localStorage.setItem('forge_theme', 'dark'); } catch (_) {}
             }
         }
 
-        // Render Category Filter Buttons
         function renderCategories() {
             const categoriesContainer = document.getElementById('categoryFilters');
             if (!categoriesContainer) return;
 
             const categories = ['All', ...new Set(projectsData.map(p => p.category))];
 
-            categoriesContainer.innerHTML = categories.map(cat => `
-                <button onclick="setCategory('${cat}')" class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap border shrink-0 touch-manipulation ${currentCategory === cat ? 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-lg shadow-black/20 dark:shadow-white/20 scale-[1.02]' : 'bg-white/50 dark:bg-zinc-900/50 backdrop-blur-md text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-white dark:hover:bg-zinc-800'}">
-                    ${cat}
-                </button>
-            `).join('');
+            categoriesContainer.innerHTML = categories.map(cat => {
+                const count = cat === 'All' ? projectsData.length : projectsData.filter(p => p.category === cat).length;
+                const isActive = currentCategory === cat;
+                return `
+                    <button type="button" role="tab" aria-selected="${isActive}" onclick="setCategory('${cat}')" class="px-3.5 sm:px-4 py-2 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap border shrink-0 touch-manipulation inline-flex items-center gap-1.5 ${isActive ? 'bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 border-zinc-950 dark:border-white shadow-md scale-[1.01]' : 'bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md text-zinc-600 dark:text-zinc-400 border-zinc-200/90 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-950 dark:hover:text-zinc-100'}">
+                        <span>${cat}</span>
+                        <span class="text-[10px] font-mono px-1.5 py-0.2 rounded-md ${isActive ? 'bg-white/20 dark:bg-black/15 text-white dark:text-zinc-900' : 'bg-zinc-200/70 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400'}">${count}</span>
+                    </button>
+                `;
+            }).join('');
         }
 
         function setCategory(cat) {
@@ -519,7 +1099,7 @@
             currentCategory = 'All';
             const searchInput = document.getElementById('searchInput');
             if (searchInput) searchInput.value = '';
-            toggleSearchIcon(false);
+            toggleSearchClearButton(false);
             renderCategories();
             renderAllProjects();
         }
@@ -530,47 +1110,53 @@
                 searchInput.value = '';
                 searchInput.focus();
             }
-            toggleSearchIcon(false);
+            toggleSearchClearButton(false);
             renderAllProjects();
         }
 
-        function toggleSearchIcon(hasText) {
-            const searchIcon = document.getElementById('searchIcon');
+        function toggleSearchClearButton(hasText) {
+            const shortcutHint = document.getElementById('searchShortcutHint');
             const clearBtn = document.getElementById('clearSearchBtn');
             if (hasText) {
-                if (searchIcon) searchIcon.classList.add('hidden');
+                if (shortcutHint) shortcutHint.classList.add('!hidden');
                 if (clearBtn) clearBtn.classList.remove('hidden');
             } else {
-                if (searchIcon) searchIcon.classList.remove('hidden');
+                if (shortcutHint) shortcutHint.classList.remove('!hidden');
                 if (clearBtn) clearBtn.classList.add('hidden');
             }
         }
 
-        // Render Projects Grid
         function renderAllProjects() {
             const grid = document.getElementById('projectsGrid');
             const emptyState = document.getElementById('emptyState');
             const searchInput = document.getElementById('searchInput');
+            const countLabel = document.getElementById('resultsCountLabel');
             if (!grid) return;
 
             const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
-            toggleSearchIcon(query.length > 0);
+            toggleSearchClearButton(query.length > 0);
 
             const filtered = projectsData.filter(p => {
                 const matchesCategory = currentCategory === 'All' || p.category === currentCategory;
-                const matchesSearch = p.title.toLowerCase().includes(query) || 
-                                      p.description.toLowerCase().includes(query) || 
+                const matchesSearch = p.title.toLowerCase().includes(query) ||
+                                      p.description.toLowerCase().includes(query) ||
                                       p.category.toLowerCase().includes(query) ||
+                                      (`0${p.number}`).includes(query) ||
                                       (p.goodFor && p.goodFor.some(s => s.toLowerCase().includes(query)));
                 return matchesCategory && matchesSearch;
             });
+
+            if (countLabel) {
+                countLabel.textContent = filtered.length === projectsData.length
+                    ? `${projectsData.length} Production Designs`
+                    : `Showing ${filtered.length} of ${projectsData.length} Designs`;
+            }
 
             if (filtered.length === 0) {
                 grid.innerHTML = '';
                 if (emptyState) emptyState.classList.remove('hidden');
             } else {
                 if (emptyState) emptyState.classList.add('hidden');
-                // Pass index for staggered animation delay
                 grid.innerHTML = filtered.map((project, idx) => createProjectCardHTML(project, idx)).join('');
             }
         }
@@ -579,110 +1165,115 @@
             renderAllProjects();
         }
 
-        // Apple Design Principles: Minimal, Compact, Mathematically Concentric Squircle Cards
+        // Compact Concentric Squircle Cards with Pure Vector Art
         function createProjectCardHTML(project, index) {
             const isSelected = selectedDesign && selectedDesign.id === project.id;
             const isPinned = project.badge === 'pinned' || Boolean(project.pinned);
             const isMostViewed = project.badge === 'most-viewed';
             const isNew = project.badge === 'new';
-            const delay = index * 0.045;
+            const delay = Math.min(index * 0.035, 0.28);
 
             return `
-                <div class="project-card animate-fade-up border ${isSelected ? 'border-emerald-500/80 ring-2 ring-emerald-500/30 bg-white dark:bg-[#161618] shadow-xl' : 'border-black/[0.06] dark:border-white/[0.09] bg-white/85 dark:bg-[#121214]/80 hover:bg-white dark:hover:bg-[#18181b]/95 shadow-[0_8px_28px_-6px_rgba(0,0,0,0.06)] dark:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.75)]'} backdrop-blur-2xl overflow-hidden flex flex-col group relative" style="animation-delay: ${delay}s">
+                <article class="project-card animate-fade-up border ${isSelected ? 'border-emerald-500 ring-2 ring-emerald-500/30 bg-white dark:bg-[#151718] shadow-lg' : 'border-black/[0.07] dark:border-white/[0.09] bg-white/90 dark:bg-[#121214]/90 hover:bg-white dark:hover:bg-[#17171a] shadow-[0_6px_20px_-6px_rgba(0,0,0,0.06)] dark:shadow-[0_10px_24px_-8px_rgba(0,0,0,0.75)]'} backdrop-blur-2xl overflow-hidden flex flex-col group relative" style="animation-delay: ${delay}s">
                     
-                    <!-- Compact 16:9 Media Frame (8px padding + 20px inner radius = exact 28px outer concentric curve) -->
-                    <div class="p-2 pb-0">
-                        <div class="aspect-video relative overflow-hidden rounded-[20px] bg-gradient-to-br ${project.gradient} border border-black/[0.05] dark:border-white/[0.07]">
-                            <img src="${project.image}" alt="${project.title}" loading="lazy" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500 ease-out" onerror="this.src='https://placehold.co/400x225/18181b/ffffff?text=Preview'">
+                    <!-- Compact Vector Art Frame (6px outer padding + 12px inner radius = 18px concentric curve) -->
+                    <div class="p-1.5 pb-0">
+                        <div class="aspect-[16/10] relative overflow-hidden rounded-[12px] bg-gradient-to-br ${project.gradient} border border-black/[0.05] dark:border-white/[0.08]">
+                            ${getThemeArtwork(project.id)}
                             
-                            <!-- Minimal Floating Pill: Index & Status -->
-                            <div class="absolute top-2 left-2 z-10 flex items-center gap-1">
-                                <span class="px-2 py-0.5 rounded-full bg-black/65 dark:bg-black/80 text-white font-mono text-[9.5px] font-semibold tracking-wider backdrop-blur-md border border-white/15">
+                            <!-- Floating Pill: Index & Status -->
+                            <div class="absolute top-1.5 left-1.5 z-10 flex items-center gap-1">
+                                <span class="px-1.5 py-0.5 rounded-full bg-black/75 text-white font-mono text-[9px] font-semibold tracking-wider backdrop-blur-md border border-white/15">
                                     0${project.number}
                                 </span>
-                                ${isPinned ? `
-                                    <span class="px-2 py-0.5 rounded-full bg-amber-400/95 text-black font-semibold text-[8.5px] tracking-wide backdrop-blur-md shadow-sm">
-                                        Featured
-                                    </span>
-                                ` : ''}
-                                ${isMostViewed ? `
-                                    <span class="px-2 py-0.5 rounded-full bg-rose-500/95 text-white font-semibold text-[8.5px] tracking-wide backdrop-blur-md shadow-sm">
-                                        Popular
-                                    </span>
-                                ` : ''}
-                                ${isNew ? `
-                                    <span class="px-2 py-0.5 rounded-full bg-sky-500/95 text-white font-semibold text-[8.5px] tracking-wide backdrop-blur-md shadow-sm">
-                                        New
-                                    </span>
-                                ` : ''}
+                                ${isPinned ? `<span class="px-1.5 py-0.5 rounded-full bg-amber-400 text-zinc-950 font-bold text-[8px] uppercase tracking-wider shadow-sm">Featured</span>` : ''}
+                                ${isMostViewed ? `<span class="px-1.5 py-0.5 rounded-full bg-rose-500 text-white font-bold text-[8px] uppercase tracking-wider shadow-sm">Popular</span>` : ''}
+                                ${isNew ? `<span class="px-1.5 py-0.5 rounded-full bg-sky-500 text-white font-bold text-[8px] uppercase tracking-wider shadow-sm">New</span>` : ''}
                             </div>
 
-                            <!-- Subtle Hover Preview Overlay -->
-                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" aria-label="Preview ${project.title}" class="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <span class="px-3 py-1 rounded-full bg-white/95 text-zinc-950 text-[10.5px] font-semibold tracking-tight shadow-lg transform translate-y-1.5 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-1">
-                                    <span>Live View</span>
-                                    <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            ${isSelected ? `
+                            <div class="absolute top-1.5 right-1.5 z-10">
+                                <span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-md">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                </span>
+                            </div>` : ''}
+
+                            <!-- Hover Live Preview Overlay -->
+                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open Live Preview of ${project.title}" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
+                                <span class="px-2.5 py-1 rounded-full bg-white text-zinc-950 text-[10px] font-bold tracking-tight shadow-lg transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-1">
+                                    <span>Live</span>
+                                    <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                                 </span>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Compact Content Hierarchy -->
-                    <div class="p-3 pt-2.5 flex flex-col flex-grow">
-                        <div class="text-[9.5px] font-medium text-zinc-400 dark:text-[#86868b] tracking-wide mb-0.5 truncate">
+                    <!-- Compact Card Content -->
+                    <div class="p-2.5 pt-2 flex flex-col flex-grow">
+                        <div class="text-[8.5px] sm:text-[9px] font-semibold uppercase tracking-wider text-orange-600 dark:text-orange-400/90 mb-0.5 truncate">
                             ${project.category}
                         </div>
-                        <h3 class="text-[14px] font-semibold tracking-tight text-zinc-900 dark:text-[#f5f5f7] leading-snug mb-1 line-clamp-1">
+                        <h3 class="text-[12px] sm:text-[13px] font-bold tracking-tight text-zinc-900 dark:text-[#f5f5f7] leading-snug mb-1 line-clamp-1">
                             ${project.title}
                         </h3>
                         
-                        <!-- Concise 2-line Description -->
-                        <p class="text-[11px] text-zinc-500 dark:text-[#a1a1a6] mb-3 leading-relaxed font-normal line-clamp-2">
+                        <p class="text-[10.5px] text-zinc-500 dark:text-[#a1a1aa] mb-2.5 leading-snug font-normal line-clamp-2">
                             ${project.description}
                         </p>
 
-                        <!-- Apple Pill Action Row (Concentric with 28px outer bottom corners) -->
-                        <div class="flex items-center gap-1.5 pt-2.5 border-t border-zinc-100 dark:border-white/[0.07] mt-auto">
-                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-1.5 px-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200/80 dark:bg-white/[0.08] dark:hover:bg-white/[0.14] text-zinc-800 dark:text-[#f5f5f7] text-[10.5px] font-medium tracking-tight text-center transition-colors touch-manipulation">
-                                Preview
+                        <!-- Compact Action Row -->
+                        <div class="flex items-center gap-1.5 pt-2 border-t border-zinc-100 dark:border-white/[0.07] mt-auto">
+                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-1.5 px-2 rounded-lg bg-zinc-100 hover:bg-zinc-200/80 dark:bg-white/[0.07] dark:hover:bg-white/[0.13] text-zinc-800 dark:text-[#f5f5f7] text-[10px] font-semibold tracking-tight text-center transition-colors inline-flex items-center justify-center gap-0.5 touch-manipulation">
+                                <span>Preview</span>
+                                <svg class="w-2.5 h-2.5 opacity-70 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                             </a>
 
-                            <button onclick="orderViaWhatsApp('${project.id}')" class="flex-1 py-1.5 px-2.5 rounded-full ${isSelected ? 'bg-emerald-600 text-white shadow-sm' : 'bg-zinc-950 hover:bg-zinc-800 dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-black'} text-[10.5px] font-semibold tracking-tight text-center transition-all active:scale-95 touch-manipulation">
-                                ${isSelected ? 'Selected' : 'Select'}
+                            <button type="button" onclick="handleCardSelect('${project.id}')" class="flex-1 py-1.5 px-2 rounded-lg ${isSelected ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm' : 'bg-zinc-950 hover:bg-zinc-800 dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-zinc-950'} text-[10px] font-bold tracking-tight text-center transition-all active:scale-95 inline-flex items-center justify-center gap-0.5 touch-manipulation">
+                                ${isSelected ? `
+                                    <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                    <span>Selected</span>
+                                ` : `
+                                    <span>Select</span>
+                                `}
                             </button>
                         </div>
                     </div>
-                </div>
+                </article>
             `;
         }
 
-        // Selection Management
+        function handleCardSelect(projectId) {
+            if (selectedDesign && selectedDesign.id === projectId) {
+                clearSelection();
+                return;
+            }
+            selectDesign(projectId);
+        }
+
         function selectDesign(projectId) {
             const project = projectsData.find(p => p.id === projectId);
             if (!project) return null;
             selectedDesign = project;
 
-            // Generate unique 10-digit tracking order ID
             const trackingId = Math.floor(1000000000 + Math.random() * 9000000000);
             selectedDesign.trackingId = trackingId;
 
-            // Show bottom bar
             const bar = document.getElementById('selectionBar');
             const text = document.getElementById('selectedDesignText');
+            const meta = document.getElementById('selectedOrderMeta');
+            const previewLinkMobile = document.getElementById('selectedPreviewLink');
+            const previewLinkDesktop = document.getElementById('selectedPreviewLinkDesktop');
+
             if (bar && text) {
-                text.textContent = `Selected: #${project.number} - ${project.title} (Order #${trackingId})`;
+                text.textContent = `Selected: #0${project.number} — ${project.title}`;
+                if (meta) meta.textContent = `${project.category} • Tracking ID #${trackingId}`;
+                if (previewLinkMobile) previewLinkMobile.href = project.liveUrl;
+                if (previewLinkDesktop) previewLinkDesktop.href = project.liveUrl;
                 bar.classList.remove('translate-y-full');
             }
 
             renderAllProjects();
             return project;
-        }
-
-        // Direct Order Via WhatsApp Trigger
-        function orderViaWhatsApp(projectId) {
-            const project = selectDesign(projectId);
-            if (!project) return;
-            sendOnWhatsApp();
         }
 
         function clearSelection() {
@@ -694,302 +1285,512 @@
             renderAllProjects();
         }
 
-        // WhatsApp Integration (Direct to 9697430658 with 10-Digit Order ID)
         function sendOnWhatsApp() {
             if (!selectedDesign) return;
-            
             const orderId = selectedDesign.trackingId || Math.floor(1000000000 + Math.random() * 9000000000);
             
             const textMessage = `*FORGE SOFTWARES — THEME ORDER INQUIRY*
 ━━━━━━━━━━━━━━━━━━━━━
 - *Tracking ID:* #${orderId}
-- *Theme No:* #${selectedDesign.number}
+- *Theme No:* #0${selectedDesign.number}
 - *Theme Name:* ${selectedDesign.title}
 - *Category:* ${selectedDesign.category}
 - *Live Sample URL:* ${selectedDesign.liveUrl}
 ━━━━━━━━━━━━━━━━━━━━━
-Hello Forge Softwares team, I have chosen design #${selectedDesign.number} for my project. Please let me know the development timeline and onboarding steps.`;
+Hello Forge Softwares team, I have chosen design #0${selectedDesign.number} (${selectedDesign.title}) for my project. Please let me know the development timeline and onboarding steps.`;
 
             const message = encodeURIComponent(textMessage);
-            window.open(`https://wa.me/919697430658?text=${message}`, '_blank');
+            window.open(`https://wa.me/919697430658?text=${message}`, '_blank', 'noopener,noreferrer');
         }
     </script>
 
-    <!-- Skiper 39 Exact Crowd Canvas Engine with Resilient Sprite Loading -->
+    <!-- Distill Interactive Scanner & Conveyor Belt Engine -->
     <script>
-        (function() {
-            'use strict';
+        (function () {
+            const beltEl = document.getElementById('belt');
+            const cardsLayer = document.getElementById('cardsLayer');
+            const codesLayer = document.getElementById('codesLayer');
+            const fxCanvas = document.getElementById('fxCanvas');
+            if (!beltEl || !cardsLayer || !codesLayer || !fxCanvas) return;
 
-            const canvas = document.getElementById('crowdCanvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            if (!ctx) return;
+            const ctx = fxCanvas.getContext('2d');
+            const badgeNumEl = document.getElementById('badgeNum');
+            const badgePctEl = document.getElementById('badgePct');
+            const nudgeBtn = document.getElementById('nudgeBeltBtn');
+            const prevBtn = document.getElementById('prevBeltBtn');
 
-            // Authentic Open Peeps sprite sheet with fallback mirror
-            const spriteSources = [
-                'https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/open-peeps-sheet.png',
-                'https://assets.codepen.io/175711/open-peeps-sheet.png'
+            const logoSVG = `
+                <svg viewBox="0 0 54 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 38L20.5 6L37 38" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M19 38L34.5 9L50 38" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+
+            const BELT_CARDS = [
+                {
+                    id: 'cosmic',
+                    original: 70411,
+                    distilled: 6140,
+                    saved: 64271,
+                    url: 'forge.showroom/theme-01',
+                    htmlText: [
+                        '<h1>Cosmic & Brand Launch</h1>',
+                        '<p>Interplanetary voyage showcase',
+                        '  with deep atmospheric lighting',
+                        '  and futuristic branding.</p>',
+                        '<h2>Highlights</h2>',
+                        '<ul>',
+                        '  <li>Speed: 99/100 Lighthouse</li>',
+                        '  <li>Bundle: 6.1 kB gzipped</li>',
+                        '  <li>Responsive: Mobile-first</li>',
+                        '</ul>'
+                    ].join('\n'),
+                    cardMarkup: `
+                        <div class="d-card card-home">
+                            <div class="k-nav">
+                                <div class="k-brand">${logoSVG}<span>FORGE &middot; 01</span></div>
+                                <div class="k-menu"><span>THEME</span><span>PREVIEW</span><span class="k-pill">LIVE</span></div>
+                            </div>
+                            <div class="home-stats">
+                                <div><div class="home-stat-num">99</div><div class="home-stat-label">performance</div></div>
+                                <div class="home-stat-divider"></div>
+                                <div><div class="home-stat-num">91%</div><div class="home-stat-label">lighter code</div></div>
+                            </div>
+                            <div class="home-tagline">Cosmic &amp; Brand Launch Showcase.</div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'noir',
+                    original: 41208,
+                    distilled: 4960,
+                    saved: 36248,
+                    url: 'forge.showroom/theme-02',
+                    htmlText: [
+                        '<h1>Noir Editorial & Portrait</h1>',
+                        '<p>High-contrast monochrome layout',
+                        '  crafted for creative directors',
+                        '  and visual storytellers.</p>',
+                        '<h2>Architecture</h2>',
+                        '<ul>',
+                        '  <li>Typography: Editorial Serif</li>',
+                        '  <li>Grid: Swiss Asymmetric</li>',
+                        '</ul>'
+                    ].join('\n'),
+                    cardMarkup: `
+                        <div class="d-card card-price">
+                            <div class="k-nav">
+                                <div class="k-brand">${logoSVG}<span>FORGE &middot; 02</span></div>
+                                <div class="k-menu"><span>EDITORIAL</span><span class="k-pill">NOIR</span></div>
+                            </div>
+                            <div class="price-big">02</div>
+                            <div class="price-sub">NOIR EDITORIAL &amp; PORTRAIT</div>
+                            <div class="price-plans">
+                                <div class="price-row"><span>Layout</span><span>Monochrome</span></div>
+                                <div class="price-row"><span>FPS</span><span>120 Hz</span></div>
+                                <div class="price-row"><span>Status</span><span>Ready</span></div>
+                            </div>
+                            <div class="price-cta">Explore Theme #02</div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'burn',
+                    original: 98432,
+                    distilled: 6300,
+                    saved: 92132,
+                    url: 'forge.showroom/theme-04',
+                    htmlText: [
+                        '<h1>Card Burn Interaction</h1>',
+                        '<p>Stylized interactive card UI',
+                        '  with kinetic hover physics and',
+                        '  shader-inspired fire edges.</p>',
+                        '<h2>Metrics</h2>',
+                        '<ul>',
+                        '  <li>60fps GPU Accelerated</li>',
+                        '  <li>Zero external dependencies</li>',
+                        '</ul>'
+                    ].join('\n'),
+                    cardMarkup: `
+                        <div class="d-card card-case">
+                            <div class="k-nav">
+                                <div class="k-brand">${logoSVG}<span>FORGE &middot; 04</span></div>
+                                <div class="k-menu"><span>INTERACTIVE</span><span>PHYSICS</span></div>
+                            </div>
+                            <div class="case-kicker">THEME #04 &middot; INTERACTIVE UI</div>
+                            <div class="case-title">Card Burn Interaction with tactile kinetic hover physics</div>
+                            <div class="case-stats">
+                                <div class="case-stat"><div class="case-stat-num">94%</div><div class="case-stat-label">cleaner DOM</div></div>
+                                <div class="case-stat"><div class="case-stat-num">60fps</div><div class="case-stat-label">smooth motion</div></div>
+                                <div class="case-stat"><div class="case-stat-num">0ms</div><div class="case-stat-label">input lag</div></div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'restaurant',
+                    original: 63904,
+                    distilled: 5512,
+                    saved: 58392,
+                    url: 'forge.showroom/theme-09',
+                    htmlText: [
+                        '<h1>Premium Restaurant</h1>',
+                        '<p>Luxurious culinary storefront',
+                        '  with reservation flows and',
+                        '  curated tasting menus.</p>',
+                        '<h2>Modules</h2>',
+                        '<ul>',
+                        '  <li>Table Booking Engine</li>',
+                        '  <li>Interactive Menu Grid</li>',
+                        '</ul>'
+                    ].join('\n'),
+                    cardMarkup: `
+                        <div class="d-card card-alloy">
+                            <div class="k-nav">
+                                <div class="k-brand">${logoSVG}<span>FORGE &middot; 09</span></div>
+                                <div class="k-menu"><span>HOSPITALITY</span><span>DINING</span></div>
+                            </div>
+                            <div class="alloy-title">Premium<em>Hospitality.</em></div>
+                            <div class="alloy-specs">
+                                <div class="alloy-row"><span>Theme</span><span>#09 Dining</span></div>
+                                <div class="alloy-row"><span>Booking</span><span>Integrated</span></div>
+                                <div class="alloy-row"><span>Catalog</span><span>9 Themes</span></div>
+                            </div>
+                        </div>
+                    `
+                }
             ];
-            let currentSourceIndex = 0;
 
-            const config = {
-                rows: 15,
-                cols: 7
-            };
+            const cardEls = [];
+            const codeEls = [];
+            const numFormatter = new Intl.NumberFormat('en-US');
 
-            // UTILS
-            const randomRange = (min, max) => min + Math.random() * (max - min);
-            const randomIndex = (array) => (randomRange(0, array.length) | 0);
-            const removeFromArray = (array, i) => array.splice(i, 1)[0];
-            const removeItemFromArray = (array, item) => removeFromArray(array, array.indexOf(item));
-            const removeRandomFromArray = (array) => removeFromArray(array, randomIndex(array));
-            const getRandomFromArray = (array) => array[randomIndex(array) | 0];
+            BELT_CARDS.forEach((item) => {
+                const tempWrapper = document.createElement('div');
+                tempWrapper.innerHTML = item.cardMarkup.trim();
+                const cardEl = tempWrapper.firstElementChild;
+                cardsLayer.appendChild(cardEl);
+                cardEls.push(cardEl);
 
-            // TWEEN FACTORIES
-            const resetPeep = ({ stage, peep }) => {
-                const direction = Math.random() > 0.5 ? 1 : -1;
-                const offsetY = 100 - 250 * gsap.parseEase("power2.in")(Math.random());
-                const startY = stage.height - peep.height + offsetY;
-                let startX;
-                let endX;
+                const codeEl = document.createElement('div');
+                codeEl.className = 'code';
 
-                if (direction === 1) {
-                    startX = -peep.width;
-                    endX = stage.width;
-                    peep.scaleX = 1;
-                } else {
-                    startX = stage.width + peep.width;
-                    endX = 0;
-                    peep.scaleX = -1;
+                const htmlPre = document.createElement('div');
+                htmlPre.className = 'code-html';
+                htmlPre.textContent = item.htmlText;
+
+                const metaPre = document.createElement('div');
+                metaPre.className = 'code-meta';
+                metaPre.textContent = [
+                    `<!-- distilled: ${numFormatter.format(item.distilled)} tokens -->`,
+                    `<!-- original: ${numFormatter.format(item.original)} tokens -->`,
+                    `<!-- ${item.url} -->`
+                ].join('\n');
+
+                codeEl.appendChild(htmlPre);
+                codeEl.appendChild(metaPre);
+                codesLayer.appendChild(codeEl);
+                codeEls.push(codeEl);
+            });
+
+            const PALETTE = ['#FF4A12', '#FF5A1F', '#FF6B2C', '#FF8A3D', '#FFB06A', '#FFD9B5', '#FFF3E6'];
+
+            function hash(a, b, c) {
+                let h = (Math.imul(a, 374761393) + Math.imul(b, 668265263) + Math.imul(c, 2147483647)) | 0;
+                h = Math.imul(h ^ (h >>> 13), 1274126177) | 0;
+                return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+            }
+
+            const mod = (n, m) => ((n % m) + m) % m;
+            const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
+
+            const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+            let prefersReducedMotion = reducedMotionQuery.matches;
+            if (reducedMotionQuery.addEventListener) {
+                reducedMotionQuery.addEventListener('change', (e) => { prefersReducedMotion = e.matches; });
+            }
+
+            let W = window.innerWidth;
+            let stageH = 360;
+            let cardTopY = 62;
+            let cw = 0, ch = 0, gap = 0, span = 0, period = 0, Lx = W / 2, dpr = 1;
+            let cardRadiusPx = 18;
+            let off = 0, vel = 0, hover = 0;
+            let isHovering = false, isDragging = false, dragPointerId = null, lastPointerX = 0, lastPointerTime = 0;
+            let activeCardIndex = -1, displayedTokens = 48193;
+            const sparks = [];
+
+            function measureGeometry(isInitial) {
+                const beltRect = beltEl.getBoundingClientRect();
+                W = beltRect.width || window.innerWidth;
+                stageH = beltRect.height || 340;
+                Lx = W / 2;
+
+                const rect = cardEls[0].getBoundingClientRect();
+                cw = rect.width || W * 0.44;
+                ch = rect.height || 240;
+
+                const computedCard = getComputedStyle(cardEls[0]);
+                cardTopY = parseFloat(computedCard.top) || 58;
+                cardRadiusPx = parseFloat(computedCard.borderRadius) || 18;
+
+                gap = W <= 640 ? W * 0.055 : Math.min(56, Math.max(20, W * 0.038));
+
+                span = cw + gap;
+                period = span * BELT_CARDS.length;
+
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                fxCanvas.width = Math.round(W * dpr);
+                fxCanvas.height = Math.round(stageH * dpr);
+
+                if (isInitial) {
+                    off = W / 2 - 0.58 * cw;
+                    vel = prefersReducedMotion ? 0 : -0.068 * W;
                 }
+            }
 
-                peep.x = startX;
-                peep.y = startY;
-                peep.anchorY = startY;
+            measureGeometry(true);
+            window.addEventListener('resize', () => measureGeometry(false));
 
-                return {
-                    startX,
-                    startY,
-                    endX
-                };
-            };
+            beltEl.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') isHovering = true; });
+            beltEl.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') isHovering = false; });
 
-            const normalWalk = ({ peep, props }) => {
-                const { startX, startY, endX } = props;
-                const xDuration = 10;
-                const yDuration = 0.25;
+            beltEl.addEventListener('pointerdown', (e) => {
+                if (e.button !== 0 && e.pointerType === 'mouse') return;
+                isDragging = true;
+                dragPointerId = e.pointerId;
+                lastPointerX = e.clientX;
+                lastPointerTime = performance.now();
+                beltEl.classList.add('is-dragging');
+                try { beltEl.setPointerCapture(e.pointerId); } catch (_) {}
+            });
 
-                const tl = gsap.timeline();
-                tl.timeScale(randomRange(0.5, 1.5));
-                tl.to(
-                    peep,
-                    {
-                        duration: xDuration,
-                        x: endX,
-                        ease: "none"
-                    },
-                    0
-                );
-                tl.to(
-                    peep,
-                    {
-                        duration: yDuration,
-                        repeat: Math.floor(xDuration / yDuration),
-                        yoyo: true,
-                        y: startY - 10
-                    },
-                    0
-                );
+            beltEl.addEventListener('pointermove', (e) => {
+                if (!isDragging || e.pointerId !== dragPointerId) return;
+                const now = performance.now();
+                const dx = e.clientX - lastPointerX;
+                const dtMs = Math.max(8, now - lastPointerTime);
+                off += dx;
+                vel = ((dx / dtMs) * 1000) * 0.8 + vel * 0.2;
+                lastPointerX = e.clientX;
+                lastPointerTime = now;
+            });
 
-                return tl;
-            };
+            function endDrag(e) {
+                if (!isDragging || (e && e.pointerId !== dragPointerId)) return;
+                isDragging = false;
+                beltEl.classList.remove('is-dragging');
+                try { if (dragPointerId !== null) beltEl.releasePointerCapture(dragPointerId); } catch (_) {}
+                dragPointerId = null;
+            }
 
-            const walks = [normalWalk];
+            beltEl.addEventListener('pointerup', endDrag);
+            beltEl.addEventListener('pointercancel', endDrag);
 
-            // FACTORY FUNCTIONS
-            const createPeep = ({ image, rect }) => {
-                const peep = {
-                    image,
-                    rect: [],
-                    width: 0,
-                    height: 0,
-                    drawArgs: [],
-                    x: 0,
-                    y: 0,
-                    anchorY: 0,
-                    scaleX: 1,
-                    walk: null,
-                    setRect: (r) => {
-                        peep.rect = r;
-                        peep.width = r[2];
-                        peep.height = r[3];
-                        peep.drawArgs = [peep.image, ...r, 0, 0, peep.width, peep.height];
-                    },
-                    render: (context) => {
-                        context.save();
-                        context.translate(peep.x, peep.y);
-                        context.scale(peep.scaleX, 1);
-                        context.drawImage(
-                            peep.image,
-                            peep.rect[0],
-                            peep.rect[1],
-                            peep.rect[2],
-                            peep.rect[3],
-                            0,
-                            0,
-                            peep.width,
-                            peep.height
-                        );
-                        context.restore();
-                    }
-                };
+            if (nudgeBtn) {
+                nudgeBtn.addEventListener('click', () => { vel = -Math.max(260, 0.36 * W); });
+            }
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => { vel = Math.max(260, 0.36 * W); });
+            }
 
-                peep.setRect(rect);
-                return peep;
-            };
-
-            // MAIN
-            const img = document.createElement("img");
-            img.crossOrigin = "anonymous";
-
-            const stage = {
-                width: 0,
-                height: 0
-            };
-
-            const allPeeps = [];
-            const availablePeeps = [];
-            const crowd = [];
-
-            const createPeeps = () => {
-                allPeeps.length = 0;
-                const { rows, cols } = config;
-                const width = img.naturalWidth || 2000;
-                const height = img.naturalHeight || 1200;
-                const total = rows * cols;
-                const rectWidth = width / rows;
-                const rectHeight = height / cols;
-
-                for (let i = 0; i < total; i++) {
-                    allPeeps.push(
-                        createPeep({
-                            image: img,
-                            rect: [
-                                (i % rows) * rectWidth,
-                                ((i / rows) | 0) * rectHeight,
-                                rectWidth,
-                                rectHeight
-                            ]
-                        })
-                    );
-                }
-            };
-
-            const addPeepToCrowd = () => {
-                if (!availablePeeps.length) return null;
-                const peep = removeRandomFromArray(availablePeeps);
-                const walk = getRandomFromArray(walks)({
-                    peep,
-                    props: resetPeep({
-                        peep,
-                        stage
-                    })
-                }).eventCallback("onComplete", () => {
-                    removePeepFromCrowd(peep);
-                    addPeepToCrowd();
-                });
-
-                peep.walk = walk;
-
-                crowd.push(peep);
-                crowd.sort((a, b) => a.anchorY - b.anchorY);
-
-                return peep;
-            };
-
-            const removePeepFromCrowd = (peep) => {
-                removeItemFromArray(crowd, peep);
-                availablePeeps.push(peep);
-            };
-
-            const initCrowd = () => {
-                while (availablePeeps.length) {
-                    const p = addPeepToCrowd();
-                    if (p && p.walk) {
-                        p.walk.progress(Math.random());
-                    }
-                }
-            };
-
-            const render = () => {
-                if (!canvas) return;
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            function drawFx(crossingCards, t, dt) {
                 ctx.save();
-                ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+                ctx.scale(dpr, dpr);
+                ctx.clearRect(0, 0, W, stageH);
 
-                for (let i = 0; i < crowd.length; i++) {
-                    crowd[i].render(ctx);
+                const R = 0.28 * cw;
+                const totalRows = Math.floor(ch / 3);
+                const timeStep = Math.floor(t * 9) + 97;
+
+                for (let c = 0; c < crossingCards.length; c++) {
+                    const { index, x, cut } = crossingCards[c];
+                    const rightRemaining = x + cw - Lx;
+                    if (rightRemaining <= 0) continue;
+
+                    const hazeWidth = Math.min(140, rightRemaining);
+                    if (hazeWidth > 0) {
+                        const grad = ctx.createLinearGradient(Lx, 0, Lx + 140, 0);
+                        grad.addColorStop(0, 'rgba(255, 96, 40, 0.42)');
+                        grad.addColorStop(1, 'rgba(255, 96, 40, 0)');
+                        ctx.fillStyle = grad;
+                        ctx.fillRect(Lx, cardTopY, hazeWidth, ch);
+                    }
+
+                    const gxStart = Math.max(0, Math.floor(cut / 3));
+                    const gxEnd = Math.min(Math.floor(cw / 3), Math.ceil((cut + R) / 3));
+
+                    for (let gx = gxStart; gx < gxEnd; gx++) {
+                        const sx = x + gx * 3;
+                        const d = sx - Lx;
+                        if (d < 0 || d >= R) continue;
+
+                        const p = Math.pow(1 - d / R, 1.7);
+                        const nearLine = d < 10;
+
+                        for (let row = -4; row <= totalRows + 4; row++) {
+                            if (!prefersReducedMotion && hash(gx, row, timeStep) < 0.24) continue;
+
+                            const h1 = hash(gx, row, index);
+                            let threshold;
+                            if (row >= 0 && row <= totalRows) {
+                                threshold = p * 0.9;
+                            } else {
+                                const distOut = row < 0 ? -row : row - totalRows;
+                                const fadeOut = Math.max(0, 1 - (distOut - 1) / 4);
+                                threshold = p * 0.15 * fadeOut;
+                            }
+
+                            if (h1 >= threshold) continue;
+
+                            const h2 = hash(row, gx, index + 31);
+                            const colorIdx = nearLine ? 4 + Math.floor(h2 * 3) : Math.floor(h2 * h2 * 7);
+                            ctx.fillStyle = PALETTE[Math.min(6, colorIdx)];
+
+                            const size = 1.1 + h2 * 1.6;
+                            const jx = prefersReducedMotion ? 0 : (h1 - 0.5) * 1.5;
+                            const jy = prefersReducedMotion ? 0 : (hash(gx + 13, row + 7, index) - 0.5) * 1.5;
+                            ctx.fillRect(sx + jx, cardTopY + row * 3 + jy, size, size);
+                        }
+                    }
+
+                    if (!prefersReducedMotion && sparks.length < 90) {
+                        for (let s = 0; s < 2; s++) {
+                            if (Math.random() < 0.65) {
+                                sparks.push({
+                                    x: Lx + Math.random() * 26,
+                                    y: cardTopY - 6 + Math.random() * (ch + 12),
+                                    vx: -25 + Math.random() * 65 + vel * 0.5,
+                                    vy: -22 + Math.random() * 44,
+                                    size: 0.9 + Math.random() * 1.7,
+                                    color: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+                                    life: 0.28 + Math.random() * 0.65
+                                });
+                            }
+                        }
+                    }
+                }
+
+                if (!prefersReducedMotion && sparks.length > 0) {
+                    for (let i = sparks.length - 1; i >= 0; i--) {
+                        const sp = sparks[i];
+                        sp.life -= dt;
+                        if (sp.life <= 0) {
+                            sparks.splice(i, 1);
+                            continue;
+                        }
+                        sp.x += sp.vx * dt;
+                        sp.y += sp.vy * dt;
+                        ctx.globalAlpha = Math.min(1, sp.life * 2.2);
+                        ctx.fillStyle = sp.color;
+                        ctx.fillRect(sp.x, sp.y, sp.size, sp.size);
+                    }
+                    ctx.globalAlpha = 1;
                 }
 
                 ctx.restore();
-            };
+            }
 
-            const resize = () => {
-                if (!canvas) return;
-                const dpr = Math.min(2, window.devicePixelRatio || 1);
-                stage.width = canvas.clientWidth;
-                stage.height = canvas.clientHeight;
-                canvas.width = stage.width * dpr;
-                canvas.height = stage.height * dpr;
+            let lastFrameTime = performance.now();
 
-                crowd.forEach((peep) => {
-                    if (peep.walk) peep.walk.kill();
-                });
+            function tick(now) {
+                const dt = Math.min(0.05, Math.max(0.001, (now - lastFrameTime) / 1000));
+                lastFrameTime = now;
+                const t = now / 1000;
 
-                crowd.length = 0;
-                availablePeeps.length = 0;
-                availablePeeps.push(...allPeeps);
+                const hoverTarget = isHovering ? 1 : 0;
+                hover += (hoverTarget - hover) * Math.min(1, dt * 4);
 
-                initCrowd();
-            };
-
-            const init = () => {
-                createPeeps();
-                resize();
-                gsap.ticker.add(render);
-            };
-
-            img.onload = init;
-            img.onerror = () => {
-                currentSourceIndex++;
-                if (currentSourceIndex < spriteSources.length) {
-                    img.src = spriteSources[currentSourceIndex];
+                if (!isDragging) {
+                    const autoSpeed = prefersReducedMotion ? 0 : -0.068 * W;
+                    const targetSpeed = autoSpeed * (1 - 0.65 * hover);
+                    vel += (targetSpeed - vel) * (1 - Math.exp(-2.2 * dt));
+                    off += vel * dt;
                 }
-            };
-            img.src = spriteSources[0];
 
-            let resizeTimer;
-        window.addEventListener("resize", () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(resize, 150);
-        });
+                const crossingCards = [];
+                let currentCrossingIdx = -1;
+                let currentCrossingCut = 0;
 
-    })();
-</script>
+                for (let i = 0; i < BELT_CARDS.length; i++) {
+                    const x = mod(off + i * span + span, period) - span;
+                    const cut = clamp(Lx - x, 0, cw);
 
-<!-- Reduced Motion Accessibility Script for Video Background -->
-<script>
-    (function(){
-        var q=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)'),
-            v=document.querySelector('video.showcase-bg');
-        if(!q||!v)return;
-        function sync(){ 
-            if(q.matches){v.pause();} 
-            else{var p=v.play();if(p)p.catch(function(){});} 
-        }
-        sync();
-        q.addEventListener ? q.addEventListener('change',sync) : q.addListener(sync);
-    })();
-</script>
+                    const cardEl = cardEls[i];
+                    const codeEl = codeEls[i];
+                    const translateStr = `translate3d(${x.toFixed(2)}px, 0, 0)`;
+
+                    cardEl.style.transform = translateStr;
+                    codeEl.style.transform = translateStr;
+
+                    if (cut <= 0) {
+                        cardEl.style.clipPath = 'none';
+                        cardEl.style.webkitMaskImage = 'none';
+                        cardEl.style.maskImage = 'none';
+                        cardEl.style.visibility = 'visible';
+                        codeEl.style.visibility = 'hidden';
+                    } else if (cut >= cw) {
+                        cardEl.style.visibility = 'hidden';
+                        codeEl.style.visibility = 'visible';
+                        codeEl.style.clipPath = 'none';
+                    } else {
+                        cardEl.style.visibility = 'visible';
+                        const cutPx = cut.toFixed(2);
+                        const softPx = (cut + 24).toFixed(2);
+                        cardEl.style.clipPath = `inset(0px 0px 0px ${cutPx}px round 0 ${cardRadiusPx}px ${cardRadiusPx}px 0)`;
+                        const maskGrad = `linear-gradient(90deg, transparent ${cutPx}px, #000 ${softPx}px)`;
+                        cardEl.style.webkitMaskImage = maskGrad;
+                        cardEl.style.maskImage = maskGrad;
+
+                        codeEl.style.visibility = 'visible';
+                        const codeRightInset = (cw - cut).toFixed(2);
+                        codeEl.style.clipPath = `inset(0px ${codeRightInset}px 0px 0px)`;
+
+                        crossingCards.push({ index: i, x, cut });
+                        currentCrossingIdx = i;
+                        currentCrossingCut = cut;
+                    }
+                }
+
+                if (currentCrossingIdx !== -1 && badgeNumEl && badgePctEl) {
+                    const data = BELT_CARDS[currentCrossingIdx];
+                    const progress = currentCrossingCut / cw;
+                    const targetTokens = Math.round((data.original - data.distilled) * progress);
+
+                    if (currentCrossingIdx !== activeCardIndex) {
+                        activeCardIndex = currentCrossingIdx;
+                        displayedTokens = targetTokens;
+                        const pctVal = Math.round((data.saved / data.original) * 100);
+                        badgePctEl.textContent = `${pctVal}% cleaner`;
+                    } else {
+                        displayedTokens += (targetTokens - displayedTokens) * Math.min(1, dt * 14);
+                    }
+
+                    badgeNumEl.textContent = `\u2212${numFormatter.format(Math.round(displayedTokens))}`;
+                }
+
+                drawFx(crossingCards, t, dt);
+                requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
+        })();
+    </script>
+
+    <!-- Reduced Motion Accessibility Script for Video Background -->
+    <script>
+        (function(){
+            var q = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)'),
+                v = document.querySelector('video.showcase-bg');
+            if (!q || !v) return;
+            function sync() {
+                if (q.matches) { v.pause(); }
+                else { var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+            }
+            sync();
+            if (q.addEventListener) q.addEventListener('change', sync);
+            else if (q.addListener) q.addListener(sync);
+        })();
+    </script>
 </body>
 </html>
