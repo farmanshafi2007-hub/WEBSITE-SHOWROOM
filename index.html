@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +37,10 @@
                             900: '#18181b',
                             950: '#09090b'
                         }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 20s linear infinite',
+                        'spin-slow-reverse': 'spin 25s linear infinite reverse',
                     }
                 }
             }
@@ -76,15 +80,31 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
         }
-
-        /* Card elevation & contour physics */
+        /* Enhanced Card elevation & Mathematically Concentric Apple Curves (28px outer = 20px inner + 8px padding) */
         .project-card {
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
-            will-change: transform, box-shadow;
+            border-radius: 28px;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+                        box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+                        border-color 0.3s ease,
+                        background-color 0.3s ease;
+            will-change: transform, box-shadow, opacity;
         }
         .project-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.18);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 22px 44px -12px rgba(0, 0, 0, 0.22);
+        }
+        .dark .project-card:hover {
+            box-shadow: 0 22px 46px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.14);
+        }
+
+        /* Staggered entrance animation for cards */
+        @keyframes fadeUpIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUpIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0; /* starts hidden */
         }
 
         /* Hero Calligraphy Explore Button Wrapper */
@@ -157,7 +177,7 @@
             transform: translateY(3px);
         }
 
-        /* Subtle ambient glow */
+        /* Subtle ambient glow base */
         .ambient-glow {
             background: radial-gradient(circle at 50% 0%, rgba(120, 120, 120, 0.05) 0%, transparent 60%);
         }
@@ -176,7 +196,14 @@
         }
     </style>
 </head>
-<body class="bg-[#fafafa] dark:bg-[#09090b] text-zinc-950 dark:text-zinc-100 font-sans antialiased transition-colors duration-300 selection:bg-zinc-800 selection:text-white pb-36 ambient-glow">
+<body class="bg-[#fafafa] dark:bg-[#000000] text-zinc-950 dark:text-[#f5f5f7] font-sans antialiased transition-colors duration-300 selection:bg-zinc-800 selection:text-white pb-36 ambient-glow relative">
+
+    <!-- Premium Animated Background Orbs (New UI/UX Enhancement) -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden opacity-30 dark:opacity-20 mix-blend-multiply dark:mix-blend-screen transition-opacity duration-700">
+        <div class="absolute top-[-10%] left-[10%] w-[500px] h-[500px] bg-purple-400/20 rounded-full blur-[100px] animate-spin-slow"></div>
+        <div class="absolute bottom-[-10%] right-[5%] w-[600px] h-[600px] bg-emerald-400/10 rounded-full blur-[120px] animate-spin-slow-reverse"></div>
+        <div class="absolute top-[40%] left-[-20%] w-[400px] h-[400px] bg-amber-400/10 rounded-full blur-[80px] animate-pulse"></div>
+    </div>
 
     <!-- Top Luxury Gold Announcement Banner -->
     <aside aria-label="Showroom Announcement" class="relative z-50 bg-gradient-to-r from-zinc-950 via-[#14120c] to-zinc-950 text-zinc-200 text-xs py-2.5 sm:py-3 px-4 sm:px-6 text-center tracking-wide flex items-center justify-center border-b border-[#d4af37]/25 shadow-sm">
@@ -232,48 +259,63 @@
         </div>
 
         <!-- Full Viewport Walking Crowd Canvas -->
-        <canvas id="crowdCanvas" class="absolute bottom-0 h-full max-h-[86vh] w-full pointer-events-none"></canvas>
-    </section>
+    <canvas id="crowdCanvas" class="absolute bottom-0 h-full max-h-[86vh] w-full pointer-events-none"></canvas>
+</section>
 
-    <!-- Master Showcase Gallery Section -->
-    <section id="showcase" class="py-14 sm:py-20 lg:py-26 max-w-7xl mx-auto px-4 sm:px-8 lg:px-10">
+<!-- Master Showcase Gallery Section -->
+<section id="showcase" class="relative py-14 sm:py-20 lg:py-26 z-10 w-full">
+    <!-- Smooth Neural Video Background -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <!-- Mask to blend smoothly with top and bottom sections -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#fafafa] via-transparent to-[#fafafa] dark:from-[#000000] dark:via-transparent dark:to-[#000000] z-20"></div>
+        
+        <!-- The Neural Veil for perfect contrast & cinematic glow -->
+        <div class="absolute inset-0 z-10 mix-blend-multiply dark:mix-blend-normal opacity-60 dark:opacity-100" style="background: radial-gradient(140% 60% at 50% 40%, rgba(6,10,18,.30) 0%, rgba(6,10,18,.15) 50%, rgba(6,10,18,0) 100%), linear-gradient(180deg, rgba(6,10,18,0) 45%, rgba(6,10,18,.40) 100%);"></div>
+        
+        <video class="showcase-bg absolute inset-0 w-full h-full object-cover opacity-25 dark:opacity-70 mix-blend-luminosity dark:mix-blend-screen" autoplay muted loop playsinline preload="auto" aria-hidden="true" poster="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/130837c4-0244-4f37-9c61-8d801d93fd29.jpg" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260912_104303_0c6d60b2-9353-408e-9449-585108a22fb5.mp4"></video>
+    </div>
+
+    <!-- Interactive Inner Content container -->
+    <div class="relative max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-10 z-30">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
             <div>
-                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-zinc-500 mb-2 block">Theme Collection</span>
-                <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50">Available Website Designs</h2>
+                <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] sm:tracking-[0.3em] text-zinc-600 dark:text-zinc-400 mb-2 block">Theme Collection</span>
+                <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 drop-shadow-sm">Available Website Designs</h2>
             </div>
             
             <!-- Search Input with Clear Button -->
-            <div class="relative w-full md:w-80">
-                <input type="text" id="searchInput" placeholder="Search designs or tech stack..." oninput="filterProjects()" class="w-full pl-4 pr-10 py-3 sm:py-3.5 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-black dark:focus:border-white outline-none text-xs sm:text-sm font-medium transition-colors shadow-sm">
-                <button id="clearSearchBtn" onclick="clearSearch()" aria-label="Clear Search" class="hidden absolute right-3.5 top-3.5 sm:top-4 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200">
+            <div class="relative w-full md:w-80 group">
+                <div class="absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-2xl opacity-0 group-focus-within:opacity-20 transition-opacity duration-300 blur"></div>
+                <input type="text" id="searchInput" placeholder="Search designs or tech stack..." oninput="filterProjects()" class="relative w-full pl-4 pr-10 py-3 sm:py-3.5 rounded-2xl bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border border-zinc-200 dark:border-zinc-700 focus:border-emerald-500 dark:focus:border-emerald-400 outline-none text-xs sm:text-sm font-medium transition-all shadow-sm group-focus-within:shadow-md">
+                <button id="clearSearchBtn" onclick="clearSearch()" aria-label="Clear Search" class="hidden absolute right-3.5 top-3.5 sm:top-4 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors z-10">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
-                <svg id="searchIcon" class="w-4 h-4 absolute right-4 top-3.5 sm:top-4 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <svg id="searchIcon" class="w-4 h-4 absolute right-4 top-3.5 sm:top-4 text-zinc-400 pointer-events-none transition-colors group-focus-within:text-emerald-500 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
         </div>
 
         <!-- Category Filters -->
-        <div class="flex items-center gap-2 sm:gap-2.5 mb-8 sm:mb-12 pb-3 border-b border-zinc-200 dark:border-zinc-800 overflow-x-auto no-scrollbar scroll-smooth" id="categoryFilters">
+        <div class="flex items-center gap-2 sm:gap-2.5 mb-8 sm:mb-12 pb-3 border-b border-zinc-300/50 dark:border-zinc-700/50 overflow-x-auto no-scrollbar scroll-smooth" id="categoryFilters">
             <!-- Buttons generated dynamically -->
         </div>
 
-        <!-- Projects Grid -->
-        <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-7xl mx-auto">
+        <!-- Projects Grid (Compact Apple-style minimal boxes) -->
+        <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 max-w-[90rem] mx-auto">
             <!-- Dynamically rendered projects -->
         </div>
 
         <!-- Empty State -->
         <div id="emptyState" class="hidden py-20 sm:py-28 text-center px-4">
-            <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-zinc-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-zinc-400 mb-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             <h3 class="text-lg sm:text-xl font-bold mb-2 text-zinc-900 dark:text-zinc-100">No matching themes found</h3>
             <p class="text-xs sm:text-sm text-zinc-500 mb-6">Try clearing your search query or choosing another category filter.</p>
-            <button onclick="resetFilters()" class="px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest active:scale-95 transition-transform shadow-md">Show All Themes</button>
+            <button onclick="resetFilters()" class="px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black text-xs font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-transform shadow-md">Show All Themes</button>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-10 sm:py-14 bg-white dark:bg-[#09090b]">
+<!-- Footer -->
+    <footer class="border-t border-zinc-200 dark:border-zinc-800 py-10 sm:py-14 bg-white/50 dark:bg-zinc-950/50 backdrop-blur-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-xl bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs shadow-md">F</div>
@@ -289,11 +331,11 @@
     <div id="selectionBar" class="fixed bottom-0 left-0 right-0 z-40 bg-zinc-950/95 text-white backdrop-blur-xl border-t border-zinc-800 py-3.5 sm:py-4 px-4 sm:px-8 lg:px-12 transform translate-y-full transition-transform duration-400 ease-out shadow-2xl safe-area-bottom">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
             <div class="flex items-center gap-2.5 text-center sm:text-left min-w-0">
-                <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_8px_#34d399]"></span>
                 <span id="selectedDesignText" class="text-xs sm:text-sm font-bold tracking-wide truncate max-w-[280px] sm:max-w-none text-zinc-100">Selected: None</span>
             </div>
             <div class="flex items-center gap-2.5 sm:gap-3.5 w-full sm:w-auto">
-                <button onclick="sendOnWhatsApp()" class="flex-1 sm:flex-none px-5 sm:px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs uppercase tracking-wider sm:tracking-widest transition-all flex items-center justify-center gap-2 shadow-xl touch-manipulation">
+                <button onclick="sendOnWhatsApp()" class="flex-1 sm:flex-none px-5 sm:px-7 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs uppercase tracking-wider sm:tracking-widest transition-all flex items-center justify-center gap-2 shadow-xl hover:shadow-emerald-500/30 touch-manipulation">
                     <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                     <span>Send on WhatsApp</span>
                 </button>
@@ -306,7 +348,7 @@
 
     <!-- Application Logic & Projects Database -->
     <script>
-        // Centralized Project Database with permanent index numbers (#1, #2, #3...)
+        // Centralized Project Database, expanded to 9 items with Black Man Design in 2nd position
         const projectsData = [
             {
                 id: "mars-theme-design",
@@ -322,8 +364,21 @@
                 badge: "pinned"
             },
             {
-                id: "books-2-theme-ui",
+                id: "black-man-design",
                 number: 2,
+                title: "Noir Editorial & Portrait",
+                category: "Creative Portfolios",
+                description: "A bold, high-contrast monochrome editorial showcase crafted for visual storytellers, creative directors, and personal brands.",
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=70",
+                gradient: "from-zinc-900 via-neutral-950 to-black",
+                liveUrl: "https://farmanshafi2007-hub.github.io/black-man-deign-website-/",
+                goodFor: ["Creative Directors", "Personal Brands", "Studios"],
+                pinned: true,
+                badge: "new"
+            },
+            {
+                id: "books-2-theme-ui",
+                number: 3,
                 title: "Bookstore & Publisher",
                 category: "Retail & Literature",
                 description: "An elegant, high-converting digital storefront designed for catalog browsing, featured bestsellers, and customer engagement.",
@@ -335,8 +390,20 @@
                 badge: "most-viewed"
             },
             {
+                id: "card-burn-design",
+                number: 4,
+                title: "Card Burn Interaction",
+                category: "Interactive UI",
+                description: "A highly interactive, stylized card interface featuring stunning hover effects, fiery visual elements, and modern CSS physics.",
+                image: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&w=400&q=70",
+                gradient: "from-orange-900 via-red-950 to-black",
+                liveUrl: "https://farmanshafi2007-hub.github.io/card-burn-deign-website-/",
+                goodFor: ["Portfolios", "Creative Showcases", "Tech Demos"],
+                pinned: false
+            },
+            {
                 id: "horror-halloween-theme",
-                number: 3,
+                number: 5,
                 title: "Events & Entertainment",
                 category: "Entertainment",
                 description: "An immersive, atmospheric experience with theatrical visual styling, themed interactive animations, and ticket showcase sections.",
@@ -348,7 +415,7 @@
             },
             {
                 id: "books-theme-ui",
-                number: 4,
+                number: 6,
                 title: "Classic Library & Bookstore",
                 category: "Retail & Literature",
                 description: "A warm, refined literary catalog design with reader reviews, curated book shelves, and clean product collections.",
@@ -360,7 +427,7 @@
             },
             {
                 id: "inexterior-architecture-theme",
-                number: 5,
+                number: 7,
                 title: "Architecture & Interior Studio",
                 category: "Real Estate & Architecture",
                 description: "A minimalist, luxury portfolio showcasing architectural projects, interior decor galleries, and design consultations.",
@@ -372,7 +439,7 @@
             },
             {
                 id: "liquid-glass-theme",
-                number: 6,
+                number: 8,
                 title: "Modern Glassmorphism Agency",
                 category: "Creative Agencies",
                 description: "A clean, modern corporate presence featuring translucent glass styling, polished project case studies, and transparent service pricing.",
@@ -381,21 +448,34 @@
                 liveUrl: "https://farmanshafi2007-hub.github.io/liquid-glass-theme-deign-/",
                 goodFor: ["Digital Agencies", "Consulting Firms", "SaaS Companies"],
                 pinned: false
+            },
+            {
+                id: "restaurant-premium",
+                number: 9,
+                title: "Premium Restaurant Experience",
+                category: "Hospitality & Food",
+                description: "A luxurious, appetizing digital storefront for fine dining. Includes reservation booking flows, elegant menu showcases, and atmospheric visuals.",
+                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=70",
+                gradient: "from-orange-950 via-stone-900 to-black",
+                liveUrl: "https://farmanshafi2007-hub.github.io/restusrant-deign-/",
+                goodFor: ["Fine Dining", "Cafes", "Culinary Brands"],
+                pinned: false,
+                badge: "new"
             }
         ];
 
         let currentCategory = 'All';
         let selectedDesign = null;
 
-        // Initialize Application
+        // Initialize Application (Defaults to Apple Dark Mode)
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('forge_theme');
-            if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-                document.documentElement.classList.remove('light');
-            } else {
+            if (savedTheme === 'light') {
                 document.documentElement.classList.remove('dark');
                 document.documentElement.classList.add('light');
+            } else {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
             }
             renderCategories();
             renderAllProjects();
@@ -423,7 +503,7 @@
             const categories = ['All', ...new Set(projectsData.map(p => p.category))];
 
             categoriesContainer.innerHTML = categories.map(cat => `
-                <button onclick="setCategory('${cat}')" class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap border shrink-0 touch-manipulation ${currentCategory === cat ? 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-md scale-[1.02]' : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}">
+                <button onclick="setCategory('${cat}')" class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap border shrink-0 touch-manipulation ${currentCategory === cat ? 'bg-black dark:bg-white text-white dark:text-black border-black dark:border-white shadow-lg shadow-black/20 dark:shadow-white/20 scale-[1.02]' : 'bg-white/50 dark:bg-zinc-900/50 backdrop-blur-md text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-white dark:hover:bg-zinc-800'}">
                     ${cat}
                 </button>
             `).join('');
@@ -490,7 +570,8 @@
                 if (emptyState) emptyState.classList.remove('hidden');
             } else {
                 if (emptyState) emptyState.classList.add('hidden');
-                grid.innerHTML = filtered.map(project => createProjectCardHTML(project)).join('');
+                // Pass index for staggered animation delay
+                grid.innerHTML = filtered.map((project, idx) => createProjectCardHTML(project, idx)).join('');
             }
         }
 
@@ -498,82 +579,76 @@
             renderAllProjects();
         }
 
-        // Project Card HTML Template with Responsive Curves and Touch Sizing
-        function createProjectCardHTML(project) {
+        // Apple Design Principles: Minimal, Compact, Mathematically Concentric Squircle Cards
+        function createProjectCardHTML(project, index) {
             const isSelected = selectedDesign && selectedDesign.id === project.id;
             const isPinned = project.badge === 'pinned' || Boolean(project.pinned);
             const isMostViewed = project.badge === 'most-viewed';
+            const isNew = project.badge === 'new';
+            const delay = index * 0.045;
 
             return `
-                <div class="project-card rounded-[2rem] border-2 ${isSelected ? 'border-emerald-600 ring-4 ring-emerald-500/30 shadow-2xl dark:shadow-emerald-950/40' : (isPinned ? 'border-zinc-900 dark:border-zinc-100 shadow-xl ring-2 ring-amber-400/40' : (isMostViewed ? 'border-zinc-900 dark:border-zinc-100 shadow-xl ring-2 ring-rose-400/40' : 'border-zinc-900/90 dark:border-zinc-100/90'))} bg-white dark:bg-zinc-950 overflow-hidden flex flex-col group relative shadow-md">
-                    <!-- Gradient Thumbnail Container with Big Number Badge -->
-                    <div class="aspect-video relative overflow-hidden bg-gradient-to-br ${project.gradient}">
-                        <img src="${project.image}" alt="${project.title}" loading="lazy" class="w-full h-full object-cover opacity-85 mix-blend-luminosity group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out" onerror="this.src='https://placehold.co/600x400/18181b/ffffff?text=Forge+Preview'">
-                        
-                        <!-- Big Visible Design Number Badge (Easy across-the-table reading) -->
-                        <div class="absolute top-3 sm:top-4 left-3 sm:left-4 z-10 flex flex-wrap items-center gap-2">
-                            <span class="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-2xl bg-black/90 dark:bg-white/95 text-white dark:text-black font-mono text-base sm:text-lg font-extrabold tracking-widest shadow-2xl backdrop-blur-md border border-white/20 dark:border-black/20">
-                                #${project.number}
-                            </span>
-                            ${isPinned ? `
-                                <span class="badge-pinned px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-amber-500 text-black font-bold text-[10px] sm:text-xs uppercase tracking-wider shadow-lg flex items-center gap-1">
-                                    <svg class="w-3 h-3 fill-current shrink-0" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    <span>Pinned</span>
+                <div class="project-card animate-fade-up border ${isSelected ? 'border-emerald-500/80 ring-2 ring-emerald-500/30 bg-white dark:bg-[#161618] shadow-xl' : 'border-black/[0.06] dark:border-white/[0.09] bg-white/85 dark:bg-[#121214]/80 hover:bg-white dark:hover:bg-[#18181b]/95 shadow-[0_8px_28px_-6px_rgba(0,0,0,0.06)] dark:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.75)]'} backdrop-blur-2xl overflow-hidden flex flex-col group relative" style="animation-delay: ${delay}s">
+                    
+                    <!-- Compact 16:9 Media Frame (8px padding + 20px inner radius = exact 28px outer concentric curve) -->
+                    <div class="p-2 pb-0">
+                        <div class="aspect-video relative overflow-hidden rounded-[20px] bg-gradient-to-br ${project.gradient} border border-black/[0.05] dark:border-white/[0.07]">
+                            <img src="${project.image}" alt="${project.title}" loading="lazy" class="w-full h-full object-cover opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500 ease-out" onerror="this.src='https://placehold.co/400x225/18181b/ffffff?text=Preview'">
+                            
+                            <!-- Minimal Floating Pill: Index & Status -->
+                            <div class="absolute top-2 left-2 z-10 flex items-center gap-1">
+                                <span class="px-2 py-0.5 rounded-full bg-black/65 dark:bg-black/80 text-white font-mono text-[9.5px] font-semibold tracking-wider backdrop-blur-md border border-white/15">
+                                    0${project.number}
                                 </span>
-                            ` : ''}
-                            ${isMostViewed ? `
-                                <span class="badge-most-viewed px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-rose-500 text-white font-bold text-[10px] sm:text-xs uppercase tracking-wider shadow-lg flex items-center gap-1">
-                                    <svg class="w-3 h-3 fill-none stroke-current shrink-0" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                                    <span>Most Viewed</span>
-                                </span>
-                            ` : ''}
-                        </div>
+                                ${isPinned ? `
+                                    <span class="px-2 py-0.5 rounded-full bg-amber-400/95 text-black font-semibold text-[8.5px] tracking-wide backdrop-blur-md shadow-sm">
+                                        Featured
+                                    </span>
+                                ` : ''}
+                                ${isMostViewed ? `
+                                    <span class="px-2 py-0.5 rounded-full bg-rose-500/95 text-white font-semibold text-[8.5px] tracking-wide backdrop-blur-md shadow-sm">
+                                        Popular
+                                    </span>
+                                ` : ''}
+                                ${isNew ? `
+                                    <span class="px-2 py-0.5 rounded-full bg-sky-500/95 text-white font-semibold text-[8.5px] tracking-wide backdrop-blur-md shadow-sm">
+                                        New
+                                    </span>
+                                ` : ''}
+                            </div>
 
-                        <!-- Category Badge -->
-                        <div class="absolute top-3 sm:top-4 right-3 sm:right-4 z-10">
-                            <span class="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-black/70 backdrop-blur-md text-white text-[10px] sm:text-[11px] font-bold tracking-wider sm:tracking-widest uppercase">
-                                ${project.category}
-                            </span>
+                            <!-- Subtle Hover Preview Overlay -->
+                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" aria-label="Preview ${project.title}" class="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="px-3 py-1 rounded-full bg-white/95 text-zinc-950 text-[10.5px] font-semibold tracking-tight shadow-lg transform translate-y-1.5 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-1">
+                                    <span>Live View</span>
+                                    <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                </span>
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Content -->
-                    <div class="p-5 sm:p-7 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl sm:text-2xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                                <span class="text-zinc-400 font-mono text-lg font-bold">#${project.number}</span>
-                                <span>${project.title}</span>
-                            </h3>
+                    <!-- Compact Content Hierarchy -->
+                    <div class="p-3 pt-2.5 flex flex-col flex-grow">
+                        <div class="text-[9.5px] font-medium text-zinc-400 dark:text-[#86868b] tracking-wide mb-0.5 truncate">
+                            ${project.category}
                         </div>
+                        <h3 class="text-[14px] font-semibold tracking-tight text-zinc-900 dark:text-[#f5f5f7] leading-snug mb-1 line-clamp-1">
+                            ${project.title}
+                        </h3>
                         
-                        <!-- Full, Uncut Description -->
-                        <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mb-5 leading-relaxed font-normal min-h-[44px]">
+                        <!-- Concise 2-line Description -->
+                        <p class="text-[11px] text-zinc-500 dark:text-[#a1a1a6] mb-3 leading-relaxed font-normal line-clamp-2">
                             ${project.description}
                         </p>
 
-                        <!-- Client-Friendly "Good for:" Business Use Tags -->
-                        <div class="mb-6">
-                            <div class="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2">Good for:</div>
-                            <div class="flex flex-wrap gap-1.5 sm:gap-2">
-                                ${(project.goodFor || []).map(item => `
-                                    <span class="px-2.5 py-1 rounded-md sm:rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-[11px] sm:text-xs font-medium border border-zinc-200 dark:border-zinc-800 flex items-center gap-1">
-                                        <span class="text-emerald-500 text-[10px]">✓</span> ${item}
-                                    </span>
-                                `).join('')}
-                            </div>
-                        </div>
-
-                        <!-- Actions -->
-                        <div class="grid grid-cols-2 gap-2.5 sm:gap-3 pt-4 sm:pt-5 border-t border-zinc-100 dark:border-zinc-900 mt-auto">
-                            <!-- Live Preview Button -->
-                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-live-preview py-3 sm:py-3.5 px-2 rounded-xl bg-indigo-50/90 hover:bg-indigo-600 text-indigo-700 hover:text-white dark:bg-indigo-950/40 dark:hover:bg-indigo-600 dark:text-indigo-300 dark:hover:text-white border border-indigo-200/90 dark:border-indigo-800/80 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-400 shadow-sm active:scale-95 transition-all touch-manipulation">
-                                <span>Preview</span>
-                                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        <!-- Apple Pill Action Row (Concentric with 28px outer bottom corners) -->
+                        <div class="flex items-center gap-1.5 pt-2.5 border-t border-zinc-100 dark:border-white/[0.07] mt-auto">
+                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-1.5 px-2.5 rounded-full bg-zinc-100 hover:bg-zinc-200/80 dark:bg-white/[0.08] dark:hover:bg-white/[0.14] text-zinc-800 dark:text-[#f5f5f7] text-[10.5px] font-medium tracking-tight text-center transition-colors touch-manipulation">
+                                Preview
                             </a>
 
-                            <!-- Select Design Button -->
-                            <button onclick="orderViaWhatsApp('${project.id}')" class="btn-select-design py-3 sm:py-3.5 px-2 rounded-xl ${isSelected ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/30 ring-2 ring-emerald-400' : 'bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 shadow-md'} text-[11px] sm:text-xs font-bold uppercase tracking-wider text-center focus:outline-none focus:ring-2 focus:ring-emerald-400 touch-manipulation flex items-center justify-center gap-1.5 active:scale-95 transition-all">
-                                <span>${isSelected ? '✓ Ordered' : 'Select & Order'}</span>
+                            <button onclick="orderViaWhatsApp('${project.id}')" class="flex-1 py-1.5 px-2.5 rounded-full ${isSelected ? 'bg-emerald-600 text-white shadow-sm' : 'bg-zinc-950 hover:bg-zinc-800 dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-black'} text-[10.5px] font-semibold tracking-tight text-center transition-all active:scale-95 touch-manipulation">
+                                ${isSelected ? 'Selected' : 'Select'}
                             </button>
                         </div>
                     </div>
@@ -627,11 +702,11 @@
             
             const textMessage = `*FORGE SOFTWARES — THEME ORDER INQUIRY*
 ━━━━━━━━━━━━━━━━━━━━━
-• *Tracking ID:* #${orderId}
-• *Theme No:* #${selectedDesign.number}
-• *Theme Name:* ${selectedDesign.title}
-• *Category:* ${selectedDesign.category}
-• *Live Sample URL:* ${selectedDesign.liveUrl}
+- *Tracking ID:* #${orderId}
+- *Theme No:* #${selectedDesign.number}
+- *Theme Name:* ${selectedDesign.title}
+- *Category:* ${selectedDesign.category}
+- *Live Sample URL:* ${selectedDesign.liveUrl}
 ━━━━━━━━━━━━━━━━━━━━━
 Hello Forge Softwares team, I have chosen design #${selectedDesign.number} for my project. Please let me know the development timeline and onboarding steps.`;
 
@@ -894,12 +969,27 @@ Hello Forge Softwares team, I have chosen design #${selectedDesign.number} for m
             img.src = spriteSources[0];
 
             let resizeTimer;
-            window.addEventListener("resize", () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(resize, 150);
-            });
+        window.addEventListener("resize", () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resize, 150);
+        });
 
-        })();
-    </script>
+    })();
+</script>
+
+<!-- Reduced Motion Accessibility Script for Video Background -->
+<script>
+    (function(){
+        var q=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)'),
+            v=document.querySelector('video.showcase-bg');
+        if(!q||!v)return;
+        function sync(){ 
+            if(q.matches){v.pause();} 
+            else{var p=v.play();if(p)p.catch(function(){});} 
+        }
+        sync();
+        q.addEventListener ? q.addEventListener('change',sync) : q.addListener(sync);
+    })();
+</script>
 </body>
 </html>
