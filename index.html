@@ -21,9 +21,9 @@
                         '400': '400ms'
                     },
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-                        mono: ['IBM Plex Mono', 'JetBrains Mono', 'monospace'],
-                        serif: ['Newsreader', 'Cormorant Garamond', 'Georgia', 'serif']
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'IBM Plex Mono', 'monospace'],
+                        serif: ['Newsreader', 'Georgia', 'serif']
                     },
                     animation: {
                         'spin-slow': 'spin 20s linear infinite',
@@ -34,16 +34,16 @@
         }
     </script>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Minimal Premium Editorial & Neo-Grotesque Pairing -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --distill-sans: "Inter", system-ui, -apple-system, sans-serif;
+            --distill-sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
             --distill-serif: "Newsreader", Georgia, serif;
-            --distill-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+            --distill-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
 
             --distill-bg: #EEF0F4;
             --distill-ink: #0F1115;
@@ -91,21 +91,28 @@
             scroll-behavior: smooth;
             scroll-padding-top: 80px;
             -webkit-tap-highlight-color: transparent;
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+            text-rendering: optimizeLegibility;
+        }
+
+        body {
+            font-family: var(--distill-sans);
+            letter-spacing: -0.011em;
         }
 
         ::-webkit-scrollbar {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
         }
         ::-webkit-scrollbar-track {
             background: transparent;
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(140, 140, 140, 0.35);
+            background: rgba(140, 140, 140, 0.3);
             border-radius: 9999px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(100, 100, 100, 0.55);
+            background: rgba(100, 100, 100, 0.5);
         }
 
         .glass-nav {
@@ -191,13 +198,13 @@
             align-items: center;
             gap: 8px;
             font-family: var(--distill-mono);
-            font-weight: 600;
-            font-size: 11px;
-            letter-spacing: 0.1em;
+            font-weight: 500;
+            font-size: 10.5px;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--hot);
-            background: rgba(255, 90, 31, 0.1);
-            border: 1px solid rgba(255, 90, 31, 0.25);
+            background: rgba(255, 90, 31, 0.08);
+            border: 1px solid rgba(255, 90, 31, 0.22);
             padding: 4px 11px;
             border-radius: 999px;
         }
@@ -242,8 +249,9 @@
             background: var(--hot);
             color: #FFFFFF;
             font-family: var(--distill-sans);
-            font-weight: 600;
+            font-weight: 500;
             font-size: 12.5px;
+            letter-spacing: -0.01em;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -266,12 +274,13 @@
             height: 40px;
             padding: 0 16px;
             border-radius: 9999px;
-            background: rgba(128, 128, 128, 0.1);
+            background: rgba(128, 128, 128, 0.08);
             color: var(--distill-ink);
-            border: 1px solid rgba(128, 128, 128, 0.24);
+            border: 1px solid rgba(128, 128, 128, 0.22);
             font-family: var(--distill-sans);
             font-weight: 500;
             font-size: 12.5px;
+            letter-spacing: -0.01em;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -281,8 +290,8 @@
             white-space: nowrap;
         }
         .btn-distill-secondary:hover {
-            background: rgba(128, 128, 128, 0.18);
-            border-color: rgba(128, 128, 128, 0.4);
+            background: rgba(128, 128, 128, 0.16);
+            border-color: rgba(128, 128, 128, 0.38);
         }
         .btn-distill-secondary:active {
             transform: scale(0.97);
@@ -417,7 +426,7 @@
             font-family: var(--distill-sans);
             font-weight: 500;
             font-size: 10.5px;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.01em;
             color: var(--distill-muted);
             line-height: 1;
             white-space: nowrap;
@@ -431,14 +440,14 @@
             align-items: stretch;
             box-shadow: 0 4px 18px rgba(255, 90, 31, 0.35);
             font-family: var(--distill-mono);
-            font-weight: 600;
+            font-weight: 500;
             border: 1px solid rgba(255, 90, 31, 0.3);
         }
 
         .badge-num {
             background: var(--hot);
             color: #FFFFFF;
-            font-size: 11.5px;
+            font-size: 11px;
             padding: 0 10px 0 12px;
             min-width: 7.5ch;
             display: inline-flex;
@@ -450,7 +459,7 @@
         .badge-pct {
             background: var(--hot-soft);
             color: #C83706;
-            font-size: 10.5px;
+            font-size: 10px;
             padding: 0 11px 0 9px;
             display: inline-flex;
             align-items: center;
@@ -478,7 +487,7 @@
             top: clamp(10px, 2.8cqw, 18px);
             font-family: var(--distill-mono);
             font-weight: 400;
-            font-size: clamp(9px, 1.55cqw, 13.5px);
+            font-size: clamp(9px, 1.55cqw, 13px);
             line-height: 1.45;
             margin: 0;
         }
@@ -526,9 +535,9 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            font-weight: 600;
-            font-size: clamp(11px, 3.6cqw, 20px);
-            letter-spacing: -0.03em;
+            font-weight: 500;
+            font-size: clamp(11px, 3.6cqw, 19px);
+            letter-spacing: -0.025em;
             line-height: 1;
         }
         .k-brand svg { width: clamp(14px, 4.2cqw, 24px); height: auto; display: block; }
@@ -536,14 +545,14 @@
             display: flex;
             align-items: center;
             gap: clamp(8px, 2.6cqw, 16px);
-            font-weight: 600;
-            font-size: clamp(8px, 1.3cqw, 11px);
-            letter-spacing: 0.12em;
+            font-weight: 500;
+            font-size: clamp(8px, 1.3cqw, 10.5px);
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             opacity: 0.9;
         }
         .k-pill {
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.55);
             border-radius: 999px;
             padding: 2px 8px;
         }
@@ -560,7 +569,7 @@
         .card-price .k-pill { border-color: rgba(42, 20, 6, 0.55); }
         .price-big { position: absolute; top: 34%; left: clamp(12px, 4.4cqw, 26px); font-weight: 300; font-size: clamp(32px, 11cqw, 64px); line-height: 0.9; letter-spacing: -0.05em; }
         .price-sub { position: absolute; top: 60%; left: clamp(12px, 4.4cqw, 26px); font-family: var(--distill-mono); font-size: clamp(8px, 1.5cqw, 11px); letter-spacing: 0.05em; opacity: 0.8; }
-        .price-cta { position: absolute; bottom: clamp(12px, 4.4cqw, 24px); left: clamp(12px, 4.4cqw, 26px); background: #2A1406; color: #F7E6D6; font-size: clamp(9px, 1.65cqw, 11.5px); font-weight: 600; padding: 5px 12px; border-radius: 999px; }
+        .price-cta { position: absolute; bottom: clamp(12px, 4.4cqw, 24px); left: clamp(12px, 4.4cqw, 26px); background: #2A1406; color: #F7E6D6; font-size: clamp(9px, 1.65cqw, 11.5px); font-weight: 500; padding: 5px 12px; border-radius: 999px; }
         .price-plans { position: absolute; top: 32%; right: clamp(12px, 4.4cqw, 26px); width: 38%; display: flex; flex-direction: column; }
         .price-row { display: flex; justify-content: space-between; align-items: center; padding: clamp(4px, 1.6cqw, 10px) 0; border-top: 1px solid rgba(42, 20, 6, 0.22); font-size: clamp(9px, 1.85cqw, 12px); }
         .price-row span:last-child { font-family: var(--distill-mono); font-size: clamp(8.5px, 1.65cqw, 11px); opacity: 0.85; }
@@ -578,6 +587,11 @@
         .alloy-title em { font-style: italic; display: block; color: #fdba74; }
         .alloy-specs { position: absolute; bottom: clamp(12px, 4.4cqw, 24px); right: clamp(12px, 4.4cqw, 26px); width: 36%; display: flex; flex-direction: column; z-index: 3; }
         .alloy-row { display: flex; justify-content: space-between; padding: clamp(3px, 1.2cqw, 8px) 0; border-top: 1px solid rgba(255, 255, 255, 0.25); font-size: clamp(8.5px, 1.55cqw, 11px); }
+
+        .card-fitness { background: radial-gradient(circle at 78% 28%, #064e3b 0%, #052e22 55%, #040b09 100%); }
+        .card-f1 { background: radial-gradient(circle at 80% 25%, #7f1d1d 0%, #2a0808 58%, #090405 100%); }
+        .card-equestrian { background: radial-gradient(circle at 76% 26%, #78350f 0%, #291507 58%, #0a0604 100%); }
+        .card-earth { background: radial-gradient(circle at 78% 28%, #0c4a6e 0%, #1e1b4b 56%, #05070e 100%); }
     </style>
 </head>
 <body class="bg-[#fafafa] dark:bg-[#000000] text-zinc-950 dark:text-[#f5f5f7] font-sans antialiased transition-colors duration-300 selection:bg-orange-500 selection:text-white pb-32 relative overflow-x-hidden">
@@ -586,14 +600,14 @@
     <aside aria-label="Showroom Announcement" class="relative z-50 bg-gradient-to-r from-zinc-950 via-[#17140d] to-zinc-950 text-zinc-200 text-[11px] sm:text-xs py-2.5 px-3 sm:px-6 text-center tracking-wide border-b border-[#d4af37]/25 shadow-sm">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center">
             <span class="inline-flex items-center gap-1.5">
-                <span class="inline-block w-2 h-2 rounded-full bg-[#f3e5ab] shadow-[0_0_8px_#f3e5ab] animate-pulse"></span>
-                <span class="font-normal text-zinc-300 tracking-wider">Welcome to Theme Showroom &mdash;</span>
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#f3e5ab] shadow-[0_0_8px_#f3e5ab] animate-pulse"></span>
+                <span class="font-normal text-zinc-300 tracking-normal">Welcome to Theme Showroom &mdash;</span>
             </span>
-            <span class="font-bold tracking-widest uppercase bg-gradient-to-r from-[#ffe89e] via-[#dfb76c] to-[#f9e29f] bg-clip-text text-transparent">
+            <span class="font-medium tracking-[0.14em] uppercase bg-gradient-to-r from-[#ffe89e] via-[#dfb76c] to-[#f9e29f] bg-clip-text text-transparent">
                 Here You Choose &amp; Select, We Make
             </span>
-            <a href="#showcase" class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#f5eedc] hover:text-white transition-colors underline underline-offset-4 ml-1">
-                <span>Browse All 9 Themes</span>
+            <a href="#showcase" class="inline-flex items-center gap-1 text-[11px] font-medium text-[#f5eedc] hover:text-white transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-white ml-1">
+                <span>Browse All 13 Themes</span>
                 <span aria-hidden="true">&rarr;</span>
             </a>
         </div>
@@ -603,27 +617,38 @@
     <header class="sticky top-0 z-40 glass-nav bg-white/80 dark:bg-[#09090b]/85 border-b border-zinc-200/80 dark:border-zinc-800/80 transition-colors">
         <div class="max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-10 h-16 sm:h-18 flex items-center justify-between gap-3">
             <a href="#" class="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-xl p-1">
-                <div class="w-9 h-9 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 flex items-center justify-center font-extrabold text-base tracking-tight group-hover:scale-105 transition-transform shadow-md">
+                <div class="w-9 h-9 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 flex items-center justify-center font-semibold text-base tracking-tight group-hover:scale-105 transition-transform shadow-sm">
                     F
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-extrabold text-sm sm:text-base tracking-tight leading-none">FORGE</span>
-                    <span class="text-[9px] font-bold text-zinc-500 dark:text-zinc-400 tracking-[0.25em] mt-0.5">SHOWROOM</span>
+                    <span class="font-semibold text-sm sm:text-[15px] tracking-[-0.02em] leading-none">FORGE</span>
+                    <span class="text-[9px] font-mono font-medium text-zinc-500 dark:text-zinc-400 tracking-[0.22em] mt-0.5">SHOWROOM</span>
                 </div>
             </a>
 
             <div class="flex items-center gap-2 sm:gap-3">
-                <div class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-100/90 dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800 text-[11px] font-medium text-zinc-600 dark:text-zinc-400">
+                <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-100/90 dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800 text-[11px] font-normal text-zinc-600 dark:text-zinc-400">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span>9 Production Themes Ready</span>
+                    <span>13 Production Themes Ready</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-semibold text-sm sm:text-[15px] tracking-[-0.02em] leading-none">FORGE</span>
+                    <span class="text-[9px] font-mono font-medium text-zinc-500 dark:text-zinc-400 tracking-[0.22em] mt-0.5">SHOWROOM</span>
+                </div>
+            </a>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-100/90 dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800 text-[11px] font-normal text-zinc-600 dark:text-zinc-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span>11 Production Themes Ready</span>
                 </div>
 
                 <button type="button" onclick="toggleTheme()" aria-label="Toggle Light or Dark Theme" class="p-2.5 rounded-full border border-zinc-300/80 dark:border-zinc-700/80 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-orange-500 text-zinc-800 dark:text-zinc-200 active:scale-95">
-                    <svg id="sunIcon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                    <svg id="moonIcon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                    <svg id="sunIcon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg id="moonIcon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
                 </button>
 
-                <a href="#showcase" class="inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-[11px] sm:text-xs font-bold uppercase tracking-wider hover:opacity-90 active:scale-95 transition-all shadow-sm">
+                <a href="#showcase" class="inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-[11px] sm:text-xs font-medium tracking-tight hover:opacity-90 active:scale-95 transition-all shadow-sm">
                     Explore Themes
                 </a>
             </div>
@@ -648,7 +673,7 @@
             <div class="distill-hero-right">
                 <div class="distill-actions">
                     <a href="#showcase" class="btn-distill-primary">
-                        <span>Explore All 9 Themes</span>
+                        <span>Explore All 13 Themes</span>
                         <span aria-hidden="true">&darr;</span>
                     </a>
                     <div class="inline-flex items-center gap-1.5">
@@ -689,8 +714,8 @@
 
         <!-- Interactive Drag Hint -->
         <div class="relative z-20 flex items-center justify-center px-4 mt-1">
-            <span class="inline-flex items-center gap-2 text-[11px] font-mono text-zinc-500 dark:text-zinc-400 bg-black/[0.04] dark:bg-white/[0.04] px-3 py-1 rounded-full border border-black/[0.06] dark:border-white/[0.07]">
-                <svg class="w-3.5 h-3.5 text-[#FF5A1F]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+            <span class="inline-flex items-center gap-2 text-[10.5px] font-mono text-zinc-500 dark:text-zinc-400 bg-black/[0.03] dark:bg-white/[0.03] px-3 py-1 rounded-full border border-black/[0.06] dark:border-white/[0.07]">
+                <svg class="w-3.5 h-3.5 text-[#FF5A1F]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
                 <span>Drag or swipe belt horizontally to inspect live DOM distillation</span>
             </span>
         </div>
@@ -699,7 +724,7 @@
         <div class="absolute bottom-0 inset-x-0 h-12 bg-gradient-to-t from-[#fafafa] dark:from-[#000000] to-transparent pointer-events-none z-10"></div>
     </section>
 
-    <!-- Master Showcase Gallery Section (All 9 Themes) -->
+    <!-- Master Showcase Gallery Section (All 13 Themes) -->
     <section id="showcase" class="relative py-12 sm:py-16 lg:py-20 z-10 w-full">
         <!-- Smooth Neural Video Background -->
         <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -713,23 +738,23 @@
             <!-- Section Header & Search Bar -->
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4 sm:gap-6">
                 <div>
-                    <div class="inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.22em] text-orange-600 dark:text-orange-400 mb-2">
+                    <div class="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.16em] text-orange-600 dark:text-orange-400 mb-2">
                         <span>Master Collection</span>
                         <span>&bull;</span>
-                        <span id="resultsCountLabel">9 Production Designs</span>
+                        <span id="resultsCountLabel">13 Production Designs</span>
                     </div>
-                    <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50">Available Website Designs</h2>
+                    <h2 class="text-2xl sm:text-4xl lg:text-[42px] font-semibold tracking-[-0.03em] leading-[1.1] text-zinc-950 dark:text-zinc-50">Available Website Designs</h2>
                 </div>
                 
                 <!-- Search Input -->
                 <div class="relative w-full md:w-80 lg:w-96 group">
                     <div class="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-emerald-500 rounded-2xl opacity-0 group-focus-within:opacity-25 transition-opacity duration-300 blur"></div>
                     <div class="relative flex items-center">
-                        <svg class="w-4 h-4 absolute left-4 text-zinc-400 pointer-events-none transition-colors group-focus-within:text-orange-500 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                        <input type="text" id="searchInput" placeholder="Search themes, industries, or tags..." oninput="filterProjects()" class="w-full pl-10 pr-16 py-3 rounded-2xl bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-800 focus:border-orange-500 dark:focus:border-orange-400 outline-none text-xs sm:text-sm font-medium transition-all shadow-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400">
+                        <svg class="w-4 h-4 absolute left-4 text-zinc-400 pointer-events-none transition-colors group-focus-within:text-orange-500 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        <input type="text" id="searchInput" placeholder="Search themes, industries, or tags..." oninput="filterProjects()" class="w-full pl-10 pr-16 py-3 rounded-2xl bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-800 focus:border-orange-500 dark:focus:border-orange-400 outline-none text-xs sm:text-sm font-normal tracking-tight transition-all shadow-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400">
                         <kbd id="searchShortcutHint" class="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium text-zinc-400 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md absolute right-3.5 pointer-events-none">/</kbd>
                         <button type="button" id="clearSearchBtn" onclick="clearSearch()" aria-label="Clear Search" class="hidden absolute right-3 p-1 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors z-10">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"/></svg>
                         </button>
                     </div>
                 </div>
@@ -746,11 +771,11 @@
             <!-- Empty State -->
             <div id="emptyState" class="hidden py-16 sm:py-24 text-center px-4 rounded-3xl border border-dashed border-zinc-300 dark:border-zinc-800 bg-white/40 dark:bg-zinc-900/40 backdrop-blur-md">
                 <div class="w-12 h-12 mx-auto mb-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-zinc-400">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </div>
-                <h3 class="text-base sm:text-lg font-bold mb-1.5 text-zinc-900 dark:text-zinc-100">No matching themes found</h3>
+                <h3 class="text-base sm:text-lg font-semibold tracking-tight mb-1.5 text-zinc-900 dark:text-zinc-100">No matching themes found</h3>
                 <p class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mb-6 max-w-md mx-auto">We couldn't find any themes matching your current search or category filter.</p>
-                <button type="button" onclick="resetFilters()" class="px-6 py-2.5 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-xs font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-transform shadow-md">
+                <button type="button" onclick="resetFilters()" class="px-6 py-2.5 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-xs font-medium tracking-tight hover:scale-105 active:scale-95 transition-transform shadow-md">
                     Reset All Filters
                 </button>
             </div>
@@ -761,14 +786,14 @@
     <footer class="border-t border-zinc-200/80 dark:border-zinc-800/80 py-10 sm:py-12 bg-white/60 dark:bg-zinc-950/60 backdrop-blur-lg">
         <div class="max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 flex items-center justify-center font-extrabold text-xs shadow-sm">F</div>
+                <div class="w-8 h-8 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 flex items-center justify-center font-semibold text-xs shadow-sm">F</div>
                 <div>
-                    <span class="font-extrabold tracking-tight text-xs sm:text-sm block leading-none">FORGE SOFTWARES</span>
+                    <span class="font-semibold tracking-[-0.02em] text-xs sm:text-sm block leading-none">FORGE SOFTWARES</span>
                     <span class="text-[10px] text-zinc-500 dark:text-zinc-400 font-mono">Digital Theme Showroom</span>
                 </div>
             </div>
-            <div class="text-[11px] sm:text-xs text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">
-                &copy; 2026 Forge Softwares. All 9 client themes independently hosted and performance-optimized.
+            <div class="text-[11px] sm:text-xs text-zinc-500 dark:text-zinc-400 font-normal tracking-tight">
+                &copy; 2026 Forge Softwares. All 13 client themes independently hosted and performance-optimized.
             </div>
         </div>
     </footer>
@@ -780,33 +805,135 @@
                 <div class="flex items-center gap-2.5 min-w-0">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_10px_#34d399]"></span>
                     <div class="truncate">
-                        <span id="selectedDesignText" class="text-xs sm:text-sm font-bold tracking-wide text-zinc-100 block truncate">Selected: None</span>
+                        <span id="selectedDesignText" class="text-xs sm:text-sm font-medium tracking-tight text-zinc-100 block truncate">Selected: None</span>
                         <span id="selectedOrderMeta" class="text-[10px] font-mono text-zinc-400 block truncate">Ready for instant WhatsApp onboarding</span>
                     </div>
                 </div>
-                <a id="selectedPreviewLink" href="#" target="_blank" rel="noopener noreferrer" class="sm:hidden shrink-0 px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-200 text-[10px] font-semibold">
+                <a id="selectedPreviewLink" href="#" target="_blank" rel="noopener noreferrer" class="sm:hidden shrink-0 px-2.5 py-1 rounded-lg bg-zinc-800 text-zinc-200 text-[10px] font-medium">
                     Live Demo &nearr;
                 </a>
             </div>
             <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
-                <a id="selectedPreviewLinkDesktop" href="#" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/80 text-zinc-200 text-xs font-semibold transition-colors">
+                <button type="button" onclick="openSelectionDocument()" class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/80 text-zinc-200 text-xs font-medium tracking-tight transition-colors">
+                    <span>Selection Brief</span>
+                </button>
+                <a id="selectedPreviewLinkDesktop" href="#" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/80 text-zinc-200 text-xs font-medium transition-colors">
                     <span>Open Live Demo</span>
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 </a>
-                <button type="button" onclick="sendOnWhatsApp()" class="flex-1 sm:flex-none px-5 sm:px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 touch-manipulation">
+                <button type="button" onclick="sendOnWhatsApp()" class="flex-1 sm:flex-none px-5 sm:px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-medium text-xs tracking-tight transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 touch-manipulation">
                     <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                     <span>Send on WhatsApp</span>
                 </button>
-                <button type="button" onclick="clearSelection()" class="px-3.5 sm:px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 active:scale-95 text-zinc-300 font-bold text-xs uppercase tracking-wider transition-all touch-manipulation">
+                <button type="button" onclick="clearSelection()" class="px-3.5 sm:px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 active:scale-95 text-zinc-300 font-medium text-xs tracking-tight transition-all touch-manipulation">
                     Clear
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- Design Selection Document Modal -->
+    <div id="selectionDocModal" role="dialog" aria-modal="true" aria-labelledby="docModalTitle" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 sm:p-6">
+        <!-- Backdrop -->
+        <div onclick="closeSelectionDocument()" class="fixed inset-0 bg-black/70 backdrop-blur-md transition-opacity"></div>
+
+        <!-- Editorial Document Sheet -->
+        <div class="relative z-10 w-full max-w-lg max-h-[90dvh] overflow-y-auto rounded-[24px] bg-[#fafafa] dark:bg-[#0d0d10] text-zinc-950 dark:text-[#f5f5f7] border border-zinc-200/90 dark:border-white/[0.12] shadow-[0_32px_80px_-16px_rgba(0,0,0,0.75)] p-5 sm:p-7 font-sans transition-all">
+            
+            <!-- Top Document Header -->
+            <div class="flex items-center justify-between gap-3 pb-4 border-b border-zinc-200/80 dark:border-white/[0.08]">
+                <div class="inline-flex items-center gap-2 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-[#FF5A1F]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#FF5A1F]"></span>
+                    <span>FORGE SOFTWARES &middot; SELECTION DOCUMENT</span>
+                </div>
+                <button type="button" onclick="closeSelectionDocument()" aria-label="Close Document" class="w-8 h-8 rounded-full bg-zinc-200/70 dark:bg-white/[0.08] hover:bg-zinc-300 dark:hover:bg-white/[0.15] flex items-center justify-center text-zinc-600 dark:text-zinc-300 transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <!-- Editorial Notice & Message -->
+            <div class="mt-5">
+                <h2 id="docModalTitle" class="font-serif text-2xl sm:text-[30px] font-normal tracking-[-0.025em] leading-[1.12] text-zinc-950 dark:text-white">
+                    Choose any one design,<br />
+                    <em class="italic text-[#FF5A1F]">and we will build it for you.</em>
+                </h2>
+                <p class="mt-3 text-xs sm:text-[13.5px] leading-relaxed text-zinc-600 dark:text-zinc-300 font-normal">
+                    Please select any one design that you choose from our showroom so we can work on it together — customizing the layout, brand colors, typography, and content specifically for your project.
+                </p>
+            </div>
+
+            <!-- Selected Design Summary Card -->
+            <div class="mt-5 rounded-2xl bg-white dark:bg-[#141418] border border-zinc-200/90 dark:border-white/[0.09] p-3.5 sm:p-4 shadow-sm">
+                <div class="flex items-center gap-3.5">
+                    <div id="docArtworkPreview" class="w-24 sm:w-28 aspect-[16/10] rounded-xl overflow-hidden shrink-0 border border-black/[0.06] dark:border-white/[0.08] bg-zinc-900"></div>
+                    <div class="min-w-0 flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span id="docThemeNumber" class="px-2 py-0.5 rounded-full bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 font-mono text-[10px] font-medium">#01</span>
+                            <span id="docThemeCategory" class="font-mono text-[10px] uppercase tracking-wider text-orange-600 dark:text-orange-400 truncate">Modern Business</span>
+                        </div>
+                        <h3 id="docThemeTitle" class="font-sans text-sm sm:text-base font-semibold tracking-[-0.015em] text-zinc-950 dark:text-white truncate">
+                            Cosmic &amp; Brand Launch
+                        </h3>
+                        <p id="docTrackingId" class="mt-0.5 font-mono text-[10.5px] text-zinc-500 dark:text-zinc-400">
+                            Document Ref: #0000000000
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Included Deliverables -->
+                <div class="mt-4 pt-3.5 border-t border-zinc-100 dark:border-white/[0.07] grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11.5px] text-zinc-600 dark:text-zinc-300">
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                            <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        </span>
+                        <span>1 Selected Master Theme</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                            <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        </span>
+                        <span>Custom Brand &amp; Copy Setup</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                            <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        </span>
+                        <span>Mobile &amp; Desktop Responsive</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                            <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                        </span>
+                        <span>Direct WhatsApp Collaboration</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-5 flex flex-col gap-2.5">
+                <button type="button" onclick="sendOnWhatsApp()" class="w-full py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-[0.99] text-white font-medium text-xs sm:text-[13px] tracking-tight transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20">
+                    <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    <span>Confirm Selection &amp; Send on WhatsApp</span>
+                </button>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <a id="docLivePreviewBtn" href="#" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-zinc-200/75 dark:bg-white/[0.07] hover:bg-zinc-300/80 dark:hover:bg-white/[0.12] text-zinc-900 dark:text-zinc-100 text-xs font-medium tracking-tight text-center transition-colors inline-flex items-center justify-center gap-1.5">
+                        <span>Preview Live Demo</span>
+                        <svg class="w-3.5 h-3.5 opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
+                    <button type="button" onclick="closeSelectionDocument()" class="py-2.5 px-3 rounded-xl border border-zinc-300/80 dark:border-white/[0.12] hover:bg-zinc-100 dark:hover:bg-white/[0.05] text-zinc-700 dark:text-zinc-300 text-xs font-medium tracking-tight transition-colors">
+                        Choose Another Design
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Application Logic, Bespoke Vector Art & Projects Database -->
     <script>
-        // Bespoke Generative SVG Art for each of the 9 Themes
+        const formatThemeNum = (num) => String(num).padStart(2, '0');
+
+        // Bespoke Generative SVG Art for all 13 Themes
         function getThemeArtwork(id) {
             const artMap = {
                 "mars-theme-design": `
@@ -908,12 +1035,89 @@
                         <path d="M92 114C92 76.4446 122.445 46 160 46C197.555 46 228 76.4446 228 114H92Z" fill="#291d16" stroke="#fbbf24" stroke-width="2"/>
                         <line x1="74" y1="122" x2="246" y2="122" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
                         <line x1="96" y1="132" x2="224" y2="132" stroke="rgba(251,191,36,0.35)" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>`,
+                "workout-website-design": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="gymGlow" cx="50%" cy="50%" r="55%">
+                                <stop offset="0%" stop-color="#10b981" stop-opacity="0.32"/>
+                                <stop offset="100%" stop-color="#06110d" stop-opacity="0"/>
+                            </radialGradient>
+                        </defs>
+                        <rect width="320" height="180" fill="#070d0b"/>
+                        <circle cx="160" cy="84" r="78" fill="url(#gymGlow)"/>
+                        <!-- Minimal Precision Barbell -->
+                        <rect x="64" y="81" width="192" height="6" rx="3" fill="rgba(255,255,255,0.22)"/>
+                        <rect x="80" y="56" width="12" height="56" rx="4" fill="#10b981"/>
+                        <rect x="96" y="48" width="14" height="72" rx="5" fill="#ecfdf5"/>
+                        <rect x="210" y="48" width="14" height="72" rx="5" fill="#ecfdf5"/>
+                        <rect x="228" y="56" width="12" height="56" rx="4" fill="#10b981"/>
+                        <!-- Biometric Pulse Telemetry Line -->
+                        <path d="M52 142H122L134 126L148 154L162 120L174 146L184 136H268" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>`,
+                "f1-motorsport-design": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="f1Streak" x1="0%" y1="50%" x2="100%" y2="50%">
+                                <stop offset="0%" stop-color="#ef4444" stop-opacity="0"/>
+                                <stop offset="60%" stop-color="#ef4444"/>
+                                <stop offset="100%" stop-color="#fca5a5"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="320" height="180" fill="#0b0607"/>
+                        <!-- Sweeping Grand Prix Circuit Apex -->
+                        <path d="M44 132C92 132 108 54 166 54C214 54 226 108 276 108" stroke="rgba(255,255,255,0.14)" stroke-width="14" stroke-linecap="round"/>
+                        <path d="M44 132C92 132 108 54 166 54C214 54 226 108 276 108" stroke="url(#f1Streak)" stroke-width="3.5" stroke-linecap="round"/>
+                        <!-- Aerodynamic Speed Telemetry Bars & Apex Node -->
+                        <circle cx="166" cy="54" r="6" fill="#ef4444"/>
+                        <circle cx="166" cy="54" r="12" stroke="rgba(239,68,68,0.45)" stroke-width="1.5"/>
+                        <line x1="62" y1="46" x2="112" y2="46" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="62" y1="58" x2="94" y2="58" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="204" y1="138" x2="262" y2="138" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4"/>
+                    </svg>`,
+                "horse-equestrian-design": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="equestrianGlow" cx="50%" cy="45%" r="55%">
+                                <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.28"/>
+                                <stop offset="100%" stop-color="#120b06" stop-opacity="0"/>
+                            </radialGradient>
+                        </defs>
+                        <rect width="320" height="180" fill="#120b06"/>
+                        <circle cx="160" cy="86" r="76" fill="url(#equestrianGlow)"/>
+                        <!-- Heritage Equestrian Horseshoe Crest -->
+                        <path d="M126 56C114 70 110 92 118 112C126 130 142 140 160 140C178 140 194 130 202 112C210 92 206 70 194 56" stroke="#fbbf24" stroke-width="5.5" stroke-linecap="round"/>
+                        <path d="M133 62C123 74 120 92 127 108C133 123 146 131 160 131C174 131 187 123 193 108C200 92 197 74 187 62" stroke="rgba(253,230,138,0.35)" stroke-width="1.2" stroke-dasharray="3 4"/>
+                        <!-- Minimalist Geometric Stallion Profile -->
+                        <path d="M150 108L154 78L146 64L156 54L164 62L178 68L174 78L164 80L168 108H150Z" fill="#fef3c7"/>
+                        <circle cx="163" cy="66" r="1.6" fill="#120b06"/>
+                        <line x1="78" y1="148" x2="242" y2="148" stroke="rgba(251,191,36,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>`,
+                "saas-earth-design": `
+                    <svg viewBox="0 0 320 180" class="w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="earthCore" cx="42%" cy="38%" r="55%">
+                                <stop offset="0%" stop-color="#38bdf8"/>
+                                <stop offset="55%" stop-color="#0284c7"/>
+                                <stop offset="100%" stop-color="#082f49"/>
+                            </radialGradient>
+                        </defs>
+                        <rect width="320" height="180" fill="#050a14"/>
+                        <!-- Planetary Globe & Latitude/Longitude Mesh -->
+                        <circle cx="160" cy="90" r="48" fill="url(#earthCore)" opacity="0.9"/>
+                        <ellipse cx="160" cy="90" rx="22" ry="48" stroke="rgba(255,255,255,0.28)" stroke-width="1.1"/>
+                        <ellipse cx="160" cy="90" rx="48" ry="18" stroke="rgba(255,255,255,0.28)" stroke-width="1.1"/>
+                        <!-- Orbital Cloud SaaS Ring & Satellite Nodes -->
+                        <ellipse cx="160" cy="90" rx="92" ry="26" transform="rotate(-14 160 90)" stroke="rgba(56,189,248,0.5)" stroke-width="1.2" stroke-dasharray="4 4"/>
+                        <circle cx="80" cy="108" r="4" fill="#34d399"/>
+                        <circle cx="242" cy="72" r="4.5" fill="#7dd3fc"/>
+                        <circle cx="192" cy="46" r="3" fill="#ffffff"/>
                     </svg>`
             };
             return artMap[id] || artMap["liquid-glass-theme"];
         }
 
-        // Complete 9-Theme Catalog Database
+        // Complete 13-Theme Catalog Database
         const projectsData = [
             {
                 id: "mars-theme-design",
@@ -1017,6 +1221,54 @@
                 goodFor: ["Fine Dining", "Cafes", "Culinary Brands"],
                 pinned: false,
                 badge: "new"
+            },
+            {
+                id: "workout-website-design",
+                number: 10,
+                title: "Athletic & Fitness Studio",
+                category: "Fitness & Wellness",
+                description: "A high-energy fitness and training showcase featuring structured workout programs, membership plans, and biometric performance UI.",
+                gradient: "from-emerald-950 via-zinc-900 to-black",
+                liveUrl: "https://farmanshafi2007-hub.github.io/workout-website-deign-/",
+                goodFor: ["Gyms & Studios", "Personal Trainers", "Fitness Brands"],
+                pinned: false,
+                badge: "new"
+            },
+            {
+                id: "f1-motorsport-design",
+                number: 11,
+                title: "Formula Motorsport & Racing",
+                category: "Automotive & Motorsport",
+                description: "An aerodynamic motorsport showcase engineered with live telemetry visuals, Grand Prix circuit highlights, and high-speed editorial design.",
+                gradient: "from-red-950 via-zinc-950 to-black",
+                liveUrl: "https://farmanshafi2007-hub.github.io/F1-deign-website-/",
+                goodFor: ["Motorsport Teams", "Automotive Brands", "Racing Events"],
+                pinned: false,
+                badge: "new"
+            },
+            {
+                id: "horse-equestrian-design",
+                number: 12,
+                title: "Equestrian & Heritage Club",
+                category: "Luxury & Lifestyle",
+                description: "A refined luxury equestrian showcase featuring thoroughbred pedigree galleries, private club memberships, and bespoke heritage styling.",
+                gradient: "from-amber-950 via-stone-900 to-black",
+                liveUrl: "https://farmanshafi2007-hub.github.io/horse-deign-website-/",
+                goodFor: ["Equestrian Clubs", "Luxury Estates", "Heritage Brands"],
+                pinned: false,
+                badge: "new"
+            },
+            {
+                id: "saas-earth-design",
+                number: 13,
+                title: "Earth Intelligence & Cloud SaaS",
+                category: "SaaS & Cloud Tech",
+                description: "A next-generation global SaaS platform designed with interactive planetary data visuals, enterprise cloud metrics, and modern UI architecture.",
+                gradient: "from-sky-950 via-indigo-950 to-black",
+                liveUrl: "https://farmanshafi2007-hub.github.io/saas-earth-website-deign-/",
+                goodFor: ["SaaS Startups", "Climate & Geo Tech", "Enterprise Cloud"],
+                pinned: false,
+                badge: "new"
             }
         ];
 
@@ -1038,8 +1290,13 @@
             renderCategories();
             renderAllProjects();
 
-            // Keyboard "/" shortcut to focus search
+            // Keyboard "/" shortcut to focus search and "Escape" to close modals/search
             window.addEventListener('keydown', (e) => {
+                const docModal = document.getElementById('selectionDocModal');
+                if (e.key === 'Escape' && docModal && !docModal.classList.contains('hidden')) {
+                    closeSelectionDocument();
+                    return;
+                }
                 if (e.key === '/' && document.activeElement !== document.getElementById('searchInput')) {
                     const tag = document.activeElement ? document.activeElement.tagName : '';
                     if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
@@ -1081,7 +1338,7 @@
                 const count = cat === 'All' ? projectsData.length : projectsData.filter(p => p.category === cat).length;
                 const isActive = currentCategory === cat;
                 return `
-                    <button type="button" role="tab" aria-selected="${isActive}" onclick="setCategory('${cat}')" class="px-3.5 sm:px-4 py-2 rounded-xl text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap border shrink-0 touch-manipulation inline-flex items-center gap-1.5 ${isActive ? 'bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 border-zinc-950 dark:border-white shadow-md scale-[1.01]' : 'bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md text-zinc-600 dark:text-zinc-400 border-zinc-200/90 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-950 dark:hover:text-zinc-100'}">
+                    <button type="button" role="tab" aria-selected="${isActive}" onclick="setCategory('${cat}')" class="px-3.5 sm:px-4 py-2 rounded-xl text-[11px] sm:text-xs font-medium tracking-tight transition-all whitespace-nowrap border shrink-0 touch-manipulation inline-flex items-center gap-1.5 ${isActive ? 'bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 border-zinc-950 dark:border-white shadow-sm scale-[1.01]' : 'bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md text-zinc-600 dark:text-zinc-400 border-zinc-200/90 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-950 dark:hover:text-zinc-100'}">
                         <span>${cat}</span>
                         <span class="text-[10px] font-mono px-1.5 py-0.2 rounded-md ${isActive ? 'bg-white/20 dark:bg-black/15 text-white dark:text-zinc-900' : 'bg-zinc-200/70 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400'}">${count}</span>
                     </button>
@@ -1138,10 +1395,11 @@
 
             const filtered = projectsData.filter(p => {
                 const matchesCategory = currentCategory === 'All' || p.category === currentCategory;
+                const formattedNum = formatThemeNum(p.number);
                 const matchesSearch = p.title.toLowerCase().includes(query) ||
                                       p.description.toLowerCase().includes(query) ||
                                       p.category.toLowerCase().includes(query) ||
-                                      (`0${p.number}`).includes(query) ||
+                                      formattedNum.includes(query) ||
                                       (p.goodFor && p.goodFor.some(s => s.toLowerCase().includes(query)));
                 return matchesCategory && matchesSearch;
             });
@@ -1172,6 +1430,7 @@
             const isMostViewed = project.badge === 'most-viewed';
             const isNew = project.badge === 'new';
             const delay = Math.min(index * 0.035, 0.28);
+            const numLabel = formatThemeNum(project.number);
 
             return `
                 <article class="project-card animate-fade-up border ${isSelected ? 'border-emerald-500 ring-2 ring-emerald-500/30 bg-white dark:bg-[#151718] shadow-lg' : 'border-black/[0.07] dark:border-white/[0.09] bg-white/90 dark:bg-[#121214]/90 hover:bg-white dark:hover:bg-[#17171a] shadow-[0_6px_20px_-6px_rgba(0,0,0,0.06)] dark:shadow-[0_10px_24px_-8px_rgba(0,0,0,0.75)]'} backdrop-blur-2xl overflow-hidden flex flex-col group relative" style="animation-delay: ${delay}s">
@@ -1183,12 +1442,12 @@
                             
                             <!-- Floating Pill: Index & Status -->
                             <div class="absolute top-1.5 left-1.5 z-10 flex items-center gap-1">
-                                <span class="px-1.5 py-0.5 rounded-full bg-black/75 text-white font-mono text-[9px] font-semibold tracking-wider backdrop-blur-md border border-white/15">
-                                    0${project.number}
+                                <span class="px-1.5 py-0.5 rounded-full bg-black/75 text-white font-mono text-[9px] font-medium tracking-wider backdrop-blur-md border border-white/15">
+                                    ${numLabel}
                                 </span>
-                                ${isPinned ? `<span class="px-1.5 py-0.5 rounded-full bg-amber-400 text-zinc-950 font-bold text-[8px] uppercase tracking-wider shadow-sm">Featured</span>` : ''}
-                                ${isMostViewed ? `<span class="px-1.5 py-0.5 rounded-full bg-rose-500 text-white font-bold text-[8px] uppercase tracking-wider shadow-sm">Popular</span>` : ''}
-                                ${isNew ? `<span class="px-1.5 py-0.5 rounded-full bg-sky-500 text-white font-bold text-[8px] uppercase tracking-wider shadow-sm">New</span>` : ''}
+                                ${isPinned ? `<span class="px-1.5 py-0.5 rounded-full bg-amber-400 text-zinc-950 font-semibold text-[8px] uppercase tracking-wider shadow-sm">Featured</span>` : ''}
+                                ${isMostViewed ? `<span class="px-1.5 py-0.5 rounded-full bg-rose-500 text-white font-semibold text-[8px] uppercase tracking-wider shadow-sm">Popular</span>` : ''}
+                                ${isNew ? `<span class="px-1.5 py-0.5 rounded-full bg-sky-500 text-white font-semibold text-[8px] uppercase tracking-wider shadow-sm">New</span>` : ''}
                             </div>
 
                             ${isSelected ? `
@@ -1200,9 +1459,9 @@
 
                             <!-- Hover Live Preview Overlay -->
                             <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open Live Preview of ${project.title}" class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
-                                <span class="px-2.5 py-1 rounded-full bg-white text-zinc-950 text-[10px] font-bold tracking-tight shadow-lg transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-1">
+                                <span class="px-2.5 py-1 rounded-full bg-white text-zinc-950 text-[10px] font-medium tracking-tight shadow-lg transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-1">
                                     <span>Live</span>
-                                    <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                    <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                                 </span>
                             </a>
                         </div>
@@ -1210,27 +1469,27 @@
 
                     <!-- Compact Card Content -->
                     <div class="p-2.5 pt-2 flex flex-col flex-grow">
-                        <div class="text-[8.5px] sm:text-[9px] font-semibold uppercase tracking-wider text-orange-600 dark:text-orange-400/90 mb-0.5 truncate">
+                        <div class="font-mono text-[8.5px] font-medium uppercase tracking-[0.06em] text-orange-600 dark:text-orange-400/90 mb-0.5 truncate">
                             ${project.category}
                         </div>
-                        <h3 class="text-[12px] sm:text-[13px] font-bold tracking-tight text-zinc-900 dark:text-[#f5f5f7] leading-snug mb-1 line-clamp-1">
+                        <h3 class="text-[12px] sm:text-[13px] font-semibold tracking-[-0.015em] text-zinc-900 dark:text-[#f5f5f7] leading-snug mb-1 line-clamp-1">
                             ${project.title}
                         </h3>
                         
-                        <p class="text-[10.5px] text-zinc-500 dark:text-[#a1a1aa] mb-2.5 leading-snug font-normal line-clamp-2">
+                        <p class="text-[10.5px] text-zinc-500 dark:text-[#a1a1aa] mb-2.5 leading-relaxed font-normal line-clamp-2">
                             ${project.description}
                         </p>
 
                         <!-- Compact Action Row -->
                         <div class="flex items-center gap-1.5 pt-2 border-t border-zinc-100 dark:border-white/[0.07] mt-auto">
-                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-1.5 px-2 rounded-lg bg-zinc-100 hover:bg-zinc-200/80 dark:bg-white/[0.07] dark:hover:bg-white/[0.13] text-zinc-800 dark:text-[#f5f5f7] text-[10px] font-semibold tracking-tight text-center transition-colors inline-flex items-center justify-center gap-0.5 touch-manipulation">
+                            <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-1.5 px-2 rounded-lg bg-zinc-100 hover:bg-zinc-200/80 dark:bg-white/[0.07] dark:hover:bg-white/[0.13] text-zinc-800 dark:text-[#f5f5f7] text-[10px] font-medium tracking-tight text-center transition-colors inline-flex items-center justify-center gap-0.5 touch-manipulation">
                                 <span>Preview</span>
-                                <svg class="w-2.5 h-2.5 opacity-70 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                                <svg class="w-2.5 h-2.5 opacity-70 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                             </a>
 
-                            <button type="button" onclick="handleCardSelect('${project.id}')" class="flex-1 py-1.5 px-2 rounded-lg ${isSelected ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm' : 'bg-zinc-950 hover:bg-zinc-800 dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-zinc-950'} text-[10px] font-bold tracking-tight text-center transition-all active:scale-95 inline-flex items-center justify-center gap-0.5 touch-manipulation">
+                            <button type="button" onclick="handleCardSelect('${project.id}')" class="flex-1 py-1.5 px-2 rounded-lg ${isSelected ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm' : 'bg-zinc-950 hover:bg-zinc-800 dark:bg-[#f5f5f7] dark:hover:bg-white text-white dark:text-zinc-950'} text-[10px] font-medium tracking-tight text-center transition-all active:scale-95 inline-flex items-center justify-center gap-0.5 touch-manipulation">
                                 ${isSelected ? `
-                                    <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                    <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 13l4 4L19 7"/></svg>
                                     <span>Selected</span>
                                 ` : `
                                     <span>Select</span>
@@ -1244,10 +1503,43 @@
 
         function handleCardSelect(projectId) {
             if (selectedDesign && selectedDesign.id === projectId) {
-                clearSelection();
+                openSelectionDocument(selectedDesign);
                 return;
             }
             selectDesign(projectId);
+        }
+
+        function openSelectionDocument(project = selectedDesign) {
+            if (!project) return;
+            const modal = document.getElementById('selectionDocModal');
+            if (!modal) return;
+
+            const numLabel = formatThemeNum(project.number);
+            const artworkEl = document.getElementById('docArtworkPreview');
+            const numEl = document.getElementById('docThemeNumber');
+            const catEl = document.getElementById('docThemeCategory');
+            const titleEl = document.getElementById('docThemeTitle');
+            const trackingEl = document.getElementById('docTrackingId');
+            const liveBtn = document.getElementById('docLivePreviewBtn');
+
+            if (artworkEl) artworkEl.innerHTML = getThemeArtwork(project.id);
+            if (numEl) numEl.textContent = `#${numLabel}`;
+            if (catEl) catEl.textContent = project.category;
+            if (titleEl) titleEl.textContent = project.title;
+            if (trackingEl) trackingEl.textContent = `Selection Brief #${project.trackingId || '0000000000'}`;
+            if (liveBtn) liveBtn.href = project.liveUrl;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSelectionDocument() {
+            const modal = document.getElementById('selectionDocModal');
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
         }
 
         function selectDesign(projectId) {
@@ -1257,6 +1549,7 @@
 
             const trackingId = Math.floor(1000000000 + Math.random() * 9000000000);
             selectedDesign.trackingId = trackingId;
+            const numLabel = formatThemeNum(project.number);
 
             const bar = document.getElementById('selectionBar');
             const text = document.getElementById('selectedDesignText');
@@ -1265,7 +1558,7 @@
             const previewLinkDesktop = document.getElementById('selectedPreviewLinkDesktop');
 
             if (bar && text) {
-                text.textContent = `Selected: #0${project.number} — ${project.title}`;
+                text.textContent = `Selected: #${numLabel} — ${project.title}`;
                 if (meta) meta.textContent = `${project.category} • Tracking ID #${trackingId}`;
                 if (previewLinkMobile) previewLinkMobile.href = project.liveUrl;
                 if (previewLinkDesktop) previewLinkDesktop.href = project.liveUrl;
@@ -1273,11 +1566,13 @@
             }
 
             renderAllProjects();
+            openSelectionDocument(project);
             return project;
         }
 
         function clearSelection() {
             selectedDesign = null;
+            closeSelectionDocument();
             const bar = document.getElementById('selectionBar');
             if (bar) {
                 bar.classList.add('translate-y-full');
@@ -1288,16 +1583,17 @@
         function sendOnWhatsApp() {
             if (!selectedDesign) return;
             const orderId = selectedDesign.trackingId || Math.floor(1000000000 + Math.random() * 9000000000);
+            const numLabel = formatThemeNum(selectedDesign.number);
             
             const textMessage = `*FORGE SOFTWARES — THEME ORDER INQUIRY*
 ━━━━━━━━━━━━━━━━━━━━━
 - *Tracking ID:* #${orderId}
-- *Theme No:* #0${selectedDesign.number}
+- *Theme No:* #${numLabel}
 - *Theme Name:* ${selectedDesign.title}
 - *Category:* ${selectedDesign.category}
 - *Live Sample URL:* ${selectedDesign.liveUrl}
 ━━━━━━━━━━━━━━━━━━━━━
-Hello Forge Softwares team, I have chosen design #0${selectedDesign.number} (${selectedDesign.title}) for my project. Please let me know the development timeline and onboarding steps.`;
+Hello Forge Softwares team, I have chosen design #${numLabel} (${selectedDesign.title}) for my project. Please let me know the development timeline and onboarding steps.`;
 
             const message = encodeURIComponent(textMessage);
             window.open(`https://wa.me/919697430658?text=${message}`, '_blank', 'noopener,noreferrer');
@@ -1454,7 +1750,137 @@ Hello Forge Softwares team, I have chosen design #0${selectedDesign.number} (${s
                             <div class="alloy-specs">
                                 <div class="alloy-row"><span>Theme</span><span>#09 Dining</span></div>
                                 <div class="alloy-row"><span>Booking</span><span>Integrated</span></div>
-                                <div class="alloy-row"><span>Catalog</span><span>9 Themes</span></div>
+                                <div class="alloy-row"><span>Catalog</span><span>13 Themes</span></div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'workout',
+                    original: 54820,
+                    distilled: 4810,
+                    saved: 50010,
+                    url: 'forge.showroom/theme-10',
+                    htmlText: [
+                        '<h1>Athletic & Fitness Studio</h1>',
+                        '<p>High-energy training storefront',
+                        '  with program scheduling and',
+                        '  biometric performance UI.</p>',
+                        '<h2>Modules</h2>',
+                        '<ul>',
+                        '  <li>Training Program Matrix</li>',
+                        '  <li>Membership Onboarding</li>',
+                        '</ul>'
+                    ].join('\n'),
+                    cardMarkup: `
+                        <div class="d-card card-fitness">
+                            <div class="k-nav">
+                                <div class="k-brand">${logoSVG}<span>FORGE &middot; 10</span></div>
+                                <div class="k-menu"><span>FITNESS</span><span class="k-pill">NEW</span></div>
+                            </div>
+                            <div class="home-stats">
+                                <div><div class="home-stat-num">10</div><div class="home-stat-label">athletic UI</div></div>
+                                <div class="home-stat-divider"></div>
+                                <div><div class="home-stat-num">91%</div><div class="home-stat-label">faster load</div></div>
+                            </div>
+                            <div class="home-tagline">Athletic &amp; Fitness Studio Experience.</div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'f1',
+                    original: 82450,
+                    distilled: 5790,
+                    saved: 76660,
+                    url: 'forge.showroom/theme-11',
+                    htmlText: [
+                        '<h1>Formula Motorsport & Racing</h1>',
+                        '<p>Aerodynamic racing showcase',
+                        '  with live telemetry visuals and',
+                        '  Grand Prix circuit modules.</p>',
+                        '<h2>Telemetry</h2>',
+                        '<ul>',
+                        '  <li>Constructor Standings UI</li>',
+                        '  <li>Sub-second Apex Transitions</li>',
+                        '</ul>'
+                    ].join('\n'),
+                    cardMarkup: `
+                        <div class="d-card card-f1">
+                            <div class="k-nav">
+                                <div class="k-brand">${logoSVG}<span>FORGE &middot; 11</span></div>
+                                <div class="k-menu"><span>MOTORSPORT</span><span class="k-pill">F1</span></div>
+                            </div>
+                            <div class="case-kicker">THEME #11 &middot; AUTOMOTIVE &amp; RACING</div>
+                            <div class="case-title">Formula Motorsport engineered with precision telemetry UI</div>
+                            <div class="case-stats">
+                                <div class="case-stat"><div class="case-stat-num">93%</div><div class="case-stat-label">cleaner DOM</div></div>
+                                <div class="case-stat"><div class="case-stat-num">120Hz</div><div class="case-stat-label">telemetry</div></div>
+                                <div class="case-stat"><div class="case-stat-num">#11</div><div class="case-stat-label">ready now</div></div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'equestrian',
+                    original: 59340,
+                    distilled: 5120,
+                    saved: 54220,
+                    url: 'forge.showroom/theme-12',
+                    htmlText: [
+                        '<h1>Equestrian & Heritage Club</h1>',
+                        '<p>Luxury thoroughbred showcase',
+                        '  with pedigree archives and',
+                        '  private estate memberships.</p>',
+                        '<h2>Highlights</h2>',
+                        '<ul>',
+                        '  <li>Editorial Heritage Serif</li>',
+                        '  <li>Private Club Onboarding</li>',
+                        '</ul>'
+                    ].join('\n'),
+                    cardMarkup: `
+                        <div class="d-card card-equestrian">
+                            <div class="k-nav">
+                                <div class="k-brand">${logoSVG}<span>FORGE &middot; 12</span></div>
+                                <div class="k-menu"><span>HERITAGE</span><span class="k-pill">CLUB</span></div>
+                            </div>
+                            <div class="alloy-title">Equestrian<em>Heritage.</em></div>
+                            <div class="alloy-specs">
+                                <div class="alloy-row"><span>Theme</span><span>#12 Estate</span></div>
+                                <div class="alloy-row"><span>Style</span><span>Luxury</span></div>
+                                <div class="alloy-row"><span>Status</span><span>Ready</span></div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'saas-earth',
+                    original: 76280,
+                    distilled: 5490,
+                    saved: 70790,
+                    url: 'forge.showroom/theme-13',
+                    htmlText: [
+                        '<h1>Earth Intelligence & Cloud SaaS</h1>',
+                        '<p>Global cloud SaaS platform with',
+                        '  interactive planetary telemetry',
+                        '  and real-time node analytics.</p>',
+                        '<h2>Architecture</h2>',
+                        '<ul>',
+                        '  <li>Global Edge Mesh UI</li>',
+                        '  <li>Sub-50ms Interactive Views</li>',
+                        '</ul>'
+                    ].join('\n'),
+                    cardMarkup: `
+                        <div class="d-card card-earth">
+                            <div class="k-nav">
+                                <div class="k-brand">${logoSVG}<span>FORGE &middot; 13</span></div>
+                                <div class="k-menu"><span>CLOUD SAAS</span><span class="k-pill">EARTH</span></div>
+                            </div>
+                            <div class="case-kicker">THEME #13 &middot; SAAS &amp; CLOUD TECH</div>
+                            <div class="case-title">Earth Intelligence &amp; Cloud SaaS with global planetary telemetry</div>
+                            <div class="case-stats">
+                                <div class="case-stat"><div class="case-stat-num">93%</div><div class="case-stat-label">lighter DOM</div></div>
+                                <div class="case-stat"><div class="case-stat-num">99.9%</div><div class="case-stat-label">cloud SLA</div></div>
+                                <div class="case-stat"><div class="case-stat-num">#13</div><div class="case-stat-label">ready now</div></div>
                             </div>
                         </div>
                     `
